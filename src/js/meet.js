@@ -61,7 +61,7 @@ var meet = {
 			  	timeout: 300,
 			  	success: function(data){
 			    	if(data.code=='1'){
-			    		window.open('meet-sign.html?code='+_code.join(''),'_self');
+			    		window.open('meet-sign.html?meetId='+data.attach.id,'_self');
 			    	}else{
 				    	$.dialog({
 		                    content : '会议码签到失败！',
@@ -82,14 +82,14 @@ var meet = {
 	},
 	sign_fn:function(){
 		var _t = this;
-		var _codeId = _t.getHrefParam('code');
-		if(!_codeId){
+		var _meetId = _t.getHrefParam('meetId');
+		if(!_meetId){
 			return false;
 		}
 		$.ajax({
 		  	type: 'get',
 		  	url: _t.config.url.signcode,
-		  	data: _codeId,
+		  	data: _meetId,
 		  	dataType: 'json',
 		  	timeout: 300,
 		  	success: function(data){
@@ -110,14 +110,14 @@ var meet = {
 				  	type: 'get',
 				 	url: _t.config.url.sign,
 				  	data: {
-						meetId:_codeId,
+						meetId:_meetId,
 						perName:$('.meet-sign-text').val()
 					},
 				  	dataType: 'json',
 				 	timeout: 300,
 				  	success: function(data){
 					    if(data.code=='1'){
-					    	window.open('meet-welcome.html?meetId='+_codeId,'_self');
+					    	window.open('meet-welcome.html?meetId='+_meetId,'_self');
 					    }else{
 					    	$.dialog({
 			                    content : '签到失败！',
@@ -139,15 +139,15 @@ var meet = {
 	},
 	welcome_fn:function(){
 		var _t = this;
-		var _codeId = _t.getHrefParam('meetId');
-		if(!_codeId){
+		var _meetId = _t.getHrefParam('meetId');
+		if(!_meetId){
 			return false;
 		}
 		$.ajax({
 		  	type: 'get',
 		 	url: _t.config.url.welcome,
 		  	data: {
-				meetId:_codeId
+				meetId:_meetId
 			},
 		  	dataType: 'json',
 		  	success: function(data){
@@ -171,17 +171,24 @@ var meet = {
 		  	}
 		});
 		$('.meet-wel-btn').on('swipeRight',function(){
-			window.open('meet-index.html','_self');
+			window.open('meet-index.html?meetId='+_meetId,'_self');
+		});
+	},
+	index_fn:function(){
+		var _t = this;
+		var _meetId = _t.getHrefParam('meetId');
+		$('.meet-menu-item a').each(function(_index,_element){
+			$(_element).attr('href',$(_element).attr('href')+'?meetId='+_meetId);
 		});
 	},
 	expert_fn:function(){
 		var _t = this;
-		var _codeId = _t.getHrefParam('meetId');
+		var _meetId = _t.getHrefParam('meetId');
 		$.ajax({
 			type: 'get',
 		 	url: _t.config.url.expert,
 		  	data: {
-				meetId:_codeId
+				meetId:_meetId
 			},
 		  	dataType: 'json',
 		  	success: function(data){
@@ -245,12 +252,12 @@ var meet = {
 	},
 	schedule_fn:function(){
 		var _t = this;
-		var _codeId = _t.getHrefParam('meetId');
+		var _meetId = _t.getHrefParam('meetId');
 		$.ajax({
 		  	type: 'get',
 		 	url: _t.config.url.schedule,
 		  	data: {
-				meetId:_codeId
+				meetId:_meetId
 			},
 		  	dataType: 'json',
 		  	success: function(data){
@@ -264,8 +271,6 @@ var meet = {
 			    			html+='</span></div></div>';
 			    		});
 						$('.meet-sche-sessionwrap').html(html);
-				
-			
 			    	}
 			    }else{
 			    	$.dialog({
@@ -286,12 +291,12 @@ var meet = {
 	},
 	data_fn:function(){
 		var _t = this;
-		var _codeId = _t.getHrefParam('meetId');
+		var _meetId = _t.getHrefParam('meetId');
 		$.ajax({
 		  	type: 'get',
 		 	url: _t.config.url.data,
 		  	data: {
-				meetId:_codeId
+				meetId:_meetId
 			},
 		  	dataType: 'json',
 		  	success: function(data){
@@ -327,7 +332,7 @@ var meet = {
 				                        	type: 'get',
 										 	url: _t.config.url.senddata,
 										  	data: {
-												id:_codeId,
+												id:_meetId,
 												emailAddress:_sendemail
 											},
 										  	dataType: 'json',
@@ -372,12 +377,12 @@ var meet = {
 	},
 	ask_fn:function(){
 		var _t = this;
-		var _codeId = _t.getHrefParam('meetId');
+		var _meetId = _t.getHrefParam('meetId');
 		$.ajax({
 			type: 'get',
 		 	url: _t.config.url.getask,
 		  	data: {
-				meetId:_codeId,
+				meetId:_meetId,
 				maxInteractId:null
 			},
 		  	dataType: 'json',
@@ -421,13 +426,13 @@ var meet = {
 	},
 	vote_fn:function(){
 		var _t = this;
-		var _codeId = _t.getHrefParam('meetId');
+		var _meetId = _t.getHrefParam('meetId');
 		$('.meet-vote-btn input').click(function(){
 			$.ajax({
 				type: 'get',
 			 	url: _t.config.url.isvote,
 			  	data: {
-					meetId:_codeId,
+					meetId:_meetId,
 					id:1
 				},
 			  	dataType: 'json',
@@ -437,10 +442,10 @@ var meet = {
 			  				$.ajax({
 			  					type:'get',
 			  					url:_t.config.url.vote,
-			  					data{},
+			  					data:{},
 			  					dataType:'json',
 			  					success:function(){
-			  						
+
 			  					}
 
 			  				});
