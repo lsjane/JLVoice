@@ -11,6 +11,7 @@
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">
 	<link rel="stylesheet" type="text/css" href="../common/fonts/ionicons.min.css">
+	<link rel="stylesheet" type="text/css" href="/common/css/zepto.alert.css">
 	<link rel="stylesheet" type="text/css" href="../src/css/meet.css">
 	<script>
 		if(window.innerWidth>750)document.getElementById('viewportid').setAttribute('content','target-densitydpi=285,width=750,user-scalable=no');
@@ -21,19 +22,28 @@
 <div class="meet-wrap">
 	<div class="meet-header">
 		<div class="meet-header-back">
-			<a href="#"><i class="ion-chevron-left"></i></a>
+			<span class="meet-back"><i class="ion-chevron-left"></i></span>
 			<h3>签到</h3>
 		</div>
 	</div>
-	<div class="meet-bg">
-		<img src="../images/meet-bg.jpg" />
-	</div>
-	<div class="meet-content">
-		<form>
-			<input type="text" placeholder="请输入您的名字，进行指纹验证" class="meet-sign-text">
-			<input type="button" class="meet-sign-btn">
-		</form>
+	
+	<div class="meet-sign-content">
+		<div class="meet-sign-bg">
+			<img src="../images/meet-sign-bg.jpg" />
+		</div>
+		<div class="meet-sign-logo"></div>
+		<div class="meet-sign-slogan"></div>
+		<div class="meet-sign-form">
+			<form>
+				<input type="text" placeholder="请输入您的名字，进行指纹验证" class="meet-sign-text">
+				<input type="button" class="meet-sign-btn">
+			</form>
+		</div>
 	</div>
 </div>
 </body>
+<script type="text/javascript" src="/common/js/zepto.min.js"></script>
+<script type="text/javascript" src="/common/js/zepto.alert.js"></script>
+<script type="text/javascript" src="/src/js/meet-config.js"></script>
+<script type="text/javascript" src="/src/js/meet.js"></script>
 </html>
