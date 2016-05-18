@@ -14,7 +14,7 @@ var meet = {
 			case 'data': _t.data_fn();break;
 			case 'ask': _t.ask_fn();break;
 			case 'vote': _t.vote_fn(); break;
-			//case 'feedback': _t.feedback_fn();break;
+			case 'feedback': _t.feedback_fn();break;
 			default:
 			  return false;
 		}
