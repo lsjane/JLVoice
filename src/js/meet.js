@@ -1,6 +1,7 @@
 var meet = {
 	init:function(){
 		var _t = this;
+		_t.config = meet_config;
 		_t.signcode_fn();
 		_t.sign_fn();
 		_t.welcome_fn();
@@ -54,7 +55,7 @@ var meet = {
 		$('.meet-code-btn').on('swipeRight',function(){
 			$.ajax({
 			  	type: 'get',
-			  	url: '/json/signcode.js',
+			  	url: _t.config.url.signcode,
 			  	data: {code:_code.join('')},
 			  	dataType: 'json',
 			  	timeout: 300,
@@ -87,7 +88,7 @@ var meet = {
 		}
 		$.ajax({
 		  	type: 'get',
-		  	url: '/json/signcode.js',
+		  	url: _t.config.url.signcode,
 		  	data: _codeId,
 		  	dataType: 'json',
 		  	timeout: 300,
@@ -107,7 +108,7 @@ var meet = {
 			}else{
 				$.ajax({
 				  	type: 'get',
-				 	url: '/json/sign.js',
+				 	url: _t.config.url.sign,
 				  	data: {
 						meetId:_codeId,
 						perName:$('.meet-sign-text').val()
@@ -144,7 +145,7 @@ var meet = {
 		}
 		$.ajax({
 		  	type: 'get',
-		 	url: '/json/welcome.js',
+		 	url: _t.config.url.welcome,
 		  	data: {
 				meetId:_codeId
 			},
@@ -178,7 +179,7 @@ var meet = {
 		var _codeId = _t.getHrefParam('meetId');
 		$.ajax({
 			type: 'get',
-		 	url: '/json/expert.js',
+		 	url: _t.config.url.expert,
 		  	data: {
 				meetId:_codeId
 			},
@@ -247,7 +248,7 @@ var meet = {
 		var _codeId = _t.getHrefParam('meetId');
 		$.ajax({
 		  	type: 'get',
-		 	url: '/json/schedule.js',
+		 	url: _t.config.url.schedule,
 		  	data: {
 				meetId:_codeId
 			},
@@ -288,7 +289,7 @@ var meet = {
 		var _codeId = _t.getHrefParam('meetId');
 		$.ajax({
 		  	type: 'get',
-		 	url: '/json/data.js',
+		 	url: _t.config.url.data,
 		  	data: {
 				meetId:_codeId
 			},
@@ -324,7 +325,7 @@ var meet = {
 			                    	}else{
 			                    		$.ajax({
 				                        	type: 'get',
-										 	url: '/json/data.js',
+										 	url: _t.config.url.senddata,
 										  	data: {
 												id:_codeId,
 												emailAddress:_sendemail
@@ -374,7 +375,7 @@ var meet = {
 		var _codeId = _t.getHrefParam('meetId');
 		$.ajax({
 			type: 'get',
-		 	url: '/json/ask.js',
+		 	url: _t.config.url.getask,
 		  	data: {
 				meetId:_codeId,
 				maxInteractId:null
@@ -396,7 +397,7 @@ var meet = {
 			}else{
 				$.ajax({
 					type: 'get',
-				 	url: '/json/data.js',
+				 	url: _t.config.url.ask,
 				  	data: {
 						content:_value
 					},
@@ -424,7 +425,7 @@ var meet = {
 		$('.meet-vote-btn input').click(function(){
 			$.ajax({
 				type: 'get',
-			 	url: '/json/data.js',
+			 	url: _t.config.url.isvote,
 			  	data: {
 					meetId:_codeId,
 					id:1
@@ -433,7 +434,16 @@ var meet = {
 			  	success:function(data){
 			  		if(data.code==1){
 			  			if(data.attach==1){
-			  				$.ajax({});
+			  				$.ajax({
+			  					type:'get',
+			  					url:_t.config.url.vote,
+			  					data{},
+			  					dataType:'json',
+			  					success:function(){
+			  						
+			  					}
+
+			  				});
 			  			}else{
 			  				$.dialog({
 			                    content : '用户不可以投票！',
