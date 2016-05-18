@@ -22,6 +22,36 @@ var meet = {
 			window.history.back(-1);
 		});
 	},
+	getmeet_fn:function(_meetId){
+		var _t = this;
+		
+		$.ajax({
+		  	type: 'get',
+		  	url: _t.config.url.meet,
+		  	data: {meetId:_meetId},
+		  	dataType: 'json',
+		  	timeout: 300,
+		  	success: function(data){
+		    	if(data.code=='1'){
+		    		$('.meet-sign-bg img').attr('src',data.attach.picPath);
+		    		$('.meet-wel-bg img').attr('src',data.attach.letterPic);
+		    	}else{
+			    	$.dialog({
+	                    content : '加载页面失败！',
+						title:'alert',
+	                    time : 2000
+           			 });
+			    }
+		  	},
+		  	error: function(){
+		    	$.dialog({
+                    content : '加载页面失败！',
+					title:'alert',
+                    time : 2000
+       			 });
+		  	}
+		});
+	},
 	signcode_fn:function(){
 		var _t = this;
 		var _top =0;
@@ -94,18 +124,7 @@ var meet = {
 		if(!_meetId){
 			return false;
 		}
-		$.ajax({
-		  	type: 'get',
-		  	url: _t.config.url.signcode,
-		  	data: _meetId,
-		  	dataType: 'json',
-		  	timeout: 300,
-		  	success: function(data){
-		    	if(data.code=='1'){
-		    		$('.meet-sign-bg img').attr('src',data.attach.picPath);
-		    	}
-		  	}
-		});
+		_t.getmeet_fn(_meetId);
 		$('.meet-sign-btn').on('click',function(){
 			if(!$('.meet-sign-text').val()){
 				$.dialog({
@@ -114,18 +133,19 @@ var meet = {
                     time : 2000
                 });
 			}else{
+				var _pername = encodeURIComponent($.trim($('.meet-sign-text').val()));
 				$.ajax({
 				  	type: 'get',
 				 	url: _t.config.url.sign,
 				  	data: {
 						meetId:_meetId,
-						perName:$('.meet-sign-text').val()
+						perName:_pername
 					},
 				  	dataType: 'json',
 				 	timeout: 300,
 				  	success: function(data){
 					    if(data.code=='1'){
-					    	window.open('meet-welcome.html?meetId='+_meetId,'_self');
+					    	window.open('meet-welcome.html?meetId='+_meetId+'&userId='+data.attach.id,'_self');
 					    }else{
 					    	$.dialog({
 			                    content : '签到失败！',
@@ -148,45 +168,27 @@ var meet = {
 	welcome_fn:function(){
 		var _t = this;
 		var _meetId = _t.getHrefParam('meetId');
+		var _userId = _t.getHrefParam('userId');
 		if(!_meetId){
 			return false;
 		}
-		$.ajax({
-		  	type: 'get',
-		 	url: _t.config.url.welcome,
-		  	data: {
-				meetId:_meetId
-			},
-		  	dataType: 'json',
-		  	success: function(data){
-			    if(data.code=='1'){
-			    	$('.meet-wel-bg img').attr('src',data.attach.picPath);
-			    	$('.meet-wel-text p').eq(0).text(data.attach.letterContent);
-			    }else{
-			    	$.dialog({
-	                    content : '加载页面失败！',
-						title:'alert',
-	                    time : 2000
-           			 });
-			    }
-		  	},
-		  	error: function(){
-		    	$.dialog({
-                    content : '加载页面失败！',
-					title:'alert',
-                    time : 2000
-       			 });
-		  	}
-		});
+		_t.getmeet_fn(_meetId);
+		
 		$('.meet-wel-btn').on('swipeRight',function(){
-			window.open('meet-index.html?meetId='+_meetId,'_self');
+			window.open('meet-index.html?meetId='+_meetId+'&userId='+_userId,'_self');
 		});
 	},
 	index_fn:function(){
 		var _t = this;
 		var _meetId = _t.getHrefParam('meetId');
+		var _userId = _t.getHrefParam('userId');
+		if(!_meetId){
+			return false;
+		}
+		_t.getmeet_fn(_meetId);
 		$('.meet-menu-item a').each(function(_index,_element){
-			$(_element).attr('href',$(_element).attr('href')+'?meetId='+_meetId);
+
+			$(_element).attr('href',$(_element).attr('href')+'?meetId='+_meetId+'&userId='+_userId);
 		});
 	},
 	expert_fn:function(){
@@ -203,8 +205,9 @@ var meet = {
 			    if(data.code=='1'){
 			    	if(data.attach.length>0){
 			    		var html = '',dothtml='';
+
 			    		$(data.attach).each(function(_index,_element){
-			    			html += '<div class="swiper-slide" data-index="'+_index+'"><p class="meet-expert-photo"><img src="'+_element.picUrl;
+			    			html += '<div class="swiper-slide"><p class="meet-expert-photo"><img src="'+_element.picUrl;
 			    			html += '"></p><p class="meet-expert-name">'+_element.name;
 			    			html += '</p><p class="meet-expert-from">'+_element.unit;
 			    			html += '</p><p class="meet-expert-post">'+_element.office+' '+_element.jobs+'</p>';
@@ -219,26 +222,56 @@ var meet = {
 			    			dothtml += '<span></span>';
 			    		});
 			    		$('.swiper-wrapper').html(html);
+			    		var _elewidth = parseInt($('.swiper-slide').css('width'));
+			    		$('.swiper-wrapper').css('width',_elewidth*data.attach.length);
 			    		$('.meet-expert-dot').html(dothtml);
 			    		$('.meet-expert-dot span').first().addClass('active');
 			    		$('.swiper-slide').on('swipeLeft',function(e){
-			    			var $e = $(e.currentTarget);
+			    			var $e = $(e.currentTarget); 
+			    			var _slideIndex = parseInt($('.meet-expert-dot').attr('data-index'));
+			    			_slideIndex = _slideIndex?_slideIndex:0;
 			    			var _left = parseInt($e.parent().css('left'));
-			    			if(parseInt($e.parent().css('width'))==-_left+710){
+			    			if(parseInt($e.parent().css('width'))==-_left+_elewidth){
 			    				return false;
 			    			}
-			    			$('.swiper-wrapper').animate({left:(_left-710)+'px'});
-			    			$('.meet-expert-dot span').removeClass('active').eq($e.attr('data-index')+1).addClass('active');
+			    			_slideIndex++;
+			    			$('.swiper-wrapper').animate({left:(_left-_elewidth)+'px'});
+			    			$('.meet-expert-dot span').removeClass('active').eq(_slideIndex).addClass('active');
+			    			$('.meet-expert-dot').attr('data-index',_slideIndex);
 			    		});
 			    		$('.swiper-slide').on('swipeRight',function(e){
 			    			var $e = $(e.currentTarget);
+			    			var _slideIndex = parseInt($('.meet-expert-dot').attr('data-index'));
 			    			var _left = parseInt($e.parent().css('left'));
 			    			if(_left==0){
 			    				return false;
 			    			}
-			    			$e.parent().animate({left:(_left+710)+'px'});
-			    			$('.meet-expert-dot span').removeClass('active').eq($e.attr('data-index')-1).addClass('active');
-
+			    			_slideIndex--;
+			    			$e.parent().animate({left:(_left+_elewidth)+'px'});
+			    			$('.meet-expert-dot span').removeClass('active').eq(_slideIndex).addClass('active');
+			    			$('.meet-expert-dot').attr('data-index',_slideIndex);
+			    		});
+			    		$('.meet-expert-pre').click(function(e){
+			            	var _slideIndex = parseInt($('.meet-expert-dot').attr('data-index'));
+			    			var _left = parseInt($('.swiper-wrapper').css('left'));
+			    			if(_left==0){
+			    				return false;
+			    			}
+			    			_slideIndex--;
+			    			$('.swiper-wrapper').animate({left:(_left+_elewidth)+'px'});
+			    			$('.meet-expert-dot span').removeClass('active').eq(_slideIndex).addClass('active');
+			    			$('.meet-expert-dot').attr('data-index',_slideIndex);
+			    		});
+			    		$('.meet-expert-next').click(function(e){
+			            	var _slideIndex = parseInt($('.meet-expert-dot').attr('data-index'));
+			            	_slideIndex = _slideIndex?_slideIndex:0;
+			    			if(parseInt($('.swiper-wrapper').css('width'))==-_left+_elewidth){
+			    				return false;
+			    			}
+			    			_slideIndex++;
+			    			$('.swiper-wrapper').animate({left:(_left-_elewidth)+'px'});
+			    			$('.meet-expert-dot span').removeClass('active').eq(_slideIndex).addClass('active');
+			    			$('.meet-expert-dot').attr('data-index',_slideIndex);
 			    		});
 			    	}
 			    }else{
@@ -273,10 +306,15 @@ var meet = {
 			    	if(data.attach.length>0){
 			    		var html = '';
 			    		$(data.attach).each(function(_index,_element){
-			    			html+='<div class="meet-sche-session"><div class="meet-sche-tag"><p class="meet-sche-tagl"></p><p class="meet-sche-tagr">Session'+(_index+1)+'<br><i>'+_element.stage;
-			    			html+='</i></p></div><div class="meet-sche-item"><span class="meet-sche-time">'+_element.timeStr;
-			    			html+='<b></b></span><span class="meet-sche-title">'+_element.content;
-			    			html+='</span></div></div>';
+			    			html+='<div class="meet-sche-session"><div class="meet-sche-tag"><p class="meet-sche-tagl"></p><p class="meet-sche-tagr">Session'+(_index+1)+'<br><i>'+_element.stage+'</i></p></div>';
+			    			if(_element.scheduleList.length>0){
+			    				$(_element.scheduleList).each(function(_i,_e){
+									html+='<div class="meet-sche-item"><span class="meet-sche-time">'+_e.times;
+					    			html+='<b></b></span><span class="meet-sche-title">'+_e.content;
+					    			html+='</span></div>';
+			    				});
+			    			}
+			    			html+='</div>';
 			    		});
 						$('.meet-sche-sessionwrap').html(html);
 			    	}

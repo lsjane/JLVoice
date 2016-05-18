@@ -2,6 +2,8 @@ var tag = true;
 if(tag){
 	var meet_config={
 		url:{
+			//会议信息接口
+			meet:'/gome-manager-web/meeting/queryMeetInfo',
 			//登录码登录接口
 			signcode:'/gome-manager-web/meeting/validateMeetCode',
 			//姓名登录接口
@@ -29,6 +31,7 @@ if(tag){
 }else{
 	var meet_config={
 		url:{
+			meet:'/json/signcode.js',
 			signcode:'/json/signcode.js',
 			sign:'/json/sign.js',
 			welcome:'/json/welcome.js',
