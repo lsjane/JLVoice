@@ -2,14 +2,22 @@ var meet = {
 	init:function(){
 		var _t = this;
 		_t.config = meet_config;
-		_t.signcode_fn();
-		_t.sign_fn();
-		_t.welcome_fn();
-		_t.expert_fn();
-		_t.schedule_fn();
-		_t.data_fn();
-		_t.ask_fn();
-		_t.vote_fn();
+		_t.channel = $('.meet-wrap').attr('data-channel');
+
+		switch(_t.channel){
+			case 'signcode': _t.signcode_fn(); break;
+			case 'sign': _t.sign_fn();break;
+			case 'welcome': _t.welcome_fn(); break;
+			case 'index': _t.index_fn(); break;
+			case 'expert': _t.expert_fn();break;
+			case 'schedule': _t.schedule_fn(); break;
+			case 'data': _t.data_fn();break;
+			case 'ask': _t.ask_fn();break;
+			case 'vote': _t.vote_fn(); break;
+			//case 'feedback': _t.feedback_fn();break;
+			default:
+			  return false;
+		}
 		$('.meet-back').click(function(){
 			window.history.back(-1);
 		});
@@ -462,6 +470,9 @@ var meet = {
 			  	}
 			});
 		});
+	},
+	feedback_fn:function(){
+		var _t = this;
 	},
 	getHrefParam:function(_name){
 		var _value = '';
