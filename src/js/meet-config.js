@@ -1,4 +1,4 @@
-var tag = false;
+var tag = true;
 if(tag){
 	var meet_config={
 		url:{
