@@ -24,8 +24,10 @@ if(tag){
 			ask:'/gome-manager-web/meetingInteract/queryOnWall',
 			//发送投票接口
 			vote:'/gome-manager-web/meetingVote/addVote',
+			//是否已经投票接口
+			isvote:'/gome-manager-web/meetingVote/queryPerVoteStatus',
 			//是否可以投票接口
-			isvote:'/gome-manager-web/meetingVote/queryVoteStatus'
+			canvote:'/gome-manager-web/meetingVote/queryVoteStatus'
 		}
 	}
 }else{

@@ -24,7 +24,6 @@ var meet = {
 	},
 	getmeet_fn:function(_meetId){
 		var _t = this;
-		
 		$.ajax({
 		  	type: 'get',
 		  	url: _t.config.url.meet,
@@ -35,6 +34,9 @@ var meet = {
 		    	if(data.code=='1'){
 		    		$('.meet-sign-bg img').attr('src',data.attach.picPath);
 		    		$('.meet-wel-bg img').attr('src',data.attach.letterPic);
+		    		$('.meet-sche-sloganbig').text(data.attach.name);
+					$('.meet-sche-slogansmall').text('——'+data.attach.theme);
+					$('.meet-sche-station b').text(data.attach.meetAddr+' > 会议议程');
 		    	}else{
 			    	$.dialog({
 	                    content : '加载页面失败！',
@@ -294,6 +296,8 @@ var meet = {
 	schedule_fn:function(){
 		var _t = this;
 		var _meetId = _t.getHrefParam('meetId');
+		_t.getmeet_fn(_meetId);
+		
 		$.ajax({
 		  	type: 'get',
 		 	url: _t.config.url.schedule,
@@ -338,6 +342,7 @@ var meet = {
 	data_fn:function(){
 		var _t = this;
 		var _meetId = _t.getHrefParam('meetId');
+		_t.getmeet_fn(_meetId);
 		$.ajax({
 		  	type: 'get',
 		 	url: _t.config.url.data,
@@ -352,22 +357,23 @@ var meet = {
 			    		$(data.attach).each(function(_index,_element){
 			    			html+='<li><div class="meet-data-pic"><img src="'+_element.pictureUrl;
 			    			html+='"></div><div class="meet-data-right"><p class="meet-data-text">'+_element.name;
-			    			html+='</p><p class="meet-data-sendbtn" data-url="'+_element.fileUrl;
+			    			html+='</p><p class="meet-data-sendbtn" data-id="'+_element.id;
 			    			html+='">发送到邮箱</p></div></li>';
 
 			    		});
 						$('.meet-data-list').html(html);
 						$('.meet-data-sendbtn').on('click',function(e){
 							var $e = $(e.currentTarget);
+							_fileId = $e.attr('data-id');
 							var _alerthtml = '';
 							_alerthtml += '<div class="meet-alert-title"><b>资料标题：</b>'+$e.siblings('.meet-data-text').text();
 							_alerthtml += '</div><div class="meet-alert-input"><b>邮箱账号：</b><input type="text" class="meet-send-txt" /></div>';
 							 $.dialog({
 			                    content : _alerthtml,
 			                    top:'发送提醒',
-			                    title : '',
+			                    title : 'alert',
 			                    cancel : function() {
-			                        $('.rDialog').remove();
+
 			                    },
 			                    ok : function() {
 			                    	var _sendemail = $.trim($('.meet-send-txt').val());
@@ -378,7 +384,7 @@ var meet = {
 				                        	type: 'get',
 										 	url: _t.config.url.senddata,
 										  	data: {
-												id:_meetId,
+												id:_fileId,
 												emailAddress:_sendemail
 											},
 										  	dataType: 'json',
@@ -388,19 +394,32 @@ var meet = {
 										  		if(data.code==1){
 										  			$.dialog({
 										  				top:'发送提醒',
-									                    content : '<p>发送成功！</p>',
+									                    content : '<center>该会议资料已发送到你'+_sendemail+'</center>',
+														title:'',
+									                    time : 2000
+								           			 });
+										  		}else{
+										  			$.dialog({
+										  				top:'发送提醒',
+									                    content : '<center>发送失败！</center>',
 														title:'alert',
 									                    time : 2000
 								           			 });
 										  		}
+										  	},
+										  	error:function(){
+										  		$.dialog({
+										  			top:'发送提醒',
+								                    content : '<center>发送失败！</center>',
+													title:'alert',
+								                    time : 2000
+							           			 });
 										  	}
+
 				                        });
 			                    	}
-			                        
-			                        return false;
 			                    },
-			                    
-			                    lock : true
+			                    lock:true
 			                });
 						});
 			    	}
@@ -473,13 +492,36 @@ var meet = {
 	vote_fn:function(){
 		var _t = this;
 		var _meetId = _t.getHrefParam('meetId');
-		$('.meet-vote-btn input').click(function(){
+		var _userId = _t.getHrefParam('userId');
+		var _voteHtml = '';
+		var _id ='';
+		for(var i=1;i<11;i++){
+			_voteHtml += '<li class="clearfix"><div class="meet-vote-num"><span>'+i;
+			_voteHtml += '</span></div><div class="meet-vote-right"><div class="meet-vote-optionlist">';
+			for(var j=1;j<7;j++){
+				switch(j){
+					case 1: _id = 'A';break;
+					case 2: _id = 'B';break;
+					case 3: _id = 'C';break;
+					case 4: _id = 'D';break;
+					case 5: _id = 'E';break;
+					case 6: _id = 'F';break;
+				}
+				_voteHtml +='<div class="meet-vote-option"><label for="">'+_id;
+				_voteHtml += '.</label><input type="checkbox" value="'+_id+'"></div>';
+			}	
+			_voteHtml += '<div class="meet-vote-option meet-vote-btn"><input type="button" value="提交答案" data-id="'+i+'"></div></div></div></li>';	
+			$('.meet-vote-list').html(_voteHtml);	
+		}
+		$('.meet-vote-btn input').click(function(e){
+			var $e = $(e.currentTarget);
+			var _titleId = $e.attr('data-id');
 			$.ajax({
 				type: 'get',
-			 	url: _t.config.url.isvote,
+			 	url: _t.config.url.canvote,
 			  	data: {
 					meetId:_meetId,
-					id:1
+					id:_titleId
 				},
 			  	dataType: 'json',
 			  	success:function(data){
@@ -487,13 +529,57 @@ var meet = {
 			  			if(data.attach==1){
 			  				$.ajax({
 			  					type:'get',
-			  					url:_t.config.url.vote,
-			  					data:{},
+			  					url:_t.config.url.isvote,
+			  					data:{
+			  						meetId:_meetId,
+			  						perId:_userId,
+			  						id:_titleId
+			  					},
 			  					dataType:'json',
-			  					success:function(){
+			  					success:function(data){
+			  						if(data.code == 1){
+			  							var _answer = '';
+			  							var _input = $e.parent().siblings().children('input');
+			  							$(_input).each(function(_index,_element){
+			  								if($(_element).is(':checked')){
+			  									_answer = _answer.concat($(_element).attr('value'));
+			  								}
+			  							});
 
+			  							$.ajax({
+						  					type:'get',
+						  					url:_t.config.url.vote,
+						  					data:{
+						  						code:_meetId,
+						  						perId:_userId,
+						  						questionCode:_titleId,
+						  						auswer:_answer
+						  					},
+						  					dataType:'json',
+						  					success:function(data){
+						  						if(data.code == 1){
+						  							$.dialog({
+									                    content : '投票成功！',
+														title:'alert',
+									                    time : 2000
+									       			});
+						  						}else{
+							  						$.dialog({
+									                    content : '投票失败！',
+														title:'alert',
+									                    time : 2000
+									       			});
+							  					}
+						  					}
+						  				});	
+			  						}else{
+			  							$.dialog({
+						                    content : '您已经投票了！',
+											title:'alert',
+						                    time : 2000
+						       			});
+			  						}
 			  					}
-
 			  				});
 			  			}else{
 			  				$.dialog({
@@ -503,7 +589,11 @@ var meet = {
 			       			});
 			  			}
 			  		}else{
-
+			  			$.dialog({
+		                    content : '操作失败！',
+							title:'alert',
+		                    time : 2000
+		       			});
 			  		}
 			  	}
 			});
