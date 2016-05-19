@@ -797,6 +797,7 @@ h3{
 .meet-feed-content{
 	position:relative;
 	padding: 20px;
+	background-color: #007ac4;
 }
 .meet-feed-bg{
 	position: absolute;
@@ -827,17 +828,21 @@ h3{
 .meet-feed-item{
 	padding: 10px 0;
 	margin: 5px 0;
-	line-height: 40px;
+	height: 88px;
+	line-height: 88px;
 }
 .meet-feed-item label{
 	font-size: 24px;
+	margin: 3px 0 0;
 }
-.meet-feed-item input[type=checkbox]{
+.meet-feed-item input[type=checkbox],.meet-feed-item input[type=radio]{
 	background-color: #3973b1;
 	border:1px solid #e0e0e0;
-	width: 20px;
-	height: 20px;
+	width: 30px;
+	height: 30px;
 	margin: 0 20px 0 0;
+	vertical-align: middle;
+	
 }
 .meet-feed-item input[type=text]{
 	background-color: #fff;
@@ -845,6 +850,22 @@ h3{
 	width: 180px;
 	height: 40px;
 	margin: 0 0 0 20px;
+	font-size: 24px;
+}
+.meet-feed-item select{
+	height: 88px;
+	line-height: 88px;
+	width: 100%;
+	background: rgba(225,225,225,.4);
+	font-size: 24px;
+	color: #fff;
+	font-family: "微软雅黑";
+	padding: 0 2%;
+	border:1px solid #ccc;
+	border-radius: 10px;
+}
+.meet-feed-item select option{
+	color: #000;
 	font-size: 24px;
 }
 .meet-feed-item textarea{

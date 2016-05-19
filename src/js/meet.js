@@ -267,6 +267,7 @@ var meet = {
 			    		$('.meet-expert-next').click(function(e){
 			            	var _slideIndex = parseInt($('.meet-expert-dot').attr('data-index'));
 			            	_slideIndex = _slideIndex?_slideIndex:0;
+			            	var _left = parseInt($('.swiper-wrapper').css('left'));
 			    			if(parseInt($('.swiper-wrapper').css('width'))==-_left+_elewidth){
 			    				return false;
 			    			}
@@ -443,20 +444,38 @@ var meet = {
 	ask_fn:function(){
 		var _t = this;
 		var _meetId = _t.getHrefParam('meetId');
+		var _userId = _t.getHrefParam('userId');
+		_t.getmeet_fn(_meetId);
 		$.ajax({
 			type: 'get',
-		 	url: _t.config.url.getask,
+		 	url: _t.config.url.getallask,
 		  	data: {
 				meetId:_meetId,
-				maxInteractId:null
+				perId:_userId
 			},
 		  	dataType: 'json',
 		  	success:function(data){
-
+		  		if(data.code==1){
+		  			if(data.attach.length>0){
+		  				var _askhtml = '';
+		  				$(data.attach).each(function(_index,_element){
+				  			_askhtml += '<li class="clearfix"><div class="meet-ask-pic"><img src="../images/expert-photo2.jpg"></div><div class="meet-ask-right"><p class="meet-ask-name">'+_element.perName;
+				  			_askhtml += '<i>'+_element.times;
+				  			_askhtml += '</i></p><p class="meet-ask-text">'+_element.content+'</p></div></li>';
+		  				});
+		  				$('.meet-ask-list').html(_askhtml);
+		  			}
+		  		}else{
+		  			$.dialog({
+	                    content : '获取我的提问列表失败！',
+						title:'alert',
+	                    time : 2000
+	       			});
+		  		}
 		  	}
 		});
 		$('.meet-ask-btn').click(function(){
-			var _value = $.trim($('.meet-ask-txt').val());
+			var _value = encodeURIComponent($.trim($('.meet-ask-txt').val()));
 			if(!_value){
 				$.dialog({
                     content : '请输入提问内容！',
@@ -465,16 +484,21 @@ var meet = {
        			});
 				return false;
 			}else{
+				var _date = new Date();
+				var _times = _date.getFullYear()+'.'+_t.toTwo(_date.getMonth()+1)+'.'+_t.toTwo(_date.getDate())+' '+_t.toTwo(_date.getHours())+':'+_t.toTwo(_date.getMinutes())+':'+_t.toTwo(_date.getSeconds());
 				$.ajax({
 					type: 'get',
 				 	url: _t.config.url.ask,
 				  	data: {
-						content:_value
+				  		code:_meetId,
+				  		perId:_userId,
+						content:_value,
+						times:_times
 					},
 				  	dataType: 'json',
 				  	success:function(data){
 				  		if(data.code==1){
-				  			var _askhtml = '<li class="clearfix"><div class="meet-ask-pic"><img src="../images/expert-photo2.jpg"></div><div class="meet-ask-right"><p class="meet-ask-name">汪洋<i>10：20</i></p><p class="meet-ask-text">'+_value+'</p></div></li>';
+				  			var _askhtml = '<li class="clearfix"><div class="meet-ask-pic"><img src="../images/meet-user-default.jpg"></div><div class="meet-ask-right"><p class="meet-ask-name">汪洋<i>10：20</i></p><p class="meet-ask-text">'+_value+'</p></div></li>';
 				  			$('.meet-ask-list').append(_askhtml);
 				  		}else{
 				  			$.dialog({
@@ -493,6 +517,7 @@ var meet = {
 		var _t = this;
 		var _meetId = _t.getHrefParam('meetId');
 		var _userId = _t.getHrefParam('userId');
+		_t.getmeet_fn(_meetId);
 		var _voteHtml = '';
 		var _id ='';
 		for(var i=1;i<11;i++){
@@ -550,10 +575,12 @@ var meet = {
 						  					type:'get',
 						  					url:_t.config.url.vote,
 						  					data:{
-						  						code:_meetId,
-						  						perId:_userId,
-						  						questionCode:_titleId,
-						  						auswer:_answer
+						  						content:{
+						  							code:_meetId,
+							  						perId:_userId,
+							  						questionCode:_titleId,
+							  						auswer:_answer
+						  						}
 						  					},
 						  					dataType:'json',
 						  					success:function(data){
@@ -601,6 +628,223 @@ var meet = {
 	},
 	feedback_fn:function(){
 		var _t = this;
+		var _meetId = _t.getHrefParam('meetId');
+		var _userId = _t.getHrefParam('userId');
+		_t.getmeet_fn(_meetId);
+		$.ajax({
+			type:'get',
+			url:_t.config.url.getfeedback,
+			data:{meetId:_meetId},
+			dataType:'json',
+			success:function(data){
+				if(data.code == 1){
+					$('.meet-header-back h3').text(data.attach.title);
+					$('.meet-feed-tips').text(data.attach.discribe);
+					$('.meet-feed-list').attr('data-id',data.attach.oid);
+					var _feedhtml = '';
+					if(data.attach.questionList.length>0){
+						$(data.attach.questionList).each(function(_index,_element){
+							_feedhtml += '<li><div class="meet-feed-title"><span>'+_element.seq;
+							_feedhtml += '.</span>'+_element.content;
+							_feedhtml += '</div><div class="meet-feed-option" data-type="'+_element.qtype;
+							_feedhtml += '" data-id="'+_element.seq+'">';
+							if(_element.selecterList.length>0){
+								if(_element.qtype == 0){
+									$(_element.selecterList).each(function(_ind,_ele){
+										_feedhtml += '<div class="meet-feed-item"><input type="radio" name="'+_ele.qseq;
+										_feedhtml += '" value="'+_ele.selseq;
+										_feedhtml += '" /><label>'+_ele.content+'</label></div>';
+									});
+								}else if(_element.qtype == 1){
+									$(_element.selecterList).each(function(_ind,_ele){
+										_feedhtml += '<div class="meet-feed-item"><input type="checkbox" name="' +_ele.qseq;
+										_feedhtml += '" value="'+_ele.selseq;
+										_feedhtml += '" /><label>'+_ele.content+'</label></div>';
+									});
+								}else if(_element.qtype == 2){
+									_feedhtml += '<div class="meet-feed-item"><select name="' +_element.seq +'">';
+									$(_element.selecterList).each(function(_ind,_ele){
+										_feedhtml += '<option value="'+_ele.selseq+'">'+_ele.content+'</option>';
+									});
+									_feedhtml += '</select></div>';
+								}else if(_element.qtype == 3){
+									$(_element.selecterList).each(function(_ind,_ele){
+										_feedhtml += '<div class="meet-feed-item"><textarea placeholder="'+_ele.content;
+										_feedhtml += '" name="'+_ele.qseq;
+										_feedhtml += '" data-id="'+_ele.selseq+'"></textarea></div>';
+									});
+								}
+							}
+							_feedhtml += '</div></li>';
+							$('.meet-feed-list').html(_feedhtml);
+						});
+					}
+				}else{
+					$.dialog({
+	                    content : '加载页面失败！',
+						title:'alert',
+	                    time : 2000
+	       			});
+				}
+			},
+			error:function(){
+				$.dialog({
+                    content : '加载页面失败！',
+					title:'alert',
+                    time : 2000
+       			});
+			}
+		});
+
+		$('.meet-feed-form input').click(function(){
+			var _oid = $('.meet-feed-list').attr('data-id');
+			$.ajax({
+				type:'get',
+				url:_t.config.url.isfeedback,
+				data:{
+					replayId: _userId,
+					oid: _oid
+				},
+				success:function(data){
+					if(data.code==1 && data.attach == 0){
+						var _tag = true;
+						var _content = [];
+						$('.meet-feed-option').each(function(_index,_element){
+							var _qSeq = $(_element).attr('data-id');
+							var _qType = $(_element).attr('data-type');
+							var _seSeq='',_seValue='';
+							if(_qType == '0'){
+								$(_element).children('.meet-feed-item').children('input').each(function(_ind,_ele){
+									if($(_ele).is(':checked')){
+										_seSeq = $(_ele).attr('value');
+										// _seValue = $(_ele).siblings('label').text();
+									}
+								});
+								if(!_seSeq){
+									$.dialog({
+					                    content : '第题'+_qSeq+'没有作答！',
+										title:'alert',
+					                    time : 2000
+					       			});
+					       			_tag = false;
+					       			return false;
+								}else{
+									_content.push({
+										replayId:_userId,
+										oid:_oid,
+										qSeq:_qSeq,
+										seSeq:_seSeq,
+										seValue:_seSeq
+									});
+								}
+								
+							}else if(_qType == '1'){
+								var _checknum = 0;
+								$(_element).children('.meet-feed-item').children('input').each(function(_ind,_ele){
+									if($(_ele).is(':checked')){
+										_checknum++;
+										_seSeq = $(_ele).attr('value');
+										// _seValue = $(_ele).siblings('label').text();
+										_content.push({
+											replayId:_userId,
+											oid:_oid,
+											qSeq:_qSeq,
+											seSeq:_seSeq,
+											seValue:_seSeq
+										});
+									}
+								});
+								if(_checknum == 0){
+									$.dialog({
+					                    content : '第题'+_qSeq+'没有作答！',
+										title:'alert',
+					                    time : 2000
+					       			});
+					       			_tag = false;
+					       			return false;
+								}
+							}else if(_qType == '2'){
+								_seSeq = $(_element).children('.meet-feed-item').children('select').val();
+								_content.push({
+									replayId:_userId,
+									oid:_oid,
+									qSeq:_qSeq,
+									seSeq:_seSeq,
+									seValue:_seSeq
+								});
+							}else if(_qType == '3'){
+								var _textarea = $(_element).children('.meet-feed-item').children('textarea');
+								_seSeq = $(_textarea).attr('data-id');
+								_seValue = $(_textarea).text();
+								_content.push({
+									replayId:_userId,
+									oid:_oid,
+									qSeq:_qSeq,
+									seSeq:_seSeq,
+									seValue:_seValue
+								});
+							}
+						});
+						if(_tag){
+
+							$.ajax({
+								type:'post',
+								url:_t.config.url.feedback,
+								data:{
+									content:_content
+								},
+								success:function(data){
+									if(data.code == 1){
+										$.dialog({
+						                    content : '提交成功！',
+											title:'alert',
+						                    time : 2000
+						       			});
+									}else{
+										$.dialog({
+						                    content : '提交失败！',
+											title:'alert',
+						                    time : 2000
+						       			});
+									}
+								},
+								error:function(){
+									$.dialog({
+					                    content : '提交失败！',
+										title:'alert',
+					                    time : 2000
+					       			});
+								}
+							});
+						}
+					}else{
+						$.dialog({
+		                    content : '您已经提交过了！',
+							title:'alert',
+		                    time : 2000
+		       			});
+					}
+				},
+				error:function(){
+					$.dialog({
+	                    content : '操作失败！',
+						title:'alert',
+	                    time : 2000
+	       			});
+				}
+			})
+
+
+
+
+
+
+
+
+
+
+			
+		});
 	},
 	getHrefParam:function(_name){
 		var _value = '';
@@ -615,6 +859,13 @@ var meet = {
 		}
 		
 		return _value;
+	},
+	toTwo:function(n){
+		if(n<9){
+			return '0'+n;
+		}else{
+			return n.toString();
+		}
 	}
 }
 

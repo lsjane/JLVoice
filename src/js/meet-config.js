@@ -19,15 +19,23 @@ if(tag){
 			//发送邮箱接口
 			senddata:'/gome-manager-web/meetingData/downloadFile',
 			//获取我的提问接口
-			getask:'/gome-manager-web/meetingInteract/addInteract',
+			getallask:'/gome-manager-web/meetingInteract/queryOwnHistory',
+			//获取我最新提问接口
+			getnewask:'/gome-manager-web/meetingInteract/queryOnWall',
 			//发送提问接口
-			ask:'/gome-manager-web/meetingInteract/queryOnWall',
+			ask:'/gome-manager-web/meetingInteract/addInteract',
 			//发送投票接口
 			vote:'/gome-manager-web/meetingVote/addVote',
 			//是否已经投票接口
 			isvote:'/gome-manager-web/meetingVote/queryPerVoteStatus',
 			//是否可以投票接口
-			canvote:'/gome-manager-web/meetingVote/queryVoteStatus'
+			canvote:'/gome-manager-web/meetingVote/queryVoteStatus',
+			//获取会后反馈题目接口
+			getfeedback:'/gome-manager-web/meetingSelect/querySelectResult',
+			//是否已经提交问卷接口
+			isfeedback:'/gome-manager-web/meetingSelect/queryPerSelectResult',
+			//提交会后反馈接口
+			feedback:'/gome-manager-web/meetingInteract/addInteract'
 		}
 	}
 }else{
