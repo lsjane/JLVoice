@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>我要提问</title>
+	<title>嘉音_会议资料</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" id="viewportid"> 
 	<meta content="yes" name="apple-mobile-web-app-capable">
@@ -16,57 +16,54 @@
 	<script>
 		if(window.innerWidth>750)document.getElementById('viewportid').setAttribute('content','target-densitydpi=285,width=750,user-scalable=no');
 		if(window.innerWidth<750)document.getElementById('viewportid').setAttribute('content','target-densitydpi=320,width=750,user-scalable=no');
-	</script> 
+	</script>
 </head>
 <body>
-<div class="meet-wrap" data-channel="ask">
-	<div class="meet-header">
+<div class="meet-header">
 		<div class="meet-header-back back-blue">
 			<span class="meet-back"><i class="ion-chevron-left"></i></span>
-			<h3>我要提问</h3>
+			<h3>会议资料</h3>
 		</div>
 	</div>
-	<div class="meet-column-bg">
-		<img src="../images/meet-sign-bg.jpg" />
-	</div>
-	<div class="meet-ask-content">
-		
-		<ul class="meet-ask-list">
-			<!-- <li class="clearfix">
-				<div class="meet-ask-pic"><img src="../images/expert-photo2.jpg"></div>
-				<div class="meet-ask-right">
-					<p class="meet-ask-name">汪洋<i>10：20</i></p>
-					<p class="meet-ask-text">眼内异物伤致急性视网膜坏死，达到富士是
-稍等都是稍等，上法院切磋疯人院安全的采
-购员的爱赌场放奥迪。</p>
-				</div>
-			</li>
-			<li class="clearfix">
-				<div class="meet-ask-pic"><img src="../images/expert-photo2.jpg"></div>
-				<div class="meet-ask-right">
-					<p class="meet-ask-name">汪洋<i>10：20</i></p>
-					<p class="meet-ask-text">眼内异物伤致急性视网膜坏死，达到富士是
-稍等都是稍等，上法院切磋疯人院安全的采
-购员的爱赌场放奥迪。</p>
-				</div>
-			</li> -->
-		</ul>
-		<div class="meet-ask-form">
-			<form>
-				<input type="text" placeholder="我也来说两句......" class="meet-ask-txt">
-				<input type="button" value="发送" class="meet-ask-btn">
-			</form>
-		</div>
-	</div>
-	
-</div>
+<iframe id="pdfIframe"  style="width: 100%;height: 100%"/></iframe>
 </body>
 <script type="text/javascript" src="../common/js/zepto.min.js"></script>
-<script type="text/javascript" src="../common/js/zepto.alert.js"></script>
 <script type="text/javascript" src="../common/js/fx.js"></script>
+<script type="text/javascript" src="../common/js/zepto.alert.js"></script>
 <script type="text/javascript" src="../common/js/ajax.js"></script>
 <script type="text/javascript" src="../common/js/event.js"></script>
 <script type="text/javascript" src="../common/js/touch.js"></script>
 <script type="text/javascript" src="../src/js/meet-config.js"></script>
 <script type="text/javascript" src="../src/js/meet.js"></script>
+<script type="text/javascript">
+window.onload = function (){
+	function getHrefParam(){
+		var _value = '';
+		if(window.location.href.split('?')[1]){
+			var _paramArr = window.location.href.split('?')[1].split('&');
+			$(_paramArr).each(function(_index,_element){
+				var _param = _element.split('=');
+				if(_param[0]=='fileUrl'){
+					_value = _param[1];
+				}
+			});
+		}
+		return _value;
+	}
+
+	var _fileUrl = getHrefParam();
+	_fileUrl = decodeURIComponent(_fileUrl);
+	var curWwwPath=window.document.location.href;
+	var pathName=window.document.location.pathname;
+    var pos=curWwwPath.indexOf(pathName);
+    var localhostPaht=curWwwPath.substring(0,pos);
+    _fileUrl = localhostPaht+_fileUrl;
+	document.getElementById("pdfIframe").src = "../pdfJs/generic/web/viewer.html?file="+_fileUrl;
+}
+
+
+function closeW(){
+	window.open('meet-meet-data.html?meetId='+_meetId+'&userId='+_userId+'&userName='+_userName,'_self');
+}
+</script>
 </html>

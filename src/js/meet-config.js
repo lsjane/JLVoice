@@ -4,6 +4,8 @@ if(tag){
 		url:{
 			//会议信息接口
 			meet:'/gome-manager-web/meeting/queryMeetInfo',
+			//子栏目背景图接口
+			meetbg:'/gome-manager-web/meetManager/queryBackPic',
 			//登录码登录接口
 			signcode:'/gome-manager-web/meeting/validateMeetCode',
 			//姓名登录接口
@@ -35,7 +37,7 @@ if(tag){
 			//是否已经提交问卷接口
 			isfeedback:'/gome-manager-web/meetingSelect/queryPerSelectResult',
 			//提交会后反馈接口
-			feedback:'/gome-manager-web/meetingInteract/addInteract'
+			feedback:'/gome-manager-web/meetingSelect/addSelect'
 		}
 	}
 }else{
