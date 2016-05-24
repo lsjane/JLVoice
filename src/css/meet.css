@@ -118,11 +118,28 @@ h3{
 	color: #333;
 	padding: 0 20px;
 }
-.meet-sign-btn{
+/*.meet-sign-btn{
 	width: 182px;
 	height: 88px;
 	margin: 40px 0 0;
 	background: url(../../images/meet-sign-btn.png) no-repeat;
+}*/
+.meet-sign-btn{
+	width: 200px;
+	height: 88px;
+	margin: 40px auto 0;
+	line-height: 88px;
+	border-radius: 44px;
+	background:-webkit-linear-gradient(top,rgba(255,255,255,1) 0%,rgba(230,230,230,1) 100%);
+	background:-moz-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(230,230,230,1) 100%);
+	background:-o-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(230,230,230,1) 100%);
+	background:-ms-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(230,230,230,1) 100%);
+	border: 1px solid #d8d8d8;
+	text-align: center;
+	font-size: 42px;
+	color: #333;
+	text-shadow:0 2px 3px #fff;
+	outline: none;
 }
 
 /*meet-signcode*/
@@ -133,14 +150,27 @@ h3{
 	z-index: -1;
 }
 .meet-code-content{
- /*background-color: #fff;*/
+
 }
 .meet-code{
 	width:540px;
-	height: 234px;
+	/*height: 234px;*/
+	height: 150px;
 	padding: 50px 105px 0;
 }
-.meet-code-item{
+.meet-code input{
+	width: 100%;
+	padding: 0 10px;
+	height: 88px;
+	line-height: 88px;
+	font-size: 32px;
+	border: 1px solid #d8d8d8;
+	border-radius: 10px;
+	background: rgba(255,255,255,0.5);
+	box-shadow: 0 0 6px #ccc;
+	outline: none;
+}
+/*.meet-code-item{
 	width: 160px;
 	height: 234px;
 	padding: 0 10px;
@@ -169,7 +199,7 @@ h3{
 	width: 160px;
 	height: 77px;
 	background: url(../../images/meet-code-btn.png) no-repeat 0 -157px;
-}
+}*/
 .meet-code-text{
 	padding: 80px 100px 0;
 }
@@ -195,7 +225,7 @@ h3{
 	float: right;
 	background: url(../../images/meet-logo.png) no-repeat;
 }
-.meet-swripe{
+/*.meet-swripe{
 	position: fixed;
 	bottom: 20px;
 	left: 15%;
@@ -206,16 +236,35 @@ h3{
 	font-size: 42px;
 	text-align: center;
 	color: #fff;
-	/*background: rgba(0,0,0,0.2);*/
 	background:-webkit-linear-gradient(left,rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 30%,rgba(0,0,0,0) 100%);
 	background:-moz-linear-gradient(left,rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 30%,rgba(0,0,0,0) 100%);
 	background:-o-linear-gradient(left,rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 30%,rgba(0,0,0,0) 100%);
 	background:-ms-linear-gradient(left,rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 30%,rgba(0,0,0,0) 100%);
-	/*margin: 120px 15% 0 ;*/
 	text-shadow:0 2px 3px #333;
 }
 .meet-swripe i{
 	padding:0 30px 0 0;
+}*/
+
+.meet-code-btn,.meet-wel-btn{
+	width: 60%;
+	height: 88px;
+	line-height: 88px;
+	border-radius: 44px;
+	/*background: rgba(255,255,255,0.8);*/
+	background:-webkit-linear-gradient(top,rgba(255,255,255,1) 0%,rgba(230,230,230,1) 100%);
+	background:-moz-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(230,230,230,1) 100%);
+	background:-o-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(230,230,230,1) 100%);
+	background:-ms-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(230,230,230,1) 100%);
+	border: 1px solid #d8d8d8;
+	text-align: center;
+	font-size: 42px;
+	color: #333;
+	text-shadow:0 2px 3px #fff;
+	position: fixed;
+	bottom: 20px;
+	left: 20%;
+
 }
 
 /*meet-welcome*/

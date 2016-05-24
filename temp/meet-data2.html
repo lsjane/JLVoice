@@ -19,13 +19,15 @@
 	</script>
 </head>
 <body>
-<div class="meet-header">
+<div class="meet-wrap" data-channel="dataopen">
+	<div class="meet-header">
 		<div class="meet-header-back back-blue">
 			<span class="meet-back"><i class="ion-chevron-left"></i></span>
 			<h3>会议资料</h3>
 		</div>
 	</div>
-<iframe id="pdfIframe"  style="width: 100%;height: 100%"/></iframe>
+</div>
+<iframe id="pdfIframe"  style="width: 100%;height: 100%;background:#fff;"/></iframe>
 </body>
 <script type="text/javascript" src="../common/js/zepto.min.js"></script>
 <script type="text/javascript" src="../common/js/fx.js"></script>
@@ -36,7 +38,7 @@
 <script type="text/javascript" src="../src/js/meet-config.js"></script>
 <script type="text/javascript" src="../src/js/meet.js"></script>
 <script type="text/javascript">
-window.onload = function (){
+/*window.onload = function (){
 	function getHrefParam(){
 		var _value = '';
 		if(window.location.href.split('?')[1]){
@@ -53,17 +55,15 @@ window.onload = function (){
 
 	var _fileUrl = getHrefParam();
 	_fileUrl = decodeURIComponent(_fileUrl);
-	var curWwwPath=window.document.location.href;
-	var pathName=window.document.location.pathname;
-    var pos=curWwwPath.indexOf(pathName);
-    var localhostPaht=curWwwPath.substring(0,pos);
-    _fileUrl = localhostPaht+_fileUrl;
+	var _origin=window.location.origin;
+	var _pathName=window.document.location.pathname;
+    _fileUrl = _origin+_pathName+_fileUrl;
 	document.getElementById("pdfIframe").src = "../pdfJs/generic/web/viewer.html?file="+_fileUrl;
 }
 
 
 function closeW(){
 	window.open('meet-meet-data.html?meetId='+_meetId+'&userId='+_userId+'&userName='+_userName,'_self');
-}
+}*/
 </script>
 </html>

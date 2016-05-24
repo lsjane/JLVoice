@@ -5,7 +5,7 @@
         "code": "101",
         "name": "2321",
         "theme": "321321",
-        "picPath": "http://114.215.210.189:8099/gmshopFile/1463236754827111.jpg",
+        "letterPic": "http://114.215.210.189:8099/gmshopFile/1463236754827111.jpg",
         "description": null,
         "status": "0",
         "beginTime": "2016-05-03T12:12",

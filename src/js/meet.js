@@ -12,6 +12,7 @@ var meet = {
 			case 'expert': _t.expert_fn();break;
 			case 'schedule': _t.schedule_fn(); break;
 			case 'data': _t.data_fn();break;
+			case 'dataopen': _t.dataopen_fn();break;
 			case 'ask': _t.ask_fn();break;
 			case 'vote': _t.vote_fn(); break;
 			case 'feedback': _t.feedback_fn();break;
@@ -32,6 +33,9 @@ var meet = {
 
 			}else if(_t.channel == 'index'){
 				window.open('meet-welcome.html?meetId='+_meetId+'&userId='+_userId+'&userName='+_userName,'_self');
+			}else if(_t.channel == 'dataopen'){
+				window.open('meet-data.html?meetId='+_meetId+'&userId='+_userId+'&userName='+_userName+'&pointer='+_pointer,'_self');
+
 			}else{
 				
 				window.open('meet-index.html?meetId='+_meetId+'&userId='+_userId+'&userName='+_userName+'&pointer='+_pointer,'_self');
@@ -84,7 +88,7 @@ var meet = {
 		  	}
 		});
 	},
-	signcode_fn:function(){
+	/*signcode_fn:function(){
 		var _t = this;
 		var _top =0;
 		var _dep = 100;
@@ -127,6 +131,40 @@ var meet = {
 			  	type: 'get',
 			  	url: _t.config.url.signcode,
 			  	data: {code:_code.join('')},
+			  	dataType: 'json',
+			  	timeout: 300,
+			  	success: function(data){
+			    	if(data.code=='1'){
+			    		window.open('meet-sign.html?meetId='+data.attach.id,'_self');
+			    	}else{
+				    	$.dialog({
+		                    content : '会议码不正确！',
+							title:'alert',
+		                    time : 2000
+	           			});
+			    	}
+			  	},
+			  	error: function(){
+			  	}
+			});
+		});
+	},*/
+	signcode_fn:function(){
+		var _t = this;
+		$('.meet-code-btn').click(function(){
+			var _code = $('.meet-code-input').val();
+			if(!_code){
+				$.dialog({
+                    content : '请输入验证码',
+					title:'alert',
+                    time : 2000
+                });
+				return false;
+			}
+			$.ajax({
+			  	type: 'get',
+			  	url: _t.config.url.signcode,
+			  	data: {code:_code},
 			  	dataType: 'json',
 			  	timeout: 300,
 			  	success: function(data){
@@ -197,7 +235,7 @@ var meet = {
 		}
 		_t.getmeet_fn(_meetId);
 		
-		$('.meet-wel-btn').on('swipeLeft',function(){
+		$('.meet-wel-btn').click(function(){
 			window.open('meet-index.html?meetId='+_meetId+'&userId='+_userId+'&userName='+_userName
 				,'_self');
 		});
@@ -480,6 +518,15 @@ var meet = {
 		  	error: function(){
 		  	}
 		});
+	},
+	dataopen_fn:function(){
+		var _t = this;
+		var _fileUrl = _t.getHrefParam('fileUrl');
+		_fileUrl = decodeURIComponent(_fileUrl);
+		var _origin=window.location.origin;
+		var _pathName=window.document.location.pathname;
+	    _fileUrl = _origin+_pathName+_fileUrl;
+		$('#pdfIframe').attr('src','../pdfJs/generic/web/viewer.html?file='+_fileUrl)
 	},
 	ask_fn:function(){
 		var _t = this;

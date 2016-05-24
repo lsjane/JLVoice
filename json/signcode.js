@@ -13,6 +13,8 @@
         "createTime": "2016.05.02 13:52:58",
         "createPer": "admin",
         "operateUser": null,
-        "letterContent": null
+        "letterContent": null,
+        "letterPic": "http://114.215.210.189:8099/gmshopFile/1463236754827111.jpg"
+
     }
 }
