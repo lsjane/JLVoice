@@ -408,7 +408,7 @@ var meet = {
 		  	}
 		});
 	},
-	data_fn:function(){
+	/*data_fn:function(){
 		var _t = this;
 		var _meetId = _t.getHrefParam('meetId');
 		_t.getbgpic_fn(_meetId);
@@ -518,6 +518,61 @@ var meet = {
 		  	error: function(){
 		  	}
 		});
+	},*/
+	data_fn:function(){
+		var _t = this;
+		var _meetId = _t.getHrefParam('meetId');
+		var _userId = _t.getHrefParam('userId');
+		var _userName = _t.getHrefParam('userName');
+		var _pointer = _t.getHrefParam('pointer');
+		_t.getbgpic_fn(_meetId);
+		$.ajax({
+		  	type: 'get',
+		 	url: _t.config.url.data,
+		  	data: {
+				meetId:_meetId
+			},
+		  	dataType: 'json',
+		  	success: function(data){
+			    if(data.code=='1'){
+			    	if(data.attach.length>0){
+			    		var html = '';
+			    		$(data.attach).each(function(_index,_element){
+			    			html+='<li class="clearfix"><div class="meet-data-pic"><img src="'+_element.pictureUrl;
+			    			html+='"></div><div class="meet-data-right"><p class="meet-data-text">'+_element.name;
+			    			if(_element.speaker){
+			    				html+='</p><p class="meet-data-text">讲者：'+_element.speaker;
+			    			}
+			    			if(_element.hospitol){
+			    				html+='</p><p class="meet-data-text">医院：'+_element.hospitol;
+			    			}
+			    			if(_element.detail){
+			    				html+='</p><p class="meet-data-text meet-data-desp">摘要：'+_element.detail;
+			    			}
+			    		
+			    			html+='</p><p class="meet-data-sendbtn" data-id="'+_element.id;
+			    			html+= '" data-url="'+_element.fileUrl;
+			    			html+='">在线阅读</p></div></li>';
+
+			    		});
+						$('.meet-data-list').html(html);
+						$('.meet-data-sendbtn').click(function(e){
+							var $e = $(e.currentTarget);
+							var _fileUrl = $e.attr('data-url');
+							window.open('meet-data2.html?fileUrl='+_fileUrl+'&meetId='+_meetId+'&userId='+_userId+'&userName='+_userName+'&pointer='+_pointer,'_self');
+						});
+			    	}
+			    }else{
+			    	$.dialog({
+	                    content : '加载页面失败！',
+						title:'alert',
+	                    time : 2000
+           			 });
+			    }
+		  	},
+		  	error: function(){
+		  	}
+		});
 	},
 	dataopen_fn:function(){
 		var _t = this;
@@ -525,7 +580,7 @@ var meet = {
 		_fileUrl = decodeURIComponent(_fileUrl);
 		var _origin=window.location.origin;
 	    _fileUrl = _origin+_fileUrl;
-		$('#pdfIframe').attr('src','../pdfJs/generic/web/viewer.html?file='+_fileUrl)
+		$('#pdfIframe').attr('src','../pdfJs/generic/web/viewer.html?file='+_fileUrl);
 	},
 	ask_fn:function(){
 		var _t = this;
@@ -739,11 +794,8 @@ var meet = {
 
 		$('.meet-vote-option').click(function(e){
 			var $e = $(e.currentTarget);
-			if($e.hasClass('active')){
-				$e.removeClass('active');
-			}else{
-				$e.addClass('active');
-			}
+			$('.meet-vote-option').removeClass('active');
+			$e.addClass('active');
 		});
 		$('.meet-vote-btn').click(function(e){
 			var $e = $(e.currentTarget);
@@ -782,7 +834,7 @@ var meet = {
 			  							var _option = $e.siblings('.meet-vote-option');
 			  							$(_option).each(function(_index,_element){
 			  								if($(_element).hasClass('active')){
-			  									_answer = _answer.concat($(_element).first('span').first('b').text());
+			  									_answer = $(_element).first('span').first('b').text();
 			  								}
 			  							});
 			  							if(!_answer){

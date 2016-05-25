@@ -261,10 +261,16 @@ h3{
 	font-size: 42px;
 	color: #333;
 	text-shadow:0 2px 3px #fff;
+}
+.meet-code-btn{
 	position: fixed;
 	bottom: 20px;
 	left: 20%;
-
+}
+.meet-wel-btn{
+	position: fixed;
+	bottom: 20px;
+	left: 20%;
 }
 
 /*meet-welcome*/
@@ -588,14 +594,14 @@ h3{
 }
 .meet-data-pic{
 	width: 200px;
-	height: 168px;
+	/*height: 168px;*/
 	overflow: hidden;
 	border-radius: 6px;
 	float: left;
 }
 .meet-data-pic img{
 	width: 100%;
-	height: 100%;
+	/*height: 100%;*/
 }
 .meet-data-right{
 	width: 480px;
