@@ -818,7 +818,7 @@ h3{
 	color:#f92f00;
 	font-size: 28px;
 }
-.meet-vote-list{
+/*.meet-vote-list{
 	padding: 20px 0 0;
 }
 .meet-vote-list li{
@@ -881,6 +881,78 @@ h3{
 	color: #fff;
 	font-size: 24px;
 	font-family: "微软雅黑";
+}*/
+.meet-vote-box{
+	padding: 35px 26px 0;
+}
+.meet-vote-option{
+	width: 165px;
+	height: 165px;
+	padding: 0 82px 70px;
+	float: left;
+}
+.meet-vote-option span{
+	display: block;
+	width: 155px;
+	height: 155px;
+	border: 1px solid #333;
+	border-radius: 50%;
+	overflow: hidden;
+	padding: 8px;
+}
+.meet-vote-option span b{
+	width: 155px;
+	height: 155px;
+	display: block;
+	background: #999;
+	border-radius: 50%;
+	overflow: hidden;
+	text-align: center;
+	color: #fff;
+	line-height: 155px;
+	font-size: 42px;
+}
+.meet-vote-option.active span{
+	border:1px solid #1bc7e0;
+}
+.meet-vote-option.active span b{
+	background: #1bc7e0;
+}
+.meet-vote-btn{
+	clear: both;
+	position: relative;
+}
+.meet-vote-btn span{
+	position: absolute;
+	top: -40px;
+	left: 50%;
+	margin: 0 0 0 -82px;
+	display: block;
+	width: 155px;
+	height: 155px;
+	border: 1px solid #aaa;
+	border-radius: 50%;
+	overflow: hidden;
+	padding: 8px;
+}
+.meet-vote-btn span b{
+	width: 155px;
+	height: 155px;
+	display: block;
+	background: #999;
+	border-radius: 50%;
+	overflow: hidden;
+	text-align: center;
+	color: #fff;
+	line-height: 155px;
+	font-size: 42px;
+	font-weight: normal;
+}
+.meet-vote-btn:active span{
+	border:1px solid #0c58a6;
+}
+.meet-vote-btn:active span b{
+	background: #0c58a6;
 }
 
 /*meet-feedback*/

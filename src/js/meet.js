@@ -604,7 +604,7 @@ var meet = {
 		});
 
 	},
-	vote_fn:function(){
+	/*vote_fn:function(){
 		var _t = this;
 		var _meetId = _t.getHrefParam('meetId');
 		var _userId = _t.getHrefParam('userId');
@@ -694,6 +694,126 @@ var meet = {
 									                    time : 2000
 									       			});
 						  							globle = false;
+						  						}else{
+							  						$.dialog({
+									                    content : '投票失败！',
+														title:'alert',
+									                    time : 2000
+									       			});
+							  					}
+						  					}
+						  				});	
+			  						}else{
+			  							$.dialog({
+						                    content : '您已经投票了！',
+											title:'alert',
+						                    time : 2000
+						       			});
+			  						}
+			  					}
+			  				});
+			  			}else{
+			  				$.dialog({
+			                    content : '用户不可以投票！',
+								title:'alert',
+			                    time : 2000
+			       			});
+			  			}
+			  		}else{
+			  			$.dialog({
+		                    content : '操作失败！',
+							title:'alert',
+		                    time : 2000
+		       			});
+			  		}
+			  	}
+			});
+		});
+	},*/
+	vote_fn:function(){
+		var _t = this;
+		var _meetId = _t.getHrefParam('meetId');
+		var _userId = _t.getHrefParam('userId');
+		
+		var globle = true;
+
+		$('.meet-vote-option').click(function(e){
+			var $e = $(e.currentTarget);
+			if($e.hasClass('active')){
+				$e.removeClass('active');
+			}else{
+				$e.addClass('active');
+			}
+		});
+		$('.meet-vote-btn').click(function(e){
+			var $e = $(e.currentTarget);
+			var _titleId = $e.attr('data-id');
+			if(!globle){
+				$.dialog({
+                    content : '您已完成投票！',
+					title:'alert',
+                    time : 2000
+       			});
+				return false;
+			}
+			$.ajax({
+				type: 'get',
+			 	url: _t.config.url.canvote,
+			  	data: {
+					meetId:_meetId,
+					id:_titleId
+				},
+			  	dataType: 'json',
+			  	success:function(data){
+			  		if(data.code==1){
+			  			if(data.attach==1){
+			  				$.ajax({
+			  					type:'get',
+			  					url:_t.config.url.isvote,
+			  					data:{
+			  						meetId:_meetId,
+			  						perId:_userId,
+			  						id:_titleId
+			  					},
+			  					dataType:'json',
+			  					success:function(data){
+			  						if(data.code == 1 &&  data.attach==0){
+			  							var _answer = '';
+			  							var _option = $e.siblings('.meet-vote-option');
+			  							$(_option).each(function(_index,_element){
+			  								if($(_element).hasClass('active')){
+			  									_answer = _answer.concat($(_element).first('span').first('b').text());
+			  								}
+			  							});
+			  							if(!_answer){
+			  								$.dialog({
+							                    content : '请选择答案！',
+												title:'alert',
+							                    time : 2000
+							       			});
+							       			return false;
+			  							}
+			  							var contentStr={};
+			  							contentStr.code=_meetId;
+			  							contentStr.perId=_userId;
+			  							contentStr.questionCode=_titleId;
+			  							contentStr.auswer=_answer;
+			  							$.ajax({
+						  					type:'get',
+						  					url:_t.config.url.vote,
+						  					data:{
+						  						contentStr:JSON.stringify(contentStr)
+						  					},
+						  					dataType:'json',
+						  					success:function(data){
+						  						if(data.code == 1){
+						  							$.dialog({
+									                    content : '投票成功！',
+														title:'ok',
+									                    time : 2000
+									       			});
+						  							globle = false;
+						  							$('.meet-vote-option').removeClass('active');
 						  						}else{
 							  						$.dialog({
 									                    content : '投票失败！',
