@@ -644,7 +644,7 @@ var meet = {
 				  	success:function(data){
 				  		if(data.code==1){
 				  			var _askhtml = '<li class="clearfix"><div class="meet-ask-pic"><img src="../images/meet-user-default.jpg"></div><div class="meet-ask-right"><p class="meet-ask-name">'+decodeURIComponent(_userName)+'<i>'+_times+'</i></p><p class="meet-ask-text">'+decodeURIComponent(_value)+'</p></div></li>';
-				  			$('.meet-ask-list').append(_askhtml);
+				  			$('.meet-ask-list').prepend(_askhtml);
 				  			$('.meet-ask-txt').val('');
 				  		}else{
 				  			$.dialog({

@@ -210,7 +210,7 @@ h3{
 	font-size: 32px;
 	text-align: right;
 	line-height: 50px;
-	padding: 0 0 50px;
+	padding: 0 0 30px;
 }
 .meet-code-style3{
 	font-size: 22px;
@@ -263,9 +263,7 @@ h3{
 	text-shadow:0 2px 3px #fff;
 }
 .meet-code-btn{
-	position: fixed;
-	bottom: 20px;
-	left: 20%;
+	margin: 50px auto 0;
 }
 .meet-wel-btn{
 	position: fixed;
@@ -708,7 +706,7 @@ h3{
 	z-index: -1;
 }*/
 .meet-ask-list{
-	padding: 20px 50px 20px 20px;
+	padding: 20px 50px 100px 20px;
 }
 .meet-ask-list li{
 	padding: 0 0 20px;
@@ -750,7 +748,7 @@ h3{
 }
 .meet-ask-name{
 	color: #fff;
-	font-size:38px;
+	font-size:32px;
 	padding: 0 0 5px;
 }
 .meet-ask-name i{
@@ -759,7 +757,7 @@ h3{
 	padding: 0 10px;
 }
 .meet-ask-text{
-	font-size: 28px;
+	font-size: 32px;
 	color:#343434;background-color: #fff;
 	border-radius: 10px;
 	overflow: hidden;
