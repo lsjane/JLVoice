@@ -524,8 +524,7 @@ var meet = {
 		var _fileUrl = _t.getHrefParam('fileUrl');
 		_fileUrl = decodeURIComponent(_fileUrl);
 		var _origin=window.location.origin;
-		var _pathName=window.document.location.pathname;
-	    _fileUrl = _origin+_pathName+_fileUrl;
+	    _fileUrl = _origin+_fileUrl;
 		$('#pdfIframe').attr('src','../pdfJs/generic/web/viewer.html?file='+_fileUrl)
 	},
 	ask_fn:function(){
