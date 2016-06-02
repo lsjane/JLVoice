@@ -350,10 +350,12 @@ h3{
 	background-color: #f00;
 }
 .meet-index-menu .center{
-	width: 202px;
-	height: 202px;
-	left:274px;
-	top:266px;
+	/*width: 202px;
+	height: 202px;*/
+	width: 116px;
+	height: 116px;
+	left:317px;
+	top:309px;
 	background: url(../../images/meet-index-center.png) no-repeat center center;
 	background-size: 100%;
 }
