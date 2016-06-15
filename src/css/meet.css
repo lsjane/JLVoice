@@ -409,18 +409,19 @@ h3{
 
 /*meet-expert*/
 .meet-expert-content{
-	background-color: #347bc4;
+	
 	color: #fff;
-	padding: 50px 20px;
+	
 }
 .swiper-container{
 	width: 100%;
-	height: 100%;
-	overflow: hidden;
+	min-height: 100%;
+	/*overflow: hidden;*/
 	position: relative;
 }
 .swiper-wrapper{
 	/*width: 1420px;*/
+	background-color: #347bc4;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -428,6 +429,7 @@ h3{
 .swiper-slide{
 	float: left;
 	width: 710px;
+	padding: 50px 20px;
 }
 .meet-expert-dot{
 	position: fixed;
@@ -481,7 +483,7 @@ h3{
 	width: 88px;
 	height: 88px;
 	text-align: center;
-	position: absolute;
+	position: fixed;
 	top:50%;
 	margin: -44px 0 0 0;
 	background: rgba(225,225,225,.2);

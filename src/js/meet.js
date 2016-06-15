@@ -5,6 +5,7 @@ var meet = {
 		_t.channel = $('.meet-wrap').attr('data-channel');
 
 		switch(_t.channel){
+			case 'main': _t.main_fn(); break;
 			case 'signcode': _t.signcode_fn(); break;
 			case 'sign': _t.sign_fn();break;
 			case 'welcome': _t.welcome_fn(); break;
@@ -149,8 +150,35 @@ var meet = {
 			});
 		});
 	},*/
+	main_fn:function(){
+		alert(_openId);
+		var _t = this;
+		$('.meet-code-btn').click(function(){
+			$.ajax({
+				type: 'get',
+				url: _t.config.url.main,
+				data: {openId:_openId},
+				dataType: 'json',
+				timeout: 300,
+				success: function(data){
+					if(data.code=='1'){
+						window.open('meet-sign.html?meetId='+data.attach.id,'_self');
+					}else{
+						$.dialog({
+							content : '会议码不正确！',
+							title:'alert',
+							time : 2000
+						});
+					}
+				},
+				error: function(){
+				}
+			});
+		});
+	},
 	signcode_fn:function(){
 		var _t = this;
+		var _openId = _t.getHrefParam('openId');
 		$('.meet-code-btn').click(function(){
 			var _code = $('.meet-code-input').val();
 			if(!_code){
@@ -169,7 +197,7 @@ var meet = {
 			  	timeout: 300,
 			  	success: function(data){
 			    	if(data.code=='1'){
-			    		window.open('meet-sign.html?meetId='+data.attach.id,'_self');
+			    		window.open('meet-sign.html?meetId='+data.attach.id+'&openId='+_openId,'_self');
 			    	}else{
 				    	$.dialog({
 		                    content : '会议码不正确！',
@@ -185,6 +213,7 @@ var meet = {
 	},
 	sign_fn:function(){
 		var _t = this;
+		var _openId = _t.getHrefParam('openId');
 		var _meetId = _t.getHrefParam('meetId');
 		if(!_meetId){
 			return false;
@@ -204,7 +233,8 @@ var meet = {
 				 	url: _t.config.url.sign,
 				  	data: {
 						meetId:_meetId,
-						perName:_pername
+						perName:_pername,
+						openId:_openId
 					},
 				  	dataType: 'json',
 				 	timeout: 300,
@@ -302,7 +332,8 @@ var meet = {
 			    			dothtml += '<span></span>';
 			    		});
 			    		$('.swiper-wrapper').html(html);
-			    		var _elewidth = parseInt($('.swiper-slide').css('width'));
+			    		var _elewidth = parseInt($('.swiper-slide')[0].offsetWidth);
+			    		_elewidth = _elewidth?_elewidth:750;
 			    		$('.swiper-wrapper').css('width',_elewidth*data.attach.length);
 			    		$('.meet-expert-dot').html(dothtml);
 			    		$('.meet-expert-dot span').first().addClass('active');
@@ -1110,16 +1141,6 @@ var meet = {
 				}
 			})
 
-
-
-
-
-
-
-
-
-
-			
 		});
 	},
 	getHrefParam:function(_name){
