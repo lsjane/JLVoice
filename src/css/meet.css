@@ -118,12 +118,7 @@ h3{
 	color: #333;
 	padding: 0 20px;
 }
-/*.meet-sign-btn{
-	width: 182px;
-	height: 88px;
-	margin: 40px 0 0;
-	background: url(../../images/meet-sign-btn.png) no-repeat;
-}*/
+
 .meet-sign-btn{
 	width: 200px;
 	height: 88px;
@@ -170,36 +165,7 @@ h3{
 	box-shadow: 0 0 6px #ccc;
 	outline: none;
 }
-/*.meet-code-item{
-	width: 160px;
-	height: 234px;
-	padding: 0 10px;
-	float: left;
-}
-.meet-code-up{
-	width: 160px;
-	height: 77px;
-	background: url(../../images/meet-code-btn.png) no-repeat 0 0;
-}
-.meet-code-num{
-	width: 160px;
-	height: 100px;
-	overflow: hidden;
-	position: relative;
-}
-.meet-code-num .meet-code-numico{
-	width: 160px;
-	height: 1000px;
-	position: absolute;
-	top: -900px;
-	left: 0;
-	background: url(../../images/meet-code-num.png) no-repeat 30px 0 #fff;
-}	
-.meet-code-down{
-	width: 160px;
-	height: 77px;
-	background: url(../../images/meet-code-btn.png) no-repeat 0 -157px;
-}*/
+
 .meet-code-text{
 	padding: 80px 100px 0;
 }
@@ -225,26 +191,6 @@ h3{
 	float: right;
 	background: url(../../images/meet-logo.png) no-repeat;
 }
-/*.meet-swripe{
-	position: fixed;
-	bottom: 20px;
-	left: 15%;
-	height: 88px;
-	display: inline-block;
-	line-height: 88px;
-	width: 70%;
-	font-size: 42px;
-	text-align: center;
-	color: #fff;
-	background:-webkit-linear-gradient(left,rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 30%,rgba(0,0,0,0) 100%);
-	background:-moz-linear-gradient(left,rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 30%,rgba(0,0,0,0) 100%);
-	background:-o-linear-gradient(left,rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 30%,rgba(0,0,0,0) 100%);
-	background:-ms-linear-gradient(left,rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 30%,rgba(0,0,0,0) 100%);
-	text-shadow:0 2px 3px #333;
-}
-.meet-swripe i{
-	padding:0 30px 0 0;
-}*/
 
 .meet-code-btn,.meet-wel-btn{
 	width: 60%;
@@ -323,18 +269,7 @@ h3{
 .meet-index-bg img{
 	width: 100%;
 }
-/*.meet-index-logo{
-	width: 186px;
-	height: 52px;
-	padding-top: 20px;
-	background: url(../../images/meet-logo.png) no-repeat 0 20px; 
-}
-.meet-index-slogan{
-	width: 569px;
-	height: 121px;
-	margin: 70px auto 0;
-	background: url(../../images/meet-slogan.png) no-repeat;
-}*/
+
 .meet-index-menu{
 	position: fixed;
 	bottom: 0;
@@ -580,12 +515,7 @@ h3{
 .meet-data-content{
 	position: relative;
 }
-/*.meet-data-bg{
-	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: -1;
-}*/
+
 .meet-data-list{
 	padding: 0 20px;
 }
@@ -703,12 +633,7 @@ h3{
 .meet-ask-content{
 	position: relative;
 }
-/*.meet-ask-bg{
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: -1;
-}*/
+
 .meet-ask-list{
 	padding: 20px 50px 100px 20px;
 }
@@ -808,12 +733,7 @@ h3{
 	position: relative;
 	padding: 20px;
 }
-/*.meet-vote-bg{
-	position: absolute;
-	top: 0;
-	left:0;
-	z-index: -1;
-}*/
+
 .meet-vote-tips{
 	background: rgba(225,225,225,0.9);
 	border-radius:10px;
@@ -826,70 +746,7 @@ h3{
 	color:#f92f00;
 	font-size: 28px;
 }
-/*.meet-vote-list{
-	padding: 20px 0 0;
-}
-.meet-vote-list li{
-	margin: 0 0 10px;
-	background: rgba(225,225,225,0.9);
-	padding: 20px;
-	border-radius: 10px;
-}
-.meet-vote-num{
-	width: 78px;
-	float: left;
-}
-.meet-vote-num span{
-	display: block;
-	width: 60px;
-	height: 60px;
-	line-height: 60px;
-	color: #fff;
-	font-size: 28px;
-	text-align: center;
-	background-color: #417bb8;
-	border-radius: 10px;
-}
-.meet-vote-right{
-	width: 592px;
-	float: right;
-	overflow: hidden;
-}
-.meet-vote-optionlist{
-	width: 628px;
-}
-.meet-vote-option{
-	width: 120px;
-	height: 54px;
-	margin: 0 37px 20px 0;
-	float: left;
-	border-radius: 10px;
-	background-color: #fff;
-	box-shadow: 0 0 2px #999;
-	line-height: 54px;
-	text-align: center;
-	color: #4c4c4c;
-	font-size: 32px;
-}
-.meet-vote-option input{
-	width: 25px;
-	height:25px;
-	border: 1px solid #90b0d2;
-}
-.meet-vote-btn{
-	background-color: #f98a39;
-	float: right;
-}
-.meet-vote-btn input{
-	width: 100%;
-	height: 100%;
-	background: none;
-	outline: none;
-	border: 0;
-	color: #fff;
-	font-size: 24px;
-	font-family: "微软雅黑";
-}*/
+
 .meet-vote-box{
 	padding: 35px 26px 0;
 }
@@ -969,12 +826,7 @@ h3{
 	padding: 20px;
 	/*background-color: #007ac4;*/
 }
-/*.meet-feed-bg{
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: -1;
-}*/
+
 .meet-feed-tips{
 	background: rgba(225,225,225,0.8);
 	border-radius:10px;

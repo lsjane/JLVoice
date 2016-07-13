@@ -1,25 +1,4 @@
 exports["localhost"] = {
-    "root": "d:\\xampp\\htdocs\\JLVoice\\",
-    "welcome": "",
-    "notFound": "c:\\Users\\xinhua\\AppData\\Roaming\\npm\\node_modules\\f2e-server\\nodeLib\\html\\404.html",
-    "folder": "c:\\Users\\xinhua\\AppData\\Roaming\\npm\\node_modules\\f2e-server\\nodeLib\\html\\folder.html",
-    "handle": true,
-    "include": "\\$include\\[[\"\\s]*([^\"\\s]+)[\"\\s]*\\]",
-    "placeholder": "$[placeholder]",
-    "belong": "\\$belong\\[[\"\\s]*([^\"\\s]+)[\"\\s]*\\]",
-    "middleware": true,
-    "autoprefixer": false,
-    "babel": false,
-    "debug": true,
-    "cdn": false,
-    "fs_mod": true,
-    "livereload": false,
-    "port": 80,
-    "maxConnections": 1000,
-    "runJs": true,
-    "output": "c:\\output\\",
-    "nginx-http-concat": true,
-    "filter": {},
-    "agent": {},
-    "expires": 0
+    "root": "D:\\xampp\\htdocs\\JLVoice\\",
+    "port": 80
 };
