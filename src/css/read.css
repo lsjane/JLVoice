@@ -103,3 +103,64 @@ h3{
 	font-size: 40px;
 	padding: 0 5px;
 }
+.read-list-top{
+	padding: 50px;
+	height: 46px;
+	background-color: #fff;
+	margin: 0 0 20px;
+
+}
+.read-list-top span{
+	display: block;
+	height: 46px;
+	line-height: 46px;
+	font-size: 34px;
+	color: #777;
+	padding: 0 0 0 30px;
+	border-left: 10px solid #14A838; 
+}
+.read-list-content li{
+	background-color: #fff;
+}
+.read-list-content li a{
+	display: block;
+	padding: 50px 20px 50px 50px;
+	margin: 0 0 20px;
+	text-decoration: none;
+}
+.read-list-num,.read-list-title,.read-list-arrow{
+	float: left;
+}
+.read-list-num{
+	width: 60px;
+	overflow: hidden;
+	font-size: 50px;
+	color: #14A838;
+}
+.read-list-title{
+	width: 560px;
+	padding: 0 30px 0 0;
+	color: #353535;
+	font-size: 28px;
+	line-height: 48px;
+	position: relative;
+}
+.read-list-title span{
+	display: block;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	color: #d7d7d7;
+	font-size: 30px;
+	position: absolute;
+	right: -30px;
+	top: 50%;
+	margin: -15px 0 0;
+}
+.read-list-arrow{
+	
+	
+}
+.read-list-arrow span{
+	
+}
