@@ -103,6 +103,8 @@ h3{
 	font-size: 40px;
 	padding: 0 5px;
 }
+
+/*read-list*/
 .read-list-top{
 	padding: 50px;
 	height: 46px;
@@ -157,10 +159,129 @@ h3{
 	top: 50%;
 	margin: -15px 0 0;
 }
-.read-list-arrow{
-	
-	
+
+
+/*read-detail*/
+.read-detail-content{
+	padding: 0 16px 90px;
 }
-.read-list-arrow span{
-	
+.read-detail-bg{
+	background-color: #fff;
+	border-radius: 8px;
+	border: 1px solid #d7d7d7;
+	padding: 40px 60px;
+	margin: 15px 0 30px;
 }
+.read-detail-title{
+	font-size: 34px;
+	color: #1E1D1D;
+	padding: 20px 0 30px;
+}
+.read-detail-info{
+	height: 40px;
+	line-height: 40px;
+	font-size: 28px;
+	color: #878787;
+	padding: 0 0 35px;
+	border-bottom: 2px solid #d7d7d7;
+}
+.read-detail-info span{
+	display: block;
+	float: left;
+	height: 40px;
+}
+.read-detail-info span img{
+	height: 40px;
+}
+.read-detail-info span.read-detail-time{
+	padding: 0 0 0 30px;
+}
+.read-detail-desp{
+	margin: 40px 0 0;
+	border: 1px solid #14A838;
+}
+.read-detail-desp p{
+	padding: 20px 30px;
+	font-size: 28px;
+	color: #343434;
+	line-height: 60px;
+	border-left: 4px solid #14A838;
+}
+.read-detail-tag{
+	height: 38px;
+	line-height: 38px;
+	margin: 0 45px;
+	padding: 0 0 0 30px;
+	color: #1E1D1D;
+	font-size: 30px;
+	border-left: 8px solid #14A838;
+}
+.read-detail-text{
+	font-size: 30px;
+	color: #444;
+	line-height: 60px;
+	text-indent: 2em;
+}
+.read-detail-tips{
+	font-size: 28px;
+	color: #14A838;
+	line-height: 60px;
+}
+.read-detail-tips i{
+	font-size: 46px;
+	vertical-align: middle;
+	padding: 0 20px 0 0;
+}
+.read-detail-btn{
+	width: 550px;
+	height: 66px;
+	padding: 11px 100px;
+	background-color: #fff;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+}
+.read-detail-btn a{
+	color: #fff;
+	text-decoration: none;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.read-detail-expert,.read-detail-download{
+	width: 260px;
+	height: 66px;
+	border-radius: 8px;
+	font-size: 28px;
+	color: #fff;
+	line-height: 66px;
+	text-align: center;
+}
+.read-detail-expert i{
+	font-size: 50px;
+	padding: 0 20px 0 0;
+	vertical-align: middle;
+}
+.read-detail-download i{
+	font-weight: bolder;
+	font-size: 26px;
+	display: inline-block;
+	width: 26px;
+	height: 26px;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	overflow: hidden;
+	padding: 2px;
+	vertical-align: middle;
+	margin: 0 20px 0 0;
+}
+.read-detail-expert{
+	float: left;
+	background-color: #F1775B;
+}
+.read-detail-download{
+	float: right;
+	background-color: #14A838;
+}
+
+/*read-expert*/
