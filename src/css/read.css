@@ -285,3 +285,8 @@ h3{
 }
 
 /*read-expert*/
+.read-list-content{
+	padding: 50px;
+	min-height: 100%;
+	background-color: #fff;
+}
