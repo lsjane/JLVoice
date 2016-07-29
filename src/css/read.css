@@ -105,6 +105,9 @@ h3{
 }
 
 /*read-list*/
+.read-list-conwrap{
+
+}
 .read-list-top{
 	padding: 50px;
 	height: 46px;
@@ -153,7 +156,7 @@ h3{
 	height: 30px;
 	line-height: 30px;
 	color: #d7d7d7;
-	font-size: 30px;
+	font-size: 50px;
 	position: absolute;
 	right: -30px;
 	top: 50%;

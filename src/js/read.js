@@ -25,17 +25,21 @@ var read = {
 		if(_catid){
 			$.ajax({
 				type: 'get',
-			  	url: _t.config.,
-			  	data: {meetId:_meetId},
+			  	url: _t.config.articleList,
+			  	data: {catid:_catid},
 			  	dataType: 'json',
-			  	timeout: 300,
 			  	success: function(data){
 			    	if(data.code=='1'){
-			    		$('.meet-sign-bg img').attr('src',data.attach.picPath);
-			    		$('.meet-wel-bg img').attr('src',data.attach.letterPic);
-			    		$('.meet-sche-sloganbig').text(data.attach.name);
-						$('.meet-sche-slogansmall').text('——'+data.attach.theme);
-						$('.meet-sche-station b').text(data.attach.meetAddr+' > 会议议程');
+			    		var _html = '';
+						if(data.attach.length > 0){
+							$(data.attach).each(function(_index,_element){
+								_html += '<li><a href="read-detail._html?id=' + _element.id;
+								_html += '" class="clearfix"><div class="read-list-num">' + (_index+1);
+								_html += '</div><div class="read-list-title">' +_element.title;
+								_html += '<span class="ion-ios-arrow-right"></span></div></a></li>';
+							});
+							$('.read-list-content').html(_html);
+						}
 			    	}else{
 				    }
 			  	},
@@ -54,3 +58,4 @@ var read = {
 		var _t = this;
 	}
 };
+read.init();

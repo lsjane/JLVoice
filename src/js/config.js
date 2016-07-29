@@ -22,7 +22,7 @@ if(tag){
 }else{
 	var config = {
 		read:{
-			articleList:''
+			articleList:'/json/read_list.js'
 		},
 		getHrefParam:function(_name){
 			var _value = '';
