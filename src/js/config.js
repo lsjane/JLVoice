@@ -2,7 +2,8 @@ var tag = false;
 if(tag){
 	var config = {
 		read:{
-			articleList:'/gome-manager-web/reading/queryArticleList'
+			articleList:'/gome-manager-web/reading/queryArticleList',
+			articleDetail:'/gome-manager-web/reading/ queryArticleDetail'
 		},
 		getHrefParam:function(_name){
 			var _value = '';
@@ -22,7 +23,8 @@ if(tag){
 }else{
 	var config = {
 		read:{
-			articleList:'/json/read_list.js'
+			articleList:'/json/read_list.js',
+			articleDetail:'/json/read_detail.js'
 		},
 		getHrefParam:function(_name){
 			var _value = '';

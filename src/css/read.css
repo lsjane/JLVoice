@@ -35,8 +35,27 @@ h3{
 }
 .read-cover-liwrap{
 	background: #fff;
-	padding: 50px 15px 40px;
+	/*padding: 50px 15px 40px;*/
+	padding: 50px 45px 40px;
 	margin: 0 0 20px;
+	position: relative;
+}
+.left-arrow,.right-arrow{
+	display: block;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	font-size: 50px;
+	color: #d7d7d7;
+	position: absolute;
+	top: 231px;
+	display: none;
+}
+.left-arrow{
+	left: 10px;
+}
+.right-arrow{
+	right: 10px;
 }
 .read-cover-info{
 	height: 46px;
@@ -47,9 +66,13 @@ h3{
 	display: block;
 	float: left;
 	height: 46px;
-	padding: 0 0 0 30px;
+	/*padding: 0 0 0 30px;*/
 	font-size: 34px;
 	color: #777;
+}
+.read-cover-year i{
+	padding: 0 20px 0 0;
+	font-size: 46px;
 }
 .read-cover-more{
 	float: right;
@@ -59,12 +82,22 @@ h3{
 	height: 46px;
 	text-decoration: none;
 }
+.read-cover-box{
+	margin: 40px 0 0;
+	height: 240px;
+	position: relative;
+	overflow: hidden;
+}
+
 .read-cover-list{
-	padding: 40px 0 0;
+	position: absolute;
+	left: 0;
+	top: 0;
 	height: 240px;
 }
 .read-cover-list li{
-	padding: 0 31px;
+	/*padding: 0 31px;*/
+	padding: 0 21px;
 	width: 178px;
 	height: 240px;
 	float: left;
@@ -74,14 +107,19 @@ h3{
 	height: 100%;
 	position: relative;
 }
-.read-cover-bg1 .read-cover-year{
-	border-left: 10px solid #f1775b;
+.read-cover-item a{
+	display: block;
+	width: 100%;
+	height: 100%;
 }
-.read-cover-bg2 .read-cover-year{
-	border-left: 10px solid #5e9ff1;
+.read-cover-bg1 .read-cover-year i{
+	color: #f1775b;
 }
-.read-cover-bg3 .read-cover-year{
-	border-left: 10px solid #14a838;
+.read-cover-bg2 .read-cover-year i{
+	color: #5e9ff1;
+}
+.read-cover-bg3 .read-cover-year i{
+	color: #14a838;
 }
 .read-cover-bg1 .read-cover-item{
 	background: url(../../images/read-cover-bg1.png) no-repeat;
@@ -121,8 +159,14 @@ h3{
 	line-height: 46px;
 	font-size: 34px;
 	color: #777;
-	padding: 0 0 0 30px;
-	border-left: 10px solid #14A838; 
+}
+.read-list-top span i{
+	display: block;
+	float: left;
+	height: 46px;
+	font-size: 46px;
+	color: #14A838;
+	padding: 0 20px 0 0;
 }
 .read-list-content li{
 	background-color: #fff;
