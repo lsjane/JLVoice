@@ -516,7 +516,7 @@ h3{
 	color: #262626;
 }
 .read-expdetail-btn{
-	height: 54px;
+	/*height: 54px;*/
 	width: 100%;
 	background-color: #fff;
 	position: fixed;
@@ -548,6 +548,9 @@ h3{
 .read-expdetail-laud{
 	border-right: 2px solid #f2f2f2;
 }
+.read-expdetail-laud.active span{
+	color: #F1775B;
+}
 .read-comment-box{
 	background-color: #fdfdfd;
 	width: 100%;
@@ -555,7 +558,7 @@ h3{
 	position: fixed;
 	bottom: 0;
 	left: 0;
-	/*display: none;*/
+	display: none;
 }
 .read-comment-top{
 	padding: 20px 25px 25px;
