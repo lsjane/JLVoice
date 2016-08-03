@@ -2,6 +2,7 @@ var tag = false;
 if(tag){
 	var config = {
 		read:{
+			coverList:'/gome-manager-web/reading/queryReadingList',
 			articleList:'/gome-manager-web/reading/queryArticleList',
 			articleDetail:'/gome-manager-web/reading/ queryArticleDetail'
 		},
@@ -23,6 +24,7 @@ if(tag){
 }else{
 	var config = {
 		read:{
+			coverList:'/json/read_cover_list.js',
 			articleList:'/json/read_list.js',
 			articleDetail:'/json/read_detail.js'
 		},
@@ -39,6 +41,13 @@ if(tag){
 			}
 			
 			return _value;
+		},
+		toTwo:function(n){
+			if(n<9){
+				return '0'+n;
+			}else{
+				return n.toString();
+			}
 		}
 	}
 }

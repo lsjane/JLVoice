@@ -3,8 +3,9 @@ var read = {
 		var _t = this;
 		_t.config = config.read;
 		_t.getHrefParam = config.getHrefParam;
+		_t.toTwo = config.toTwo;
 		_t.channel = $('.read-wrap').attr('data-channel');
-
+		
 		switch(_t.channel){
 			case 'cover': _t.cover_fn(); break;
 			case 'list': _t.list_fn(); break;
@@ -15,20 +16,9 @@ var read = {
 			  return false;
 		}
 	},
-	cover_fn:function(){
+	bind_fn:function(){
 		var _t = this;
-		_t._elewidth = parseInt($('.read-cover-list li')[0].offsetWidth);
-		_t._elewidth = _t._elewidth?_t._elewidth:220;
-		$('.read-cover-list').each(function(_index,_element){
-			var _length = $(_element).children('li').length;
-			$(_element).css('width',_t._elewidth*_length).attr('data-index',0);
-			if(_length <= 3){
-				$(_element).attr('data-ismove','false');
-			}else{
-				$(_element).attr('data-ismove','true');
-				$(_element).parent().siblings('.right-arrow').show();
-			}
-		});
+		//cover封面滚动
 		$('.read-cover-list').on('swipeLeft',function(e){
 			var $e = $(e.currentTarget);
 			_t.cover_move($e,-1);
@@ -47,6 +37,53 @@ var read = {
 			var _ul = $e.siblings('.read-cover-box').find('ul');
 			_t.cover_move($(_ul),-1);
 		});
+	},
+	cover_fn:function(){
+		var _t = this;
+		
+		
+		$.ajax({
+			type: 'get',
+		  	url: _t.config.coverList,
+		  	dataType: 'json',
+		  	success: function(data){
+		  		if(data.code == '1'){
+		  			var _html = '';
+		  			var _dataObj = data.attach;
+		  			var _n = 0;
+		  			_t._elewidth = parseInt($('.read-cover-list li')[0].offsetWidth);
+					_t._elewidth = _t._elewidth?_t._elewidth:220;
+
+		  			for(var _name in _dataObj){
+		  				_n++;
+		  				_html += '<div class="read-cover-liwrap read-cover-bg'+_n+'"><div class="read-cover-info"><span class="read-cover-year"><i class="ion-calendar"></i>'+_name;
+						_html += '年</span><span class="read-cover-more">共' + _dataObj[_name].length;
+						_html += '期 &gt;</span></div><div class="read-cover-box"><ul class="read-cover-list">';
+						if(_dataObj[_name].length > 0){
+							$(_dataObj[_name]).each(function(_index,_element){
+								_html += '<li><div class="read-cover-item"><a href="read-list.html?catid=' + _element.id;
+								_html += '"><p class="read-cover-text">第<strong>' + _t.toTwo(_element.catname);
+								_html += '</strong>期</p></a></div></li>';
+							});
+						}
+						_html += '</ul></div><span class="left-arrow ion-ios-arrow-left"></span><span class="right-arrow ion-ios-arrow-right"></span></div>';
+		  			}
+		  			$('.read-cover-content').html(_html);
+		  			$('.read-cover-list').each(function(_index,_element){
+						var _length = $(_element).children('li').length;
+						$(_element).css('width',_t._elewidth*_length).attr('data-index',0);
+						if(_length <= 3){
+							$(_element).attr('data-ismove','false');
+						}else{
+							$(_element).attr('data-ismove','true');
+							$(_element).parent().siblings('.right-arrow').show();
+						}
+					});
+					_t.bind_fn();
+		  		}
+		  	}
+		});
+		
 		
 	},
 	cover_move:function($e,_dir){
