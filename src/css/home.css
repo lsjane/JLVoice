@@ -1,0 +1,212 @@
+body{
+	margin:0;
+	padding: 0;
+	font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,STHeiti,"Microsoft Yahei",sans-serif;
+	background: #fff;%
+}
+img,input,button,p,ul,li,input,textarea,form{
+	padding: 0;
+	margin: 0;
+	border:0;
+	list-style: none;
+}
+h3{
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-size: 1em;
+}
+.clearfix:before,.clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+    overflow: hidden;
+}
+.clearfix {
+    zoom: 1;
+}
+a{
+	text-decoration: none;
+}
+
+.home-wrap{
+	width: 750px;
+	margin: 0 auto;
+}
+.home-slide-wrap{
+	width: 100%;
+	height: 410px;
+	overflow: hidden;
+	margin: 0 0 20px;
+	position: relative;
+}
+.home-slide-wrap ul{
+	
+}
+.home-slide-wrap ul li{
+	width: 100%;
+	height: 410px;
+	float: left;
+}
+.home-slide-wrap ul li a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.home-slide-pic img{
+	width: 100%;
+	height: 100%;
+}
+.home-slide-title{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	color: #fff;
+	font-size: 24px;
+	background-color: rgba(0,0,0,.6);
+}
+.home-slide-title span{
+	padding: 0 10px;
+}
+.home-slide-page{
+	position: absolute;
+	bottom: 14px;
+	right: 10px;
+	z-index: 2;
+}
+.home-slide-page span{
+	display: block;
+	float: left;
+	margin: 0 3px;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	box-shadow: 0 1px 1px #aaa;
+	background-color: #e3e4e7;
+}
+.home-slide-page span.active{
+	background-color: #03fd4a;
+}
+.home-nav-wrap{
+	padding: 0 20px;
+}
+.home-nav-top{
+	padding: 0 0 20px;
+}
+.home-wechat-wrap{
+	width: 437px;
+	height: 400px;
+	float: left;
+	background-color: #afd75d;
+}
+.home-wechat-wrap a{
+	display: block;
+	width: 100%;
+	height:260px;
+	padding: 140px 0 0;
+}
+.home-wechat-wrap span{
+	display: block;
+	width: 120px;
+	height: 120px;
+	margin: 0 auto;
+	background-color: #fff;
+	border-radius: 12px;
+	text-align: center;
+	transform:rotateY(180deg);
+	-webkit-transform:rotateY(180deg);
+	-o-transform:rotateY(180deg);
+	-moz-transform:rotateY(180deg);
+}
+.home-wechat-wrap span i{
+	display: block;
+	height: 80px;
+	padding: 21px 0 0;
+	line-height: 120px;
+	font-size: 70px;
+	color: #afd75d;
+	
+}
+.home-wechat-text{
+	padding: 50px 0 0;
+	text-align: center;
+	font-size: 24px;
+	color: #fff;
+}
+.home-nav-right{
+	float: right;
+	width: 253px;
+	height: 400px;
+}
+.home-navli{
+	width: 253px;
+	height: 190px;
+	position: relative;
+}
+.home-navli a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.home-navli-text{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 46px;
+	line-height: 46px;
+	text-align: center;
+	color: #fff;
+	font-size: 24px;
+	background-color: rgba(0,0,0,.8);
+}
+.home-navli-text span{
+	padding: 0 25px;
+}
+.home-navli-text b{
+	float: right;
+	padding: 0 10px 0 0;
+}
+.home-video{
+	background: url(../../images/home-video-bg.jpg) no-repeat;
+	margin: 0 0 20px;
+}
+.home-medicine{
+	background: url(../../images/home-medicine-bg.jpg) no-repeat;
+}
+.home-read{
+	height: 260px;
+	float: left;
+	background: url(../../images/home-read-bg.jpg) no-repeat;
+}
+.home-nav-bottom{
+	padding: 0 0 100px;
+}
+.home-user-wrap{
+	width: 437px;
+	height: 260px;
+	float: right;
+	background: #83ccdd;
+	text-align: center;
+}
+.home-user-wrap a{
+	display: block;
+	width: 100%;
+	height: 210px;
+	padding: 50px 0 0;
+}
+.home-user-wrap i{
+	font-size: 100px;
+	color: #fff;
+}
+.home-user-text{
+	padding: 25px 0 0;
+	color: #fff;
+	font-size: 24px;
+}
