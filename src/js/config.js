@@ -10,7 +10,8 @@ if(tag){
 			expertDetail:'/gome-manager-web/reading/queryArticleProfessorDetail',
 			expertSupCount:'/gome-manager-web/review/queryIfSupport',
 			expertIsSup:'/gome-manager-web/review/queryIfSupport',
-			expertSup:'/gome-manager-web/review/addSupport'
+			expertSup:'/gome-manager-web/review/addSupport',
+			commentList:'/gome-manager-web/review/queryReviewList'
 		},
 		getHrefParam:function(_name){
 			var _value = '';
@@ -45,7 +46,8 @@ if(tag){
 			exprtDetail:'/json/read_expert_detail.js',
 			expertSupCount:'/json/read_expert_supcount.js',
 			expertIsSup:'/json/read_expert_supcount.js',
-			expertSup:'/json/read_expert_supcount.js'
+			expertSup:'/json/read_expert_supcount.js',
+			commentList:'/json/read_expert_comment.js'
 		},
 		getHrefParam:function(_name){
 			var _value = '';

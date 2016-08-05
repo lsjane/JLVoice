@@ -153,17 +153,23 @@ var read = {
 
 		  			for(var _name in _dataObj){
 		  				_n++;
+		  				var _qiarr = [];
 		  				_html += '<div class="read-cover-liwrap read-cover-bg'+_n+'"><div class="read-cover-info"><span class="read-cover-year"><i class="ion-calendar"></i>'+_name;
-						_html += '年</span><span class="read-cover-more">共' + _dataObj[_name].length;
-						_html += '期 &gt;</span></div><div class="read-cover-box"><ul class="read-cover-list">';
-						if(_dataObj[_name].length > 0){
+						_html += '年</span><span class="read-cover-more">共<b></b>期 &gt;</span></div><div class="read-cover-box"><ul class="read-cover-list">';
+						/*if(_dataObj[_name].length > 0){
 							$(_dataObj[_name]).each(function(_index,_element){
 								_html += '<li><div class="read-cover-item"><a href="read-list.html?catname=' + _element.catname +'&yearValue=' + _element.yearValue;
 								_html += '"><p class="read-cover-text">第<strong>' + _t.toTwo(_element.catname);
 								_html += '</strong>期</p></a></div></li>';
 							});
+						}*/
+						for(var _qi in _dataObj[_name]){
+							_html += '<li><div class="read-cover-item"><a href="read-list.html?catname=' + _qi +'&yearValue=' + _name;
+							_html += '"><p class="read-cover-text">第<strong>' + _t.toTwo(_qi);
+							_html += '</strong>期</p></a></div></li>';
 						}
 						_html += '</ul></div><span class="left-arrow ion-ios-arrow-left"></span><span class="right-arrow ion-ios-arrow-right"></span></div>';
+		  				
 		  			}
 		  			$('.read-cover-content').html(_html);
 
@@ -172,6 +178,7 @@ var read = {
 		  			$('.read-cover-list').each(function(_index,_element){
 						var _length = $(_element).children('li').length;
 						$(_element).css('width',_t._elewidth*_length).attr('data-index',0);
+						$('.read-cover-more b').eq(_index).text(_length);
 						if(_length <= 3){
 							$(_element).attr('data-ismove','false');
 						}else{
@@ -331,11 +338,12 @@ var read = {
 		var _professorId = _t.getHrefParam('professorId');
 		_t._yid = _professorId;
 		_t.bind_fn();
-		if(_professorId){
+		if(_t._yid){
+			//获取专家点评详情
 			$.ajax({
 				type: 'get',
 			  	url: _t.config.exprtDetail,
-			  	data: {professorId:_professorId},
+			  	data: {professorId:_t._yid},
 			  	dataType: 'json',
 			  	success: function(data){
 			  		if(data.code == 1){
@@ -359,10 +367,11 @@ var read = {
 	  				}
 			  	}
 			});
+			//获取点赞总数
 			$.ajax({
 				type: 'get',
 			  	url: _t.config.expertSupCount,
-			  	data: {professorId:_professorId},
+			  	data: {professorId:_t._yid},
 			  	dataType: 'json',
 			  	success: function(data){
 			  		if(data.code == 1){
@@ -370,12 +379,13 @@ var read = {
 			  		}
 			  	}
 			});
+			//是否已点赞
 			var _perId = 1;
 			if(_perId){
 				$.ajax({
 					type: 'get',
 				  	url: _t.config.expertIsSup,
-				  	data: {professorId:_professorId,perId:_perId},
+				  	data: {professorId:_t._yid,perId:_perId},
 				  	dataType: 'json',
 				  	success: function(data){
 				  		if(data.code == 1 && data.attach == 1){
@@ -384,10 +394,35 @@ var read = {
 				  	}
 				});
 			}
+			//获取评论列表
+			_t.comment_list_fn();
 		}
 	},
 	comment_list_fn:function(){
-
+		var _t = this;
+		$.ajax({
+			type: 'get',
+		  	url: _t.config.commentList,
+		  	data: {professorId:_t._yid},
+		  	dataType: 'json',
+		  	success: function(data){
+		  		if(data.code == 1){
+		  			var _html = '';
+		  			if(data.attach.length > 0){
+		  				$(data.attach).each(function(_index,_element){
+		  					_html += '<li class="clearfix"><div class="read-comment-ico"><img src=""></div><div class="read-comment-right"><div class="read-comment-user">游客';
+		  					_html += '<span class="read-comment-floor"><b>' + _element.numfloor;
+		  					_html += '</b>楼</span></div><div class="read-comment-time">' + _element.createTime;
+		  					_html += '</div><p class="read-comment-content">' + _element.content;
+		  					_html += '</p></div></li>';
+		  				});
+		  				$('.read-comment-list').html(_html);
+		  			}else{
+		  				$('.read-comment').hide();
+		  			}
+		  		}
+		  	}
+		});
 	}
 };
 read.init();
