@@ -1,0 +1,39 @@
+body{
+	margin:0;
+	padding: 0;
+	font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,STHeiti,"Microsoft Yahei",sans-serif;
+	/*background: #f5f5f5;*/
+}
+img,input,button,p,ul,li,input,textarea,form{
+	padding: 0;
+	margin: 0;
+	border:0;
+	list-style: none;
+}
+h3{
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-size: 1em;
+}
+.clearfix:before,.clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+    overflow: hidden;
+}
+.clearfix {
+    zoom: 1;
+}
+
+.user-wrap{
+	width: 750px;
+	margin: 0 auto;
+}
+
+/*user-login*/
+.user-login-content{
+	padding: 140px 70px 100px;
+}
