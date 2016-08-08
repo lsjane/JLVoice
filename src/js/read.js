@@ -150,27 +150,25 @@ var read = {
 		  			var _html = '';
 		  			var _dataObj = data.attach;
 		  			var _n = 0;
-
+		  			var _year = [];
 		  			for(var _name in _dataObj){
+		  				_year.push(_name);
+		  			}
+		  			_year.sort(function(a,b){
+		  				return b-a;
+		  			});
+		  			$(_year).each(function(_index,_element){
 		  				_n++;
-		  				var _qiarr = [];
-		  				_html += '<div class="read-cover-liwrap read-cover-bg'+_n+'"><div class="read-cover-info"><span class="read-cover-year"><i class="ion-calendar"></i>'+_name;
+		  				_html += '<div class="read-cover-liwrap read-cover-bg'+_n+'"><div class="read-cover-info"><span class="read-cover-year"><i class="ion-calendar"></i>'+_element;
 						_html += '年</span><span class="read-cover-more">共<b></b>期 &gt;</span></div><div class="read-cover-box"><ul class="read-cover-list">';
-						/*if(_dataObj[_name].length > 0){
-							$(_dataObj[_name]).each(function(_index,_element){
-								_html += '<li><div class="read-cover-item"><a href="read-list.html?catname=' + _element.catname +'&yearValue=' + _element.yearValue;
-								_html += '"><p class="read-cover-text">第<strong>' + _t.toTwo(_element.catname);
-								_html += '</strong>期</p></a></div></li>';
-							});
-						}*/
-						for(var _qi in _dataObj[_name]){
-							_html += '<li><div class="read-cover-item"><a href="read-list.html?catname=' + _qi +'&yearValue=' + _name;
+						for(var _qi in _dataObj[_element]){
+							_html += '<li><div class="read-cover-item"><a href="read-list.html?catname=' + _qi +'&yearValue=' + _element;
 							_html += '"><p class="read-cover-text">第<strong>' + _t.toTwo(_qi);
 							_html += '</strong>期</p></a></div></li>';
 						}
 						_html += '</ul></div><span class="left-arrow ion-ios-arrow-left"></span><span class="right-arrow ion-ios-arrow-right"></span></div>';
-		  				
-		  			}
+		  
+		  			});
 		  			$('.read-cover-content').html(_html);
 
 		  			_t._elewidth = parseInt($('.read-cover-list li')[0].offsetWidth);
@@ -266,18 +264,22 @@ var read = {
 			    		var _text = '';
 			    		$('.read-detail-title').text(data.attach.title);
 			    		$('.read-detail-time').text(data.attach.createTime);
+			    		$('.read-detail-author').text(data.attach.author);
 			    		_articleTheme.digest && $('.read-detail-desp p').text(_articleTheme.digest);
 			    		$('.read-detail-expert a').attr('href','read-expert.html?articleId=' + _articleId);
 			    		$('.read-detail-download').attr('data-articleid',_articleId);
+			    		
 			    		for(var _name in _articleTheme){
 			    			switch(_name){
 			    				case 'purpose': _tag = '目的'; break;
 			    				case 'discover': _tag = '发现'; break;
 			    				case 'way': _tag = '方法'; break;
+			    				case 'result': _tag = '结果'; break;
 			    				case 'conclusion': _tag = '结论'; break;
+			    				case 'others': _tag = '其他'; break;
 			    				default: _tag = '';
 			    			}
-			    			if(_tag){
+			    			if(_tag && _articleTheme[_name]){
 			    				_html += '<div class="read-detail-tag">'+_tag+'</div><div class="read-detail-bg read-detail-item"><div class="read-detail-text">' + _articleTheme[_name]+'</div></div>';
 			    			}
 			    		}
@@ -342,7 +344,7 @@ var read = {
 			//获取专家点评详情
 			$.ajax({
 				type: 'get',
-			  	url: _t.config.exprtDetail,
+			  	url: _t.config.expertDetail,
 			  	data: {professorId:_t._yid},
 			  	dataType: 'json',
 			  	success: function(data){
@@ -363,7 +365,7 @@ var read = {
 	  						_html += '<p><label>职称：</label>'+data.attach.jobs+'</p>';
 	  					}
 	  					$('.read-expdetail-text').html(_html);
-	  					$('.read-expdetail-viewpoint').text(data.attach.content);
+	  					$('.read-expdetail-viewpoint').html(data.attach.content);
 	  				}
 			  	}
 			});

@@ -43,7 +43,7 @@ if(tag){
 			articleDetail:'/json/read_detail.js',
 			downArticle:'/json/read_expert_supcount.js',
 			expertList:'/json/read_expert.js',
-			exprtDetail:'/json/read_expert_detail.js',
+			expertDetail:'/json/read_expert_detail.js',
 			expertSupCount:'/json/read_expert_supcount.js',
 			expertIsSup:'/json/read_expert_supcount.js',
 			expertSup:'/json/read_expert_supcount.js',
