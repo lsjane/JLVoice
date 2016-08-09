@@ -16,6 +16,13 @@ h3{
 	font-weight: normal;
 	font-size: 1em;
 }
+a{
+	text-decoration: none;
+	font-family: "Microsoft Yahei";
+}
+input{
+	font-family: "Microsoft Yahei";
+}
 .clearfix:before,.clearfix:after {
     content: "";
     display: table;
@@ -35,5 +42,197 @@ h3{
 
 /*user-login*/
 .user-login-content{
-	padding: 140px 70px 100px;
+	padding: 140px 75px 50px;
+}
+.user-login-box{
+	padding: 0 30px;
+	background-color: #89d39d;
+	border: 1px solid #98c0c6;
+	border-radius: 10px;
+	overflow: hidden;
+	margin: 0 0 35px;
+}
+.user-login-username,.user-login-password{
+	height: 60px;
+	padding: 20px 0;
+	margin: 0 0 0 60px;
+}
+.user-login-box label{
+	display: block;
+	float: left;
+	width: 60px;
+	height: 60px;
+	margin: 0 0 0 -60px;
+}
+.user-login-box input{
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	background-color: transparent;
+	color: #fff;
+	font-size: 30px;
+	outline:none;
+
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #fff;  
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #fff;
+}
+.user-login-box input:-ms-input-placeholder{
+    color: #fff;
+}
+.user-login-box input::-webkit-input-placeholder{
+    color: #fff;
+}
+.user-login-username{
+	border-bottom: 1px solid #fff;
+}
+.user-login-username label{
+	background: url(../../images/user-icons.png) no-repeat -436px -120px;
+}
+.user-login-password label{
+	background: url(../../images/user-icons.png) no-repeat -432px -60px;
+}
+
+.user-login-option{
+	height: 30px;
+	line-height: 30px;
+	padding: 0 0 110px;
+}
+.user-login-remember{
+	width: 30px;
+	height: 30px;
+	float: left;
+	margin: 0 10px 0 0;
+}
+.user-login-option label{
+	color: #2a2a2a;
+	font-size: 24px;
+}
+.user-login-forget{
+	float: right;
+	font-size: 24px;
+	color: #14a83b;
+}
+.user-login-btn input,.user-login-register{
+	width: 100%;
+	text-align: center;
+	height: 100px;
+	line-height: 100px;
+	color: #fff;
+	font-size: 30px;
+	
+	border-radius: 10px;
+}
+.user-login-btn input{
+	background-color: #14a83b;
+	margin: 0 0 55px;
+}
+.user-login-register{
+	display: block;
+	background-color: #ffb940;
+}
+.user-login-logo{
+	height: 66px;
+	margin: 200px 0 0;
+}
+.user-login-jylogo{
+	width: 100px;
+	margin: 3px 0;
+	height: 60px;
+	float: left;
+	background: url(../../images/user-jylogo.png) no-repeat;
+}
+.user-login-jllogo{
+	width: 233px;
+	height: 66px;
+	float: right;
+	background: url(../../images/user-logo.png) no-repeat;
+}
+
+/*user-register*/
+.user-register-content{
+	/*background-color: #e7e7e7;*/
+}
+.user-register-item{
+	height: 60px;
+	padding: 20px 30px 20px 0;
+	background-color: #fff;
+	
+}
+.user-register-bb20{
+	border-bottom: 20px solid #e7e7e7;
+	padding-left:130px;
+
+}
+.user-register-bb1{
+	border-bottom: 1px solid #e7e7e7;
+	margin-left:130px;
+}
+.user-register-item label{
+	margin: 0 0 0 -100px;
+	display: block;
+	width: 60px;
+	height: 60px;
+	background: url(../../images/user-icons.png) no-repeat;
+	border-radius: 4px;
+	float: left;
+}
+.user-register-item input{
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	color: #2a2a2a;
+	font-size: 30px;
+	outline: none;
+}
+.user-register-name label{
+	background-position: 0 0;
+}
+.user-register-hospital label{
+	background-position: -60px 0;
+}
+.user-register-phone label{
+	background-position: -120px 0;
+}
+.user-register-code label{
+	background-position: -180px 0;
+}
+.user-register-email label{
+	background-position: -240px 0;
+}
+.user-register-password label{
+	background-position: -300px 0;
+}
+.user-register-repeatpass label{
+	background-position: -360px 0;
+}
+.user-register-region label{
+	background-position: -420px 0;
+}
+.user-wrap .user-bgcolor1{
+	background-color: #ffc154;
+}
+.user-wrap .user-bgcolor2{
+	background-color: #ff9054;
+}
+.user-wrap .user-bgcolor3{
+	background-color: #ff5252;
+}
+.user-wrap .user-bgcolor4{
+	background-color: #54a4ff;
+}
+.user-wrap .user-bgcolor5{
+	background-color: #6a49e6;
+}
+.user-wrap .user-bgcolor6{
+	background-color: #4bcae5;
+}
+.user-wrap .user-bgcolor7{
+	background-color: #f56e33;
+}
+.user-wrap .user-bgcolor8{
+	background-color: #f53373;
 }
