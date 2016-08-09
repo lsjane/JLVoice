@@ -27,7 +27,7 @@
 		</div>
 	</div> -->
 	<div class="user-register-content">
-		<form class="user-register-form" id="">
+		<form class="user-register-form" id="" method="post" action="http://www.baidu.com">
 			<div class="user-register-item user-register-bb20 user-register-name">
 				<label class="user-bgcolor1"></label>
 				<input type="text" class="" name="" id="" placeholder="姓名">
@@ -38,7 +38,7 @@
 			</div>
 			<div class="user-register-item user-register-bb1 user-register-phone">
 				<label class="user-bgcolor3"></label>
-				<input type="text" class="" name="" id="" placeholder="手机号码">
+				<input type="number" min="9999999999" max="99999999999" class="" name="" id="" placeholder="手机号码">
 			</div>
 			<div class="user-register-item user-register-bb1 user-register-code">
 				<label class="user-bgcolor4"></label>
@@ -46,7 +46,7 @@
 			</div>
 			<div class="user-register-item user-register-bb1 user-register-email">
 				<label class="user-bgcolor5"></label>
-				<input type="text" class="" name="" id="" placeholder="绑定邮箱">
+				<input type="email" class="" name="" id="" placeholder="绑定邮箱">
 			</div>
 			<div class="user-register-item user-register-bb1 user-register-password">
 				<label class="user-bgcolor6"></label>
@@ -59,11 +59,12 @@
 			<div class="user-register-item user-register-bb20 user-register-region">
 				<label class="user-bgcolor8"></label>
 				<!-- <input type="text" class="" name="" id="" placeholder="所在地区"> -->
-				<select class="" name="" id="">
-					<option></option>
+				<span class="user-register-localtext">所在地区</span>
+				<select name="" id="" class="user-register-province prov" >
+					<!-- <option></option> -->
 				</select>
-				<select class="" name="" id="">
-					<option></option>
+				<select name="" id="" class="user-register-city city" >
+					<!-- <option></option> -->
 				</select>
 			</div>
 			<div class="user-register-agree">
@@ -71,7 +72,7 @@
 				<span>同意注册协议<a href="">《阅读注册协议》</a></span>
 			</div>
 			<div class="user-register-btn">
-				<input type="button" value="同意注册协议，提交注册">
+				<input type="submit" value="同意注册协议，提交注册">
 			</div>
 		</form>
 		
@@ -85,6 +86,18 @@
 <script type="text/javascript" src="../common/js/ajax.js"></script>
 <script type="text/javascript" src="../common/js/event.js"></script>
 <script type="text/javascript" src="../common/js/touch.js"></script>
+<!-- 所在地区 -->
+<!-- <script type="text/javascript" src="../common/area/jquery-1.11.1.min.js"></script> -->
+<script type="text/javascript" src="../common/area/jquery.cityselect.js"></script>
+<script type="text/javascript">
+Zepto(function($){
+	$(".user-register-region").citySelect({
+		nodata:"none",
+		required:false
+	}); 
+});
+</script>
+
 <script type="text/javascript" src="../src/js/config.js"></script>
 <script type="text/javascript" src="../src/js/user.js"></script>
 </html>
