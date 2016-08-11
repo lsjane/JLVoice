@@ -13,6 +13,10 @@ if(tag){
 			expertSup:'/gome-manager-web/review/addSupport',
 			commentList:'/gome-manager-web/review/queryReviewList'
 		},
+		user:{
+			login:'/gome-manager-web/user/login',
+			register:'/gome-manager-web/user/addUser'
+		},
 		getHrefParam:function(_name){
 			var _value = '';
 			if(window.location.href.split('?')[1]){
@@ -48,6 +52,10 @@ if(tag){
 			expertIsSup:'/json/read_expert_supcount.js',
 			expertSup:'/json/read_expert_supcount.js',
 			commentList:'/json/read_expert_comment.js'
+		},
+		user:{
+			login:'/json/user_login.js',
+			register:''
 		},
 		getHrefParam:function(_name){
 			var _value = '';

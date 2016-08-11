@@ -354,8 +354,8 @@ input,select,textarea{
 	border-radius: 10px;
 }
 
-/*user-userinfo*/
-.user-userinfo-head{
+/*user-info*/
+.user-info-head{
 	height: 270px;
 	padding: 50px 0 0;
 	border-bottom: 10px solid #e7e7e7;
@@ -367,7 +367,7 @@ input,select,textarea{
 	background: -ms-linear-gradient(top, #1bc348 0%,#14a83b 100%);
 	background: linear-gradient(top, #1bc348 0%,#14a83b 100%);
 }
-.user-userinfo-ico{
+.user-info-ico{
 	width: 140px;
 	height: 140px;
 	margin:0 auto;
@@ -376,7 +376,7 @@ input,select,textarea{
 	padding: 8px;
 	border:2px solid #fff;
 }
-.user-userinfo-ico span{
+.user-info-ico span{
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -386,38 +386,38 @@ input,select,textarea{
 	overflow: hidden;
 	position: relative;
 }
-.user-userinfo-ico span i{
+.user-info-ico span i{
 	display: block;
 	padding: 20px 0;
 	font-size: 100px;
 	color: #fff;
 }
-.user-userinfo-ico span img{
+.user-info-ico span img{
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
 }
-.user-userinfo-name{
+.user-info-name{
 	padding: 25px 0 0;
 	font-size: 28px;
 	color: #fff;
 	text-align: center;
 }
-.user-userinfo-item{
+.user-info-item{
 	height: 60px;
 	padding: 20px 30px 20px 0;
 }
-.user-userinfo-bb1{
+.user-info-bb1{
 	border-bottom: 1px solid #e7e7e7;
 	margin-left: 130px;
 }
-.user-userinfo-bb20{
+.user-info-bb20{
 	border-bottom: 20px solid #e7e7e7;
 	padding-left: 130px;
 }
-.user-userinfo-item span{
+.user-info-item span{
 	display: block;
 	width: 60px;
 	height: 60px;
@@ -426,35 +426,35 @@ input,select,textarea{
 	float: left;
 	border-radius: 4px;
 }
-.user-userinfo-editinfo span{
+.user-info-editinfo span{
 	background-position: -240px -60px;
 }
-.user-userinfo-editpass span{
+.user-info-editpass span{
 	background-position: -300px 0;
 }
-.user-userinfo-mybeans span{
+.user-info-mybeans span{
 	background-position: 0 -60px;
 }
-.user-userinfo-sign span{
+.user-info-sign span{
 	background-position: -60px -60px;
 }
-.user-userinfo-feedback span{
+.user-info-feedback span{
 	background-position: -120px -60px;
 }
-.user-userinfo-about span{
+.user-info-about span{
 	background-position: -180px -60px;
 }
-.user-userinfo-item a{
+.user-info-item a{
 	color: #2a2a2a;
 	font-size: 30px;
 	line-height: 60px;
 }
-.user-userinfo-btn{
+.user-info-btn{
 	width: 480px;
 	height: 90px;
 	margin: 180px auto 60px;
 }
-.user-userinfo-btn input{
+.user-info-btn input{
 	width: 100%;
 	height: 100%;
 	line-height: 100%;
@@ -916,4 +916,32 @@ span.user-beans-type8{
 	text-align: center;
 	font-size: 30px;
 	border-radius: 10px;
+}
+
+/*user-about*/
+.user-about-content{
+	padding: 0 50px;
+	color: #2a2a2a;
+	font-size: 28px;
+}
+.user-about-title{
+	font-size: 32px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	border-bottom: 1px solid #a7a7a7;
+}
+.user-about-box{
+	padding: 50px 0;
+}
+.user-about-box p{
+	line-height: 50px;
+	text-indent: 2em;
+}
+.user-about-pic{
+	text-align: center;
+}
+.user-about-pic img{
+	max-width: 100%;
+	padding: 30px 0;
 }
