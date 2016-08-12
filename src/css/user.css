@@ -46,7 +46,7 @@ input,select,textarea{
 	padding: 140px 75px 50px;
 }
 .user-login-box{
-	padding: 0 30px;
+	/*padding: 0 30px;*/
 	background-color: #89d39d;
 	border: 1px solid #98c0c6;
 	border-radius: 10px;
@@ -56,14 +56,14 @@ input,select,textarea{
 .user-login-username,.user-login-password{
 	height: 60px;
 	padding: 20px 0;
-	margin: 0 0 0 60px;
+	margin: 0 0 0 90px;
 }
 .user-login-box label{
 	display: block;
 	float: left;
 	width: 60px;
 	height: 60px;
-	margin: 0 0 0 -60px;
+	margin: 0 0 0 -75px;
 }
 .user-login-box input{
 	width: 100%;
@@ -90,10 +90,10 @@ input,select,textarea{
 	border-bottom: 1px solid #fff;
 }
 .user-login-username label{
-	background: url(../../images/user-icons.png) no-repeat -436px -120px;
+	background: url(../../images/user-icons.png) no-repeat -420px -120px;
 }
 .user-login-password label{
-	background: url(../../images/user-icons.png) no-repeat -432px -60px;
+	background: url(../../images/user-icons.png) no-repeat -420px -60px;
 }
 
 .user-login-option{

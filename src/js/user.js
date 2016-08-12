@@ -1,10 +1,10 @@
-var read = {
+var user = {
 	init:function(){
 		var _t = this;
 		_t.config = config.user;
 		_t.getHrefParam = config.getHrefParam;
 		// _t.toTwo = config.toTwo;
-		_t.channel = $('.read-wrap').attr('data-channel');
+		_t.channel = $('.user-wrap').attr('data-channel');
 		
 		switch(_t.channel){
 			case 'login': _t.login_fn(); break;
@@ -30,37 +30,30 @@ var read = {
 		var _t = this;
 		$('#user-login-submit').on('click',function(){
 			var _content = {};
-			_content.phone = $('.user-login-form input[name=phone]').val();
+			_content.phone = $.trim($('.user-login-form input[name=phone]').val());
 			_content.password=$.md5($('.user-login-form input[name=password]').val(), 'gome.com');
+			_ischeck = $('.user-login-remember').is(":checked") ? true : false;
 			$.ajax({
-			  url:"manager/ajax/user/login",
+			  url:_t.config.login,
 			  type:"POST",
 			  dataType:"json",
-			  data:{"content":JSON.stringify(content),"checked":_ischeck},
+			  data:{"content":JSON.stringify(_content),"checked":_ischeck},
 			  success:function(data){
 				  if(data.code==1){
-					  window.location.href="index/toIndex";
+				  		config.userInfo = data.attach;
+					  	window.history.go(-1);
 				  }else{
-					  
+					  	$.dialog({
+							content : data.attach,
+							title:'alert',
+							time : 2000
+					   	});
 				  }
-				 // alert(data);
 			  },
 			  error:function(){
 				  alert("操作失败");
 			  }
 			});
-
-		});
-		$.ajax({
-			type: 'get',
-		  	url: _t.config.coverList,
-		  	dataType: 'json',
-		  	success: function(data){
-		  		if(data.code == '1'){
-		  			var _html = '';
-		  			
-		  		}
-		  	}
 		});
 	},
 	register_fn:function(){
@@ -84,4 +77,4 @@ var read = {
 	
 	}
 };
-read.init();
+user.init();

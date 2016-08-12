@@ -55,7 +55,7 @@ if(tag){
 		},
 		user:{
 			login:'/json/user_login.js',
-			register:''
+			register:'/json/user_register.js'
 		},
 		getHrefParam:function(_name){
 			var _value = '';
