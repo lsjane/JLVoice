@@ -15,7 +15,8 @@ if(tag){
 		},
 		user:{
 			login:'/gome-manager-web/user/login',
-			register:'/gome-manager-web/user/addUser'
+			register:'/gome-manager-web/user/addUser',
+			sendcode:'/gome-manager-web/user/getCode'
 		},
 		getHrefParam:function(_name){
 			var _value = '';
@@ -55,7 +56,8 @@ if(tag){
 		},
 		user:{
 			login:'/json/user_login.js',
-			register:'/json/user_register.js'
+			register:'/json/user_register.js',
+			sendcode:'/json/user_sendcode.js'
 		},
 		getHrefParam:function(_name){
 			var _value = '';

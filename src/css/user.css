@@ -20,7 +20,7 @@ a{
 	text-decoration: none;
 	font-family: "Microsoft Yahei";
 }
-input,select,textarea{
+input,select,textarea,button{
 	font-family: "Microsoft Yahei";
 	outline: none;
 }
@@ -267,6 +267,25 @@ input,select,textarea{
 }
 .user-wrap .user-bgcolor11{
 	background-color: #54c71c;
+}
+.user-register-code input.user-register-codetxt{
+	width: 400px;
+	float: left;
+}
+.user-register-code input.user-register-sendcode{
+	float: right;
+	width: 180px;
+	height: 60px;
+	line-height: 60px;
+	border-radius: 4px;
+	text-align: center;
+	color: #fff;
+	font-size: 24px;
+	background-color: #14a83b;
+}
+.user-register-code input.user-register-sendcode:disabled{
+	font-size: 16px;
+	background-color: #74c689;
 }
 .user-register-agree{
 	height: 30px;

@@ -30,27 +30,28 @@
 		<form class="user-register-form" id="" method="post" action="http://www.baidu.com">
 			<div class="user-register-item user-register-bb20 user-register-name">
 				<label class="user-bgcolor1"></label>
-				<input type="text" class="" name="" id="" placeholder="姓名">
+				<input type="text" class="" name="userName" id="" placeholder="姓名">
 			</div>
 			<div class="user-register-item user-register-bb20 user-register-hospital">
 				<label class="user-bgcolor2"></label>
-				<input type="text" class="" name="" id="" placeholder="医院">
+				<input type="text" class="" name="hospital" id="" placeholder="医院">
 			</div>
 			<div class="user-register-item user-register-bb1 user-register-phone">
 				<label class="user-bgcolor3"></label>
-				<input type="number" min="9999999999" max="99999999999" class="" name="" id="" placeholder="手机号码">
+				<input type="number" min="9999999999" max="99999999999" class="" name="phone" id="" placeholder="手机号码">
 			</div>
 			<div class="user-register-item user-register-bb1 user-register-code">
 				<label class="user-bgcolor4"></label>
-				<input type="text" class="" name="" id="" placeholder="验证码">
+				<input type="text" class="user-register-codetxt" name="" id="" placeholder="验证码">
+				<input type="button" class="user-register-sendcode" value="发送验证码">
 			</div>
 			<div class="user-register-item user-register-bb1 user-register-email">
 				<label class="user-bgcolor5"></label>
-				<input type="email" class="" name="" id="" placeholder="绑定邮箱">
+				<input type="email" class="" name="email" id="" placeholder="绑定邮箱">
 			</div>
 			<div class="user-register-item user-register-bb1 user-register-password">
 				<label class="user-bgcolor6"></label>
-				<input type="password" class="" name="" id="" placeholder="设置密码">
+				<input type="password" class="" name="password" id="" placeholder="设置密码">
 			</div>
 			<div class="user-register-item user-register-bb20 user-register-repeatpass">
 				<label class="user-bgcolor7"></label>
@@ -60,10 +61,10 @@
 				<label class="user-bgcolor8"></label>
 				<!-- <input type="text" class="" name="" id="" placeholder="所在地区"> -->
 				<span class="user-register-localtext">所在地区</span>
-				<select name="" id="" class="user-register-province prov" >
+				<select name="province" id="" class="user-register-province prov" >
 					<!-- <option></option> -->
 				</select>
-				<select name="" id="" class="user-register-city city" >
+				<select name="city" id="" class="user-register-city city" >
 					<!-- <option></option> -->
 				</select>
 			</div>
@@ -72,7 +73,7 @@
 				<span>同意注册协议<a href="">《阅读注册协议》</a></span>
 			</div>
 			<div class="user-register-btn">
-				<input type="submit" value="同意注册协议，提交注册">
+				<input type="button" value="同意注册协议，提交注册" class="user-register-submit">
 			</div>
 		</form>
 		

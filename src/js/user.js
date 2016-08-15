@@ -31,7 +31,7 @@ var user = {
 		$('#user-login-submit').on('click',function(){
 			var _content = {};
 			_content.phone = $.trim($('.user-login-form input[name=phone]').val());
-			_content.password=$.md5($('.user-login-form input[name=password]').val(), 'gome.com');
+			_content.password = $.md5($('.user-login-form input[name=password]').val(), 'gome.com');
 			_ischeck = $('.user-login-remember').is(":checked") ? true : false;
 			$.ajax({
 			  url:_t.config.login,
@@ -58,7 +58,56 @@ var user = {
 	},
 	register_fn:function(){
 		var _t = this;
-		
+		//获取验证码
+		$('.user-register-sendcode').on('click',function(e){
+			var $e = $(e.currentTarget);
+			var _timer = null;
+			var _n = 60;
+			var _phone = $('.user-register-phone input').val();
+			if(_phone){
+				$e.attr('disabled',true);
+				$e.val('请稍后，'+_n+'秒后重试！');
+				_timer = setInterval(function(){
+					_n--;
+					$e.val('请稍后，'+_n+'秒后重试！');
+					if(_n == 0){
+						clearInterval(_timer);
+						$e.removeAttr('disabled');
+						$e.val('发送验证码')
+					}
+				},1000);
+				$.ajax({
+					url:_t.config.sendcode,
+					type:'get',
+					dataType:'json',
+					data:{phone:_phone,flag:0},
+					success:function(data){
+						if(data.code == 1){
+							_t.sendcode = data.attach;
+						}
+					}
+				});
+			}else{
+				$.dialog({
+					content : "请输入手机号！",
+					title:'alert',
+					time : 2000
+			   	});
+			}
+		});
+		//提交表单
+		$('.user-register-submit').on('click',function(e){
+			var $e = $(e.currentTarget);
+			var $form = $('.user-register-form');
+
+			var _param = {};
+			var _paramArr = $form.serialize().split('&');
+			$(_paramArr).each(function(_index,_element){
+				var _elearr = _element.split('=');
+				_param[_elearr[0]] = _elearr[1];
+			});
+			console.log(_param);
+		});
 	},
 	info_fn:function(){
 		var _t = this;
