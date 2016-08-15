@@ -58,6 +58,11 @@ var user = {
 	},
 	register_fn:function(){
 		var _t = this;
+		//省份、城市联动
+		$(".user-register-region").citySelect({
+			nodata:"none",
+			required:false
+		});
 		//获取验证码
 		$('.user-register-sendcode').on('click',function(e){
 			var $e = $(e.currentTarget);
