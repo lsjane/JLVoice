@@ -316,6 +316,14 @@ input,select,textarea,button{
 	background-color: #14a83b;
 	border-radius: 10px;
 }
+.rDialog-footer a{
+	font-size: 24px;
+	height: 40px;
+	line-height: 40px;
+}
+.rDialog-ok, .rDialog-ok:hover{
+	background-color: #14a83b;
+}
 
 /*user-forgetpass*/
 .user-forgetpass-content{
@@ -354,7 +362,7 @@ input,select,textarea,button{
 	width: 280px;
 	float: left;
 }
-.user-forgetpass-sendcode{
+.user-forgetpass-phone input.user-forgetpass-sendcode{
 	display: block;
 	width: 200px;
 	height: 100px;
@@ -365,6 +373,10 @@ input,select,textarea,button{
 	margin: -20px 0 0 0;
 	text-align: center;
 	line-height: 100px;
+}
+.user-forgetpass-phone input.user-forgetpass-sendcode:disabled{
+	font-size: 18px;
+	background-color: #74c689;
 }
 .user-forgetpass-btn input{
 	height: 100px;
@@ -810,6 +822,9 @@ input,select,textarea,button{
 .user-beans-num{
 	color: #14a83b;
 	font-size: 30px;
+}
+.user-beans-reduce{
+	color: #ff9e2c;
 }
 .user-beans-cause{
 	color: #2a2a2a;

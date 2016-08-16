@@ -1,4 +1,4 @@
-var tag = false;
+var tag = true;
 if(tag){
 	var config = {
 		read:{
@@ -16,7 +16,15 @@ if(tag){
 		user:{
 			login:'/gome-manager-web/user/login',
 			register:'/gome-manager-web/user/addUser',
-			sendcode:'/gome-manager-web/user/getCode'
+			sendcode:'/gome-manager-web/user/getCode',
+			isregister:'gome-manager-web/user/checkPhone',
+			editInfo:'/gome-manager-web/user/updateUser',
+			isOldPass:'/gome-manager-web/user/checkPassword',
+			editPass:'/gome-manager-web/user/updatePassword',
+			totalBeans:'/gome-manager-web/user/getTotalBean',
+			beansList:'/gome-manager-web/user/queryUserBeans',
+			orderList:'/gome-manager-web/user/queryUserBeans',
+			feedback:'/gome-manager-web/user/addAdvice'
 		},
 		getHrefParam:function(_name){
 			var _value = '';
@@ -57,7 +65,30 @@ if(tag){
 		user:{
 			login:'/json/user_login.js',
 			register:'/json/user_register.js',
-			sendcode:'/json/user_sendcode.js'
+			sendcode:'/json/user_sendcode.js',
+			isregister:'/json/user_isregister.js',
+			editInfo:'/json/user_register.js',
+			isOldPass:'/json/user_isregister.js',
+			editPass:'/json/user_register.js',
+			totalBeans:'/json/user_beans_count.js',
+			beansList:'/json/user_beans.js',
+			orderList:'/json/user_order.js',
+			feedback:'/json/user_register.js'
+		},
+		userInfo:{
+			"id": 1,
+	        "userName": "城市",
+	        "nickname": "cs",
+	        "password": "94f7c5e87f1a5e19f18898af0f884c30",
+	        "hospital": "测试医院",
+	        "office": "内科",
+	        "phone": "13699167012",
+	        "email": "liuhk1989@163.com",
+	        "fileUrl": "/gmshopFile/14701453637291469546732436hrg2.png",
+	        "createTime": "2016-8-11 18:41:48",
+	        "updateTime": "2016-8-11 18:41:48",
+	        "province": "河南省",
+	        "city": "郑州市"
 		},
 		getHrefParam:function(_name){
 			var _value = '';
