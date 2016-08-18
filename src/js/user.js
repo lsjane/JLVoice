@@ -5,7 +5,10 @@ var user = {
 		_t.getHrefParam = config.getHrefParam;
 		// _t.toTwo = config.toTwo;
 		_t.channel = $('.user-wrap').attr('data-channel');
-		
+		_t.userId = _t.getHrefParam('userId');
+		if(_t.userId){
+			_t.userInfo = config.getUserInfo(_t.userId);
+		}
 		switch(_t.channel){
 			case 'login': _t.login_fn(); break;
 			case 'register': _t.register_fn(); break;
@@ -28,6 +31,7 @@ var user = {
 	},
 	login_fn:function(){
 		var _t = this;
+		var _histype = _t.getHrefParam('type');
 		$('#user-login-submit').on('click',function(){
 			var _content = {};
 			_content.phone = $.trim($('.user-login-form input[name=phone]').val());
@@ -41,8 +45,14 @@ var user = {
 			  data:{"content":JSON.stringify(_content),"checked":_ischeck},
 			  success:function(data){
 				  if(data.code==1){
-				  		config.userInfo = data.attach;
-					  	window.open('home.html','_self');
+				  		// config.userInfo = data.attach;
+				  		_t.userId = data.attach.id;
+				  		switch(_histype){
+				  			case 1:window.history.go(-1);
+				  			case 2:window.open('user-info.html?userId='+_t.userId,'_self');
+				  			default:window.open('home.html?userId='+_t.userId,'_self');
+				  		}
+					  	
 				  }else{
 					  	$.dialog({
 							content : data.attach,
@@ -168,22 +178,28 @@ var user = {
 	},
 	info_fn:function(){
 		var _t = this;
-		if(config.userInfo.fileUrl){
-			$('.user-info-ico img').attr('src',config.userInfo.fileUrl);
+		if(_t.userInfo.fileUrl){
+			$('.user-info-ico img').attr('src',_t.userInfo.fileUrl);
 		}else{
 			$('.user-info-ico img').remove();
 		}
-		$('.user-info-name').text(config.userInfo.userName);
+		$('.user-info-name').text(_t.userInfo.userName);
 		$('.user-info-btn input').on('click',function(){
-			config.userInfo = {};
-			window.open('user-login.html','_self');
+			// config.userInfo = {};
+			window.open('user-login.html?type=2','_self');
 		});
+		if(_t.userId){
+			$('.user-info-item a').each(function(_index,_element){
+				$(_element).attr('href',$(_element).attr('href')+'?userId='+_t.userId);
+			});
+		}
+		
 	},
 	editinfo_fn:function(){
 		var _t = this;
-		if(config.userInfo){
+		if(_t.userInfo){
 			$('.user-editinfo-form input[type=text]').each(function(_index,_element){
-				$(_element).val(config.userInfo[$(_element).attr('name')]);
+				$(_element).val(_t.userInfo[$(_element).attr('name')]);
 			});
 		}
 		$('.user-editinfo-btn input').on('click',function(){
@@ -199,7 +215,7 @@ var user = {
 			_isvalid = _isvalid && validate.require(_param);
 			_isvalid = _isvalid && validate.email('.user-editinfo-email input');
 
-			_param.userId = config.userInfo.id;
+			_param.userId = _t.userId;
 			if(_isvalid){
 				$.ajax({
 					url:_t.config.editInfo,
@@ -208,7 +224,7 @@ var user = {
 				  	data:{"content":JSON.stringify(_param)},
 				  	success:function(data){
 				  		if(data.code == 1){
-				  			window.open('user-info.html','_self');
+				  			window.open('user-info.html?userId='+_t.userId,'_self');
 				  		}else{
 				  			$.dialog({
 			                    content : data.attach,
@@ -270,7 +286,7 @@ var user = {
 				_content = {"content":JSON.stringify(_content)};
 			}else{
 				var _url = _t.config.editPass;
-				var _content = {userId:config.userInfo.id,password:$.md5(_param.newpassword, 'gome.com')};
+				var _content = {userId:_t.userId,password:$.md5(_param.newpassword, 'gome.com')};
 			}
 			$.ajax({
 				url:_url,
@@ -280,10 +296,10 @@ var user = {
 			  	success:function(data){
 			  		if(data.code == 1){
 			  			if(_type){
-			  				window.open('user-login.html','_self');
+			  				window.open('user-login.html?type=2','_self');
 			  			}else{
-				  			config.userInfo.password = $.md5(_param.newpassword, 'gome.com');
-				  			window.open('user-info.html','_self');
+				  			// config.userInfo.password = $.md5(_param.newpassword, 'gome.com');
+				  			window.open('user-info.html?userId=' +_t.userId,'_self');
 			  			}
 			  		}else{
 			  			$.dialog({
@@ -302,13 +318,19 @@ var user = {
 			url:_t.config.totalBeans,
 			type:'get',
 			dataType:'json',
-			data:{userId:config.userInfo.id},
+			data:{userId:_t.userId},
 			success:function(data){
 				if(data.code == 1){
 					$('.user-mybeans-count span').text(data.attach);
 				}
 			}
 		});
+		if(_t.userId){
+			$('.user-mybeans-link a').each(function(_index,_element){
+				$(_element).attr('href',$(_element).attr('href')+'?userId='+_t.userId);
+			});
+		}
+		
 	},
 	myorder_fn:function(){
 		var _t = this;
@@ -316,7 +338,7 @@ var user = {
 			url:_t.config.orderList,
 			type:'get',
 			dataType:'json',
-			data:{userId:config.userInfo.id,type:1},
+			data:{userId:_t.userId,type:1},
 			success:function(data){
 				if(data.code == 1){
 					var _html = '';
@@ -340,7 +362,7 @@ var user = {
 			url:_t.config.totalBeans,
 			type:'get',
 			dataType:'json',
-			data:{userId:config.userInfo.id},
+			data:{userId:_t.userId},
 			success:function(data){
 				if(data.code == 1){
 					$('.user-beans-count').text(data.attach);
@@ -351,7 +373,7 @@ var user = {
 			url:_t.config.beansList,
 			type:'get',
 			dataType:'json',
-			data:{userId:config.userInfo.id},
+			data:{userId:_t.userId},
 			success:function(data){
 				if(data.code == 1){
 					var _html = '';
@@ -386,10 +408,10 @@ var user = {
 					url:_t.config.feedback,
 					type:'get',
 					dataType:'json',
-					data:{userId:config.userInfo.id,advice:_content},
+					data:{userId:_t.userId,advice:_content},
 					success:function(data){
 						if(data.code == 1){
-							window.open('user-info.html','_self');
+							window.open('user-info.html?userId='+_t.userId,'_self');
 						}
 					}
 				});

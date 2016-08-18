@@ -11,6 +11,7 @@ if(tag){
 			expertSupCount:'/gome-manager-web/review/queryIfSupport',
 			expertIsSup:'/gome-manager-web/review/queryIfSupport',
 			expertSup:'/gome-manager-web/review/addSupport',
+			comment:'/gome-manager-web/review/addReview',
 			commentList:'/gome-manager-web/review/queryReviewList'
 		},
 		user:{
@@ -46,6 +47,20 @@ if(tag){
 			}else{
 				return n.toString();
 			}
+		},
+		loginDialog:function(){
+			$.dialog({
+		        content : '您还没有登录，请先登录后操作！',
+		        title : 'alert',
+		        ok : function() {
+		        	config.historyLink = window.location.href;
+		            window.open('user-login.html','_self');
+		        },
+		        cancel : function() {
+		            // alert('我是取消按钮');
+		        },
+		        lock : false
+		    });
 		}
 	}
 }else{
@@ -60,6 +75,7 @@ if(tag){
 			expertSupCount:'/json/read_expert_supcount.js',
 			expertIsSup:'/json/read_expert_supcount.js',
 			expertSup:'/json/read_expert_supcount.js',
+			comment:'/json/read_expert_supcount.js',
 			commentList:'/json/read_expert_comment.js'
 		},
 		user:{
@@ -110,6 +126,37 @@ if(tag){
 			}else{
 				return n.toString();
 			}
+		},
+		loginDialog:function(_type){
+			$.dialog({
+		        content : '您还没有登录，请先登录后操作！',
+		        title : 'alert',
+		        ok : function() {
+		        	// config.historyLink = window.location.href;
+		            window.open('user-login.html?type='+_type,'_self');
+		        },
+		        cancel : function() {
+		            // alert('我是取消按钮');
+		        },
+		        lock : false
+		    });
+		},
+		getUserInfo:function(_userId){
+			var _userInfo = {};
+			if(_userId){
+				$.ajax({
+					url:'/gome-manager-web/user/queryUserDetail',
+					type:'get',
+					data:{userId:_userId},
+					dataType:'json',
+					success:function(data){
+						if(data.code == 1){
+							_userInfo = data.attach;
+						}
+					}
+				});
+			}
+			return _userInfo;
 		}
 	}
 }
