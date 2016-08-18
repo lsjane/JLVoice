@@ -199,6 +199,7 @@ var user = {
 			_isvalid = _isvalid && validate.require(_param);
 			_isvalid = _isvalid && validate.email('.user-editinfo-email input');
 
+			_param.userId = config.userInfo.id;
 			if(_isvalid){
 				$.ajax({
 					url:_t.config.editInfo,

@@ -1,4 +1,4 @@
-var tag = true;
+var tag = false;
 if(tag){
 	var config = {
 		read:{

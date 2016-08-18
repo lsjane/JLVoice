@@ -78,7 +78,7 @@ var read = {
 				_param.perId = 1;
 				$.ajax({
 					type: 'get',
-				  	url: _t.config.exprtDetail,
+				  	url: _t.config.expertDetail,
 				  	data: {content:JSON.stringify(_param)},
 				  	dataType: 'json',
 				  	success:function(data){
@@ -115,7 +115,7 @@ var read = {
 			_param.content = $('.read-comment-textarea').text();
 			$.ajax({
 				type: 'get',
-			  	url: _t.config.exprtDetail,
+			  	url: _t.config.expertDetail,
 			  	data: {content:JSON.stringify(_param)},
 			  	dataType: 'json',
 			  	success: function(data){
