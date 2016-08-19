@@ -316,6 +316,10 @@ input,select,textarea,button{
 	background-color: #14a83b;
 	border-radius: 10px;
 }
+.rDialog-wrap{
+	background: rgba(0,0,0,.7);
+	opacity: 1;
+}
 .rDialog-footer a{
 	font-size: 24px;
 	height: 40px;

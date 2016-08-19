@@ -334,6 +334,10 @@ a{
 	float: left;
 	background-color: #F1775B;
 }
+.rDialog-wrap{
+	background: rgba(0,0,0,.7);
+	opacity: 1;
+}
 .read-detail-download{
 	float: right;
 	background-color: #14A838;

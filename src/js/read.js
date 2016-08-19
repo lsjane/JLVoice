@@ -6,7 +6,11 @@ var read = {
 		_t.toTwo = config.toTwo;
 		_t.channel = $('.read-wrap').attr('data-channel');
 		_t.userId = _t.getHrefParam('userId');
-		
+		if(_t.userId){
+			_t.userhash = 'userId='+ _t.userId +'&';
+		}
+		_t.userhash = _t.userhash?_t.userhash:'';
+
 		switch(_t.channel){
 			case 'cover': _t.cover_fn(); break;
 			case 'list': _t.list_fn(); break;
@@ -91,6 +95,8 @@ var read = {
 					  	success:function(data){
 	  						if(data.code == 1){
 	  							$e.attr('data-issupport','true').addClass('active');
+	  							var _totalcount = parseInt($('.read-expdetail-laud b').text());
+	  							$('.read-expdetail-laud b').text(_totalcount+1);
 	  						}else{
 		  						$.dialog({
 				                    content : '点赞失败！',
@@ -115,40 +121,48 @@ var read = {
 		$('.read-comment-close').on('click',function(e){
 			$e = $(e.currentTarget);
 			$('.read-comment-box').hide();
-			$('.read-comment-textarea').text('');
+			$('.read-comment-textarea').val('');
 		});
 		//提交评论
 		$('.read-comment-submit').on('click',function(e){
 			$e = $(e.currentTarget);
 			if(_t.userId){
 				_param = {};
-				_param.yid = _t._yid ;
-				_param.perId = _t.userId;
-				_param.content = $('.read-comment-textarea').text();
-				$.ajax({
-					type: 'get',
-				  	url: _t.config.comment,
-				  	data: {content:JSON.stringify(_param)},
-				  	dataType: 'json',
-				  	success: function(data){
-				  		if(data.code == 1){
-				  			$('.read-comment-box').hide();
-							$('.read-comment-textarea').text('');
-			       			$.dialog({
-			                    content : '评论成功！',
-								title:'ok',
-			                    time : 2000
-			       			});
-			       			
-						}else{
-							$.dialog({
-			                    content : '评论失败！',
-								title:'alert',
-			                    time : 2000
-			       			});
-						}
-				  	}
-				});
+				_param.content = $('.read-comment-textarea').val();
+				if (_param.content) {
+					_param.yid = _t._yid ;
+					_param.perId = _t.userId;
+					$.ajax({
+						type: 'get',
+					  	url: _t.config.comment,
+					  	data: {content:JSON.stringify(_param)},
+					  	dataType: 'json',
+					  	success: function(data){
+					  		if(data.code == 1){
+					  			$('.read-comment-box').hide();
+								$('.read-comment-textarea').val('');
+				       			$.dialog({
+				                    content : '评论成功！',
+									title:'ok',
+				                    time : 2000
+				       			});
+				       			_t.comment_list_fn();
+							}else{
+								$.dialog({
+				                    content : '评论失败！',
+									title:'alert',
+				                    time : 2000
+				       			});
+							}
+					  	}
+					});
+				}else{
+					$.dialog({
+	                    content : '请输入评论内容！',
+						title:'alert',
+	                    time : 2000
+	       			});
+				}
 			}else{
 				config.loginDialog(1);
 			}
@@ -177,7 +191,8 @@ var read = {
 		  				_html += '<div class="read-cover-liwrap read-cover-bg'+_n+'"><div class="read-cover-info"><span class="read-cover-year"><i class="ion-calendar"></i>'+_element;
 						_html += '年</span><span class="read-cover-more">共<b></b>期 &gt;</span></div><div class="read-cover-box"><ul class="read-cover-list">';
 						for(var _qi in _dataObj[_element]){
-							_html += '<li><div class="read-cover-item"><a href="read-list.html?userId='+ _t.userId +'&catname=' + _qi +'&yearValue=' + _element;
+							_html += '<li><div class="read-cover-item"><a href="read-list.html?' + _t.userhash;
+							_html += 'catname=' + _qi +'&yearValue=' + _element;
 							_html += '"><p class="read-cover-text">第<strong>' + _t.toTwo(_qi);
 							_html += '</strong>期</p></a></div></li>';
 						}
@@ -247,7 +262,8 @@ var read = {
 			    		var _html = '';
 						if(data.attach.length > 0){
 							$(data.attach).each(function(_index,_element){
-								_html += '<li><a href="read-detail.html?userId='+ _t.userId +'&articleId=' + _element.id;
+								_html += '<li><a href="read-detail.html?' +_t.userhash;
+								_html += 'articleId=' + _element.id;
 								_html += '" class="clearfix"><div class="read-list-num">' + (_index+1);
 								_html += '</div><div class="read-list-title">' +_element.title;
 								_html += '<span class="ion-ios-arrow-right"></span></div></a></li>';
@@ -281,7 +297,8 @@ var read = {
 			    		$('.read-detail-time').text(data.attach.createTime);
 			    		$('.read-detail-author').text(data.attach.author);
 			    		_articleTheme.digest && $('.read-detail-desp p').text(_articleTheme.digest);
-			    		$('.read-detail-expert a').attr('href','read-expert.html?userId='+ _t.userId +'&articleId=' + _articleId);
+			    		
+			    		$('.read-detail-expert a').attr('href','read-expert.html?'+ _t.userhash +'articleId=' + _articleId);
 			    		$('.read-detail-download').attr('data-articleid',_articleId);
 			    		
 			    		for(var _name in _articleTheme){
@@ -336,7 +353,8 @@ var read = {
 			  					if(_element.jobs){
 			  						_html += '<p><label>职称：</label>'+_element.jobs+'</p>';
 			  					}
-			  					_html += '</div></div><div class="read-expert-look"><a href="read-expdetail.html?userId='+ _t.userId +'&professorId=' + _element.id;
+			  					_html += '</div></div><div class="read-expert-look"><a href="read-expdetail.html?'+ _t.userhash;
+			  					_html += 'professorId=' + _element.id;
 								_html += '"><i class="ion-ios-eye-outline"></i>查看TA的解读</a></div></li>';
 					
 			  				});
@@ -433,7 +451,9 @@ var read = {
 		  					_html += '</div><p class="read-comment-content">' + _element.content;
 		  					_html += '</p></div></li>';
 		  				});
+		  				$('.read-comment').show();
 		  				$('.read-comment-list').html(_html);
+		  				
 		  			}else{
 		  				$('.read-comment').hide();
 		  			}

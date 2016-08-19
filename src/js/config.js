@@ -48,19 +48,37 @@ if(tag){
 				return n.toString();
 			}
 		},
-		loginDialog:function(){
+		loginDialog:function(_type){
 			$.dialog({
 		        content : '您还没有登录，请先登录后操作！',
 		        title : 'alert',
 		        ok : function() {
-		        	config.historyLink = window.location.href;
-		            window.open('user-login.html','_self');
+		        	// config.historyLink = window.location.href;
+		            window.open('user-login.html?type='+_type,'_self');
 		        },
 		        cancel : function() {
 		            // alert('我是取消按钮');
 		        },
 		        lock : false
 		    });
+		},
+		getUserInfo:function(_userId){
+			var _userInfo = {};
+			if(_userId){
+				$.ajax({
+					url:'/gome-manager-web/user/queryUserDetail',
+					type:'get',
+					async:false,
+					data:{userId:_userId},
+					dataType:'json',
+					success:function(data){
+						if(data.code == 1){
+							_userInfo = data.attach;
+						}
+					}
+				});
+			}
+			return _userInfo;
 		}
 	}
 }else{
@@ -145,8 +163,9 @@ if(tag){
 			var _userInfo = {};
 			if(_userId){
 				$.ajax({
-					url:'/gome-manager-web/user/queryUserDetail',
+					url:'/json/user_login.js',
 					type:'get',
+					async:false,
 					data:{userId:_userId},
 					dataType:'json',
 					success:function(data){

@@ -37,11 +37,11 @@
          */
         create : function() {
 
-            var divTop = (this.settings.title==null)?'':'<div class="rDialog-header-top">'+ this.settings.top +'</div>';
+            // var divTop = (this.settings.title==null)?'':'<div class="rDialog-header-top">'+ this.settings.top +'</div>';
             var divHeader = (this.settings.title==null)?'':'<div class="rDialog-header-'+ this.settings.title +'"></div>';
             
             // HTML模板
-            var templates = '<div class="rDialog-wrap">' +divTop+
+            var templates = '<div class="rDialog-wrap">' +
                                 divHeader +
                                 '<div class="rDialog-content">'+ this.settings.content +'</div>' +
                                 '<div class="rDialog-footer"></div>' +

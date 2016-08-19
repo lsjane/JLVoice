@@ -7,6 +7,7 @@ var user = {
 		_t.channel = $('.user-wrap').attr('data-channel');
 		_t.userId = _t.getHrefParam('userId');
 		if(_t.userId){
+
 			_t.userInfo = config.getUserInfo(_t.userId);
 		}
 		switch(_t.channel){
@@ -31,7 +32,7 @@ var user = {
 	},
 	login_fn:function(){
 		var _t = this;
-		var _histype = _t.getHrefParam('type');
+		var _histype = parseInt(_t.getHrefParam('type'));
 		$('#user-login-submit').on('click',function(){
 			var _content = {};
 			_content.phone = $.trim($('.user-login-form input[name=phone]').val());
@@ -48,9 +49,9 @@ var user = {
 				  		// config.userInfo = data.attach;
 				  		_t.userId = data.attach.id;
 				  		switch(_histype){
-				  			case 1:window.history.go(-1);
-				  			case 2:window.open('user-info.html?userId='+_t.userId,'_self');
-				  			default:window.open('home.html?userId='+_t.userId,'_self');
+				  			case 1:window.open(document.referrer+'&userId='+_t.userId,'_self');break;
+				  			case 2:window.open('user-info.html?userId='+_t.userId,'_self');break;
+				  			default:window.open('home.html?userId='+_t.userId,'_self');break;
 				  		}
 					  	
 				  }else{
@@ -215,7 +216,7 @@ var user = {
 			_isvalid = _isvalid && validate.require(_param);
 			_isvalid = _isvalid && validate.email('.user-editinfo-email input');
 
-			_param.userId = _t.userId;
+			_param.id = _t.userId;
 			if(_isvalid){
 				$.ajax({
 					url:_t.config.editInfo,
@@ -260,7 +261,7 @@ var user = {
 			}
 			if(!_type){
 				_param.oldpassword = $.md5(_param.oldpassword, 'gome.com');
-				if(_param.oldpassword != config.userInfo.password){
+				if(_param.oldpassword != _t.userInfo.password){
 					$.dialog({
 	                    content : '输入的原密码不正确！',
 	                    title:'alert',
