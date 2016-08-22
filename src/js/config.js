@@ -18,14 +18,16 @@ if(tag){
 			login:'/gome-manager-web/user/login',
 			register:'/gome-manager-web/user/addUser',
 			sendcode:'/gome-manager-web/user/getCode',
-			isregister:'gome-manager-web/user/checkPhone',
+			isregister:'/gome-manager-web/user/checkPhone',
 			editInfo:'/gome-manager-web/user/updateUser',
 			isOldPass:'/gome-manager-web/user/checkPassword',
 			editPass:'/gome-manager-web/user/updatePassword',
 			totalBeans:'/gome-manager-web/user/getTotalBean',
 			beansList:'/gome-manager-web/user/queryUserBeans',
 			orderList:'/gome-manager-web/user/queryUserBeans',
-			feedback:'/gome-manager-web/user/addAdvice'
+			feedback:'/gome-manager-web/user/addAdvice',
+			signList:'/gome-manager-web/user/queryUserSign',
+			sign:'/gome-manager-web/user/addUserBean'
 		},
 		getHrefParam:function(_name){
 			var _value = '';
@@ -107,22 +109,9 @@ if(tag){
 			totalBeans:'/json/user_beans_count.js',
 			beansList:'/json/user_beans.js',
 			orderList:'/json/user_order.js',
-			feedback:'/json/user_register.js'
-		},
-		userInfo:{
-			"id": 1,
-	        "userName": "城市",
-	        "nickname": "cs",
-	        "password": "94f7c5e87f1a5e19f18898af0f884c30",
-	        "hospital": "测试医院",
-	        "office": "内科",
-	        "phone": "13699167012",
-	        "email": "liuhk1989@163.com",
-	        "fileUrl": "/gmshopFile/14701453637291469546732436hrg2.png",
-	        "createTime": "2016-8-11 18:41:48",
-	        "updateTime": "2016-8-11 18:41:48",
-	        "province": "河南省",
-	        "city": "郑州市"
+			feedback:'/json/user_register.js',
+			signList:'/json/user_signlist.js',
+			sign:'/json/user_sign.js'
 		},
 		getHrefParam:function(_name){
 			var _value = '';

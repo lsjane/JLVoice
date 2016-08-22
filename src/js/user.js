@@ -7,7 +7,6 @@ var user = {
 		_t.channel = $('.user-wrap').attr('data-channel');
 		_t.userId = _t.getHrefParam('userId');
 		if(_t.userId){
-
 			_t.userInfo = config.getUserInfo(_t.userId);
 		}
 		switch(_t.channel){
@@ -25,10 +24,6 @@ var user = {
 			default:
 			  return false;
 		}
-	},
-	bind_fn:function(){
-		var _t = this;
-		
 	},
 	login_fn:function(){
 		var _t = this;
@@ -193,8 +188,7 @@ var user = {
 			$('.user-info-item a').each(function(_index,_element){
 				$(_element).attr('href',$(_element).attr('href')+'?userId='+_t.userId);
 			});
-		}
-		
+		}		
 	},
 	editinfo_fn:function(){
 		var _t = this;
@@ -330,8 +324,7 @@ var user = {
 			$('.user-mybeans-link a').each(function(_index,_element){
 				$(_element).attr('href',$(_element).attr('href')+'?userId='+_t.userId);
 			});
-		}
-		
+		}		
 	},
 	myorder_fn:function(){
 		var _t = this;
@@ -485,6 +478,26 @@ var user = {
 			   	});
 			}
 		});
+	},
+	sign_fn:function(){
+		var _t = this;
+		var _date = new Date();
+		var signList = [];
+		$.ajax({
+			url:_t.config.signList,
+			type:'get',
+			dataType:'json',
+			async:false,
+			data:{userId:_t.userId},
+			success:function(data){
+				if(data.code == 1){
+					signList = data.attach;
+				}
+			}
+		});
+		var str = calUtil.drawCal(_date.getFullYear(),_date.getMonth() + 1,signList);
+		$("#user-calendar-box").html(str);
+		
 	}
 };
 user.init();

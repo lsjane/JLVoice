@@ -983,3 +983,78 @@ span.user-beans-type8{
 	max-width: 100%;
 	padding: 30px 0;
 }
+
+/*user-sign*/
+.user-sign-header{
+	height: 160px;
+	padding: 85px 0;
+	background-color: #14a83b;
+}
+.user-sign-ico{
+	width: 156px;
+	height: 156px;
+	border:2px solid #fff;
+	margin: 0 0 0 210px;
+	float: left;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.user-sign-ico span{
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: #c4c4c4;
+	text-align: center;
+	overflow: hidden;
+	position: relative;
+}
+.user-sign-ico span i{
+	display: block;
+	padding: 20px 0;
+	font-size: 100px;
+	color: #fff;
+}
+.user-sign-ico span img{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.user-sign-right{
+	width: 340px;
+	float: right;
+	height: 120px;
+	padding: 20px 0;
+	line-height: 60px;
+}
+.user-sign-name{
+	font-size: 32px;
+	color: #fff;
+}
+.user-sign-beans{
+	font-size: 36px;
+	color: #fffe96;
+}
+.user-calendar-box{
+	padding: 30px;
+	font-size: 28px;
+	color: #323232;
+}
+.sign_main{
+	text-align: center;
+	line-height: 60px;
+}
+.table{
+	width: 100%;
+	font-size: 28px;
+	color: #323232;
+	line-height: 80px;
+	text-align: center;
+}
+.table tr th{
+	font-weight: normal;
+}
+.table tr td.on{
+	background: url(../../images/user-sign-ico.png) no-repeat center center;
+}
