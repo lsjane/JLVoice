@@ -81,15 +81,24 @@ var validate = {
         },
         checkcode:function(elem,code){
             var _wcode = $.trim($(elem).val());
-            if(_wcode !== code){
+            if(_wcode){
+                 if(_wcode !== code){
+                    $.dialog({
+                        content : '验证码不正确！',
+                        title:'alert',
+                        time : 2000
+                    });
+                     return false;
+                }else{
+                    return true;
+                }
+            }else{
                 $.dialog({
-                    content : '验证码不正确！',
+                    content : '请输入验证码！',
                     title:'alert',
                     time : 2000
                 });
-                 return false;
-            }else{
-                return true;
             }
+           
         },
     };

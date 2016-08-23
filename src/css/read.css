@@ -570,7 +570,9 @@ a{
 }
 .read-expdetail-laud{
 	border-right: 2px solid #f2f2f2;
+	position: relative;
 }
+
 .read-expdetail-laud.active span{
 	color: #F1775B;
 }
@@ -582,6 +584,25 @@ a{
 	bottom: 0;
 	left: 0;
 	display: none;
+}
+.read-expdetail-laud i{
+	color: #F1775B;
+	font-style: normal;
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	opacity: 0;
+	transition: top 1s,opacity 1s;
+	-webkit-transition: top 1s,opacity 1s;
+	-moz-transition: top 1s,opacity 1s;	/* Firefox 4 */
+	-o-transition: top 1s,opacity 1s;
+}
+.read-expdetail-laud.active i{
+	opacity: 1;
+	top: -54px;
 }
 .read-comment-top{
 	padding: 20px 25px 25px;

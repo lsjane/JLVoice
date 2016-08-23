@@ -10,6 +10,7 @@ img,input,button,p,ul,li,input,textarea,form{
 	border:0;
 	list-style: none;
 }
+
 h3{
 	margin: 0;
 	padding: 0;
@@ -23,6 +24,7 @@ a{
 input,select,textarea,button{
 	font-family: "Microsoft Yahei";
 	outline: none;
+	-webkit-appearance:none;
 }
 .clearfix:before,.clearfix:after {
     content: "";
@@ -434,6 +436,15 @@ input,select,textarea,button{
 	top: 0;
 	left: 0;
 }
+.user-info-ico span input{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	opacity: 0;
+}
 .user-info-name{
 	padding: 25px 0 0;
 	font-size: 28px;
@@ -487,7 +498,7 @@ input,select,textarea,button{
 .user-info-btn{
 	width: 480px;
 	height: 90px;
-	margin: 180px auto 60px;
+	margin: 80px auto 60px;
 }
 .user-info-btn input{
 	width: 100%;
@@ -1036,7 +1047,7 @@ span.user-beans-type8{
 	font-size: 36px;
 	color: #fffe96;
 }
-.user-calendar-box{
+.user-sign-calendar{
 	padding: 30px;
 	font-size: 28px;
 	color: #323232;
@@ -1057,4 +1068,26 @@ span.user-beans-type8{
 }
 .table tr td.on{
 	background: url(../../images/user-sign-ico.png) no-repeat center center;
+}
+.user-sign-count{
+	padding: 60px 0 0;
+	color: #8a602a;
+	font-size: 24px;
+	text-align: center;
+}
+.user-sign-btn{
+	margin: 20px auto 0;
+	width: 300px;
+	height: 90px;
+	border: 2px solid #14a83b;
+	border-radius: 8px;
+	line-height: 90px;
+	text-align: center;
+	font-size: 30px;
+	color: #fff;
+	background-color: #14a83b;
+}
+.user-sign-btn.signed{
+	background-color: #fff;
+	color: #14a83b;
 }

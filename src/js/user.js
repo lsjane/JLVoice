@@ -3,7 +3,7 @@ var user = {
 		var _t = this;
 		_t.config = config.user;
 		_t.getHrefParam = config.getHrefParam;
-		// _t.toTwo = config.toTwo;
+		_t.toTwo = config.toTwo;
 		_t.channel = $('.user-wrap').attr('data-channel');
 		_t.userId = _t.getHrefParam('userId');
 		if(_t.userId){
@@ -65,6 +65,8 @@ var user = {
 	},
 	register_fn:function(){
 		var _t = this;
+		var _timer = null;
+		
 		//省份、城市联动
 		$(".user-register-region").citySelect({
 			nodata:"none",
@@ -73,39 +75,67 @@ var user = {
 		//获取验证码
 		$('.user-register-sendcode').on('click',function(e){
 			var $e = $(e.currentTarget);
-			var _timer = null;
 			var _n = 60;
 			var _phone = $('.user-register-phone input').val();
-			if(_phone){
-				$e.attr('disabled',true);
-				$e.val('请稍后，'+_n+'秒后重试！');
-				_timer = setInterval(function(){
-					_n--;
-					$e.val('请稍后，'+_n+'秒后重试！');
-					if(_n == 0){
-						clearInterval(_timer);
-						$e.removeAttr('disabled');
-						$e.val('发送验证码')
-					}
-				},1000);
-				$.ajax({
-					url:_t.config.sendcode,
-					type:'get',
-					dataType:'json',
-					data:{phone:_phone,flag:0},
-					success:function(data){
-						if(data.code == 1){
-							_t.sendcode = data.attach;
-						}
-					}
-				});
-			}else{
-				$.dialog({
-					content : "请输入手机号！",
-					title:'alert',
-					time : 2000
-			   	});
+			var _isvalid = validate.require({'phone':_phone});
+			_isvalid = _isvalid && validate.phone('.user-register-phone input');
+			if(!_isvalid){
+				return false;
 			}
+				
+			$.ajax({
+				url:_t.config.isregister,
+			  	type:"POST",
+			 	dataType:"json",
+			  	data:{phone:$.trim(_phone)},
+			  	success:function(data){
+			  		if(data.code == 1){
+		                $.dialog({
+					        content : '该手机号已经注册过，请直接登录',
+					        title : 'alert',
+					        ok : function() {
+					            window.open('user-login.html','_self');
+					        },
+					        cancel : function() {
+					            // alert('我是取消按钮');
+					        },
+					        lock : false
+					    });
+			  		}else{
+			  			
+						$e.attr('disabled',true);
+						$e.val('请稍后，'+_n+'秒后重试！');
+						_timer = setInterval(function(){
+							_n--;
+							$e.val('请稍后，'+_n+'秒后重试！');
+							if(_n == 0){
+								clearInterval(_timer);
+								$e.removeAttr('disabled');
+								$e.val('发送验证码');
+							}
+						},1000);
+						$.ajax({
+							url:_t.config.sendcode,
+							type:'get',
+							dataType:'json',
+							data:{phone:_phone,flag:0},
+							success:function(data){
+								if(data.code == 1){
+									_t.sendcode = data.attach;
+								}
+							}
+						});
+			  		}
+			  	}
+			});
+		});
+
+		//手机号变动
+		$('.user-register-phone input').on('change',function(){
+			clearInterval(_timer);
+			$('.user-register-sendcode').removeAttr('disabled');
+			$('.user-register-sendcode').val('发送验证码');
+			_t.sendcode = '';
 		});
 		//提交表单
 		$('.user-register-submit').on('click',function(e){
@@ -127,48 +157,25 @@ var user = {
 			_isvalid = _isvalid && validate.ischeck('.user-register-agree input');
 			
 			if(_isvalid){
-				$.ajax({
-					url:_t.config.isregister,
+	  			_param.nickname = _param.phone;
+	  			_param.password = $.md5(_param.password, 'gome.com');
+	  			$.ajax({
+					url:_t.config.register,
 				  	type:"POST",
 				 	dataType:"json",
-				  	data:{phone:$.trim(_param.phone)},
+				  	data:{"content":JSON.stringify(_param)},
 				  	success:function(data){
 				  		if(data.code == 1){
-			                $.dialog({
-						        content : '该手机号已经注册过，请直接登录',
-						        title : 'alert',
-						        ok : function() {
-						            window.open('user-login.html','_self');
-						        },
-						        cancel : function() {
-						            // alert('我是取消按钮');
-						        },
-						        lock : false
-						    });
+				  			window.open('user-login.html','_self');
 				  		}else{
-				  			_param.nickname = _param.phone;
-				  			_param.password = $.md5(_param.password, 'gome.com');
-				  			$.ajax({
-								url:_t.config.register,
-							  	type:"POST",
-							 	dataType:"json",
-							  	data:{"content":JSON.stringify(_param)},
-							  	success:function(data){
-							  		if(data.code == 1){
-							  			window.open('user-login.html','_self');
-							  		}else{
-							  			$.dialog({
-						                    content : data.attach,
-						                    title:'alert',
-						                    time : 2000
-						                });
-							  		}
-							  	}
-							});
+				  			$.dialog({
+			                    content : data.attach,
+			                    title:'alert',
+			                    time : 2000
+			                });
 				  		}
 				  	}
 				});
-				
 			}
 		});
 	},
@@ -309,17 +316,14 @@ var user = {
 	},
 	mybeans_fn:function(){
 		var _t = this;
-		$.ajax({
-			url:_t.config.totalBeans,
-			type:'get',
-			dataType:'json',
-			data:{userId:_t.userId},
-			success:function(data){
-				if(data.code == 1){
-					$('.user-mybeans-count span').text(data.attach);
-				}
-			}
-		});
+		var _beanscount = _t.getBeansCount();
+		$('.user-mybeans-count span').text(_beanscount);
+		if(_t.userInfo.fileUrl){
+			$('.user-mybeans-ico img').attr('src',_t.userInfo.fileUrl);
+		}else{
+			$('.user-mybeans-ico img').remove();
+		}
+		$('.user-mybeans-name').text(_t.userInfo.userName);
 		if(_t.userId){
 			$('.user-mybeans-link a').each(function(_index,_element){
 				$(_element).attr('href',$(_element).attr('href')+'?userId='+_t.userId);
@@ -352,17 +356,9 @@ var user = {
 	},
 	beans_fn:function(){
 		var _t = this;
-		$.ajax({
-			url:_t.config.totalBeans,
-			type:'get',
-			dataType:'json',
-			data:{userId:_t.userId},
-			success:function(data){
-				if(data.code == 1){
-					$('.user-beans-count').text(data.attach);
-				}
-			}
-		});
+		var _beanscount = _t.getBeansCount();
+		$('.user-beans-count').text(_beanscount);
+		
 		$.ajax({
 			url:_t.config.beansList,
 			type:'get',
@@ -392,6 +388,23 @@ var user = {
 				}
 			}
 		});
+	},
+	getBeansCount:function(){
+		var _t = this;
+		var _count = 0;
+		$.ajax({
+			url:_t.config.totalBeans,
+			type:'get',
+			dataType:'json',
+			async:false,
+			data:{userId:_t.userId},
+			success:function(data){
+				if(data.code == 1){
+					_count = data.attach;
+				}
+			}
+		});
+		return _count;
 	},
 	feedback_fn:function(){
 		var _t = this;
@@ -481,8 +494,20 @@ var user = {
 	},
 	sign_fn:function(){
 		var _t = this;
+		var _beanscount = _t.getBeansCount();
+		$('.user-sign-beans span').text(_beanscount);
+		if(_t.userInfo.fileUrl){
+			$('.user-sign-ico img').attr('src',_t.userInfo.fileUrl);
+		}else{
+			$('.user-sign-ico img').remove();
+		}
+		$('.user-sign-name').text(_t.userInfo.userName);
 		var _date = new Date();
+		var _dateStr = _date.getFullYear()+'-'+_t.toTwo(_date.getMonth()+1);
+		var _todayStr = _dateStr+'-'+_t.toTwo(_date.getDate());
 		var signList = [];
+		var _sign = [];
+
 		$.ajax({
 			url:_t.config.signList,
 			type:'get',
@@ -491,13 +516,51 @@ var user = {
 			data:{userId:_t.userId},
 			success:function(data){
 				if(data.code == 1){
-					signList = data.attach;
+					signList = data.attach.signList;
+					$('.user-sign-count span').text(data.attach.signCount);
+
 				}
 			}
 		});
-		var str = calUtil.drawCal(_date.getFullYear(),_date.getMonth() + 1,signList);
-		$("#user-calendar-box").html(str);
+		$(signList).each(function(_index,_element){
+			console.log(_element.slice(0,7));
+			if(_element.slice(0,7) == _dateStr){
+				_sign.push(_element);
+				if(_element == _todayStr){
+					$('.user-sign-btn').addClass('signed').text('今天已签到').attr('issign','true');
+				}
+			}
+		});
+		var str = calUtil.drawCal(_date.getFullYear(),_date.getMonth() + 1,_sign);
+		$("#user-sign-calendar").html(str);
+
 		
+
+		$('.user-sign-btn').on('click',function(e){
+			var $e = $(e.currentTarget);
+			var _issign = $e.attr('issign');
+			if(_issign != 'true'){
+				$.ajax({
+					url:_t.config.sign,
+					type:'get',
+					dataType:'json',
+					data:{userId:_t.userId,sourceType:4,describe:'QD'},
+					success:function(data){
+						if(data.code == 1){
+							$.dialog({
+								content : "签到成功！",
+								title:'ok',
+								time : 2000
+						   	});
+						   	_t.sign_fn();
+						   	
+						}
+					}
+				});
+			}else{
+				return false;
+			}
+		});
 	}
 };
 user.init();

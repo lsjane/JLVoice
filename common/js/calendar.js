@@ -50,7 +50,7 @@ var calUtil = {
       return signed ;
     },
     drawCal : function(iYear, iMonth ,signList) {
-      var currentYearMonth = iYear+"年"+iMonth+"月";
+      var currentYearMonth = iYear+"-"+iMonth;
       var myMonth = calUtil.bulidCal(iYear, iMonth);
       var htmls = new Array();
       htmls.push("<div class='sign_main' id='sign_layer'>");

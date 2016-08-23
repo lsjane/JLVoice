@@ -97,6 +97,9 @@ var read = {
 	  							$e.attr('data-issupport','true').addClass('active');
 	  							var _totalcount = parseInt($('.read-expdetail-laud b').text());
 	  							$('.read-expdetail-laud b').text(_totalcount+1);
+	  							setTimeout(function(){
+	  								$('.read-expdetail-laud i').hide();
+	  							},1200);
 	  						}else{
 		  						$.dialog({
 				                    content : '点赞失败！',
