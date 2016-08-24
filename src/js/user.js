@@ -195,7 +195,18 @@ var user = {
 			$('.user-info-item a').each(function(_index,_element){
 				$(_element).attr('href',$(_element).attr('href')+'?userId='+_t.userId);
 			});
-		}		
+		}
+		$('#user-up-ico').on('click',function(){
+			var reader = new FileReader();
+			console.log(reader);
+			console.log($('#user-up-ico')[0].files);
+			reader.readAsDataURL($('#user-up-ico')[0].files[0]);
+			reader.onload = function(){
+				console.log(reader.result);
+			}
+		});
+		
+			
 	},
 	editinfo_fn:function(){
 		var _t = this;

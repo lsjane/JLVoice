@@ -1,0 +1,74 @@
+body{
+	margin:0;
+	padding: 0;
+	font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,STHeiti,"Microsoft Yahei",sans-serif;
+	/*background: #f5f5f5;*/
+}
+img,input,button,p,ul,li,input,textarea,form{
+	padding: 0;
+	margin: 0;
+	border:0;
+	list-style: none;
+}
+
+h3{
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-size: 1em;
+}
+a{
+	text-decoration: none;
+	font-family: "Microsoft Yahei";
+	outline: none;
+}
+input,select,textarea,button{
+	font-family: "Microsoft Yahei";
+	outline: none;
+	-webkit-appearance:none;
+}
+.clearfix:before,.clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+    overflow: hidden;
+}
+.clearfix {
+    zoom: 1;
+}
+
+.rDialog-wrap{
+	background: rgba(0,0,0,.7);
+	opacity: 1;
+}
+.rDialog-footer a{
+	font-size: 24px;
+	height: 40px;
+	line-height: 40px;
+}
+.rDialog-ok, .rDialog-ok:hover{
+	background-color: #14a83b;
+}
+.go-home{
+	position: fixed;
+	bottom: 20px;
+	right: 10px;
+	width: 80px;
+	height: 80px;
+	text-align: center;
+	border-radius: 50%;
+	background-color: #14a83b;
+	opacity: .4;
+}
+.go-home span{
+	display: block;
+	padding: 10px 0;
+	height: 60px;
+	font-size: 60px;
+	color: #fff;
+}
+.go-home:active{
+	opacity: 1;
+}
