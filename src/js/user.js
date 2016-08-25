@@ -8,6 +8,7 @@ var user = {
 		_t.userId = _t.getHrefParam('userId');
 		if(_t.userId){
 			_t.userInfo = config.getUserInfo(_t.userId);
+			$('.go-home a').attr('href','home.html?userId=' + _t.userId);
 		}
 		switch(_t.channel){
 			case 'login': _t.login_fn(); break;
@@ -196,7 +197,7 @@ var user = {
 				$(_element).attr('href',$(_element).attr('href')+'?userId='+_t.userId);
 			});
 		}
-		$('#user-up-ico').on('click',function(){
+		/*$('#user-up-ico').on('click',function(){
 			var reader = new FileReader();
 			console.log(reader);
 			console.log($('#user-up-ico')[0].files);
@@ -204,7 +205,7 @@ var user = {
 			reader.onload = function(){
 				console.log(reader.result);
 			}
-		});
+		});*/
 		
 			
 	},
@@ -544,8 +545,6 @@ var user = {
 		});
 		var str = calUtil.drawCal(_date.getFullYear(),_date.getMonth() + 1,_sign);
 		$("#user-sign-calendar").html(str);
-
-		
 
 		$('.user-sign-btn').on('click',function(e){
 			var $e = $(e.currentTarget);

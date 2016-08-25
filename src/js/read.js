@@ -8,6 +8,7 @@ var read = {
 		_t.userId = _t.getHrefParam('userId');
 		if(_t.userId){
 			_t.userhash = 'userId='+ _t.userId +'&';
+			$('.go-home a').attr('href','home.html?userId=' + _t.userId);
 		}
 		_t.userhash = _t.userhash?_t.userhash:'';
 
