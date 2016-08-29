@@ -366,4 +366,183 @@ a .study-index-text{
 /*study-guide*/
 .study-guide-content{
 	background-color: #f2f2f2;
+	padding: 10px 0 0;
+}
+.study-guide-tag{
+	margin: 10px 40px;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 0 0 30px;
+	border-left: 10px solid #14a838;
+	color: #777;
+	font-size: 30px;
+}
+.study-guide-search{
+	margin: 30px 40px;
+	border-radius: 10px;
+	background-color: #fff;
+	border: 1px solid #d7d7d7;
+	height: 66px;
+	
+	padding: 0 10px 0 60px;
+}
+.study-guide-search span{
+	display: block;
+	float: left;
+	width: 50px;
+	height: 40px;
+	margin: 0 0 0 -50px;
+	font-size: 40px;
+	padding: 13px 0;
+}
+.study-guide-search input{
+	line-height: 66px;
+	color: #777;
+	font-size: 28px;
+}
+.study-guide-recom{
+	padding: 10px 0;
+	background-color: #fff;
+}
+.study-guide-recom ul{
+	border-top: 1px solid #d7d7d7;
+}
+.study-guide-recom ul li{
+	padding: 30px 80px 30px 40px;
+	border-bottom: 1px solid #d7d7d7;
+	position: relative;
+}
+.study-guide-title{
+	font-size: 30px;
+	color: #1d1d1d;
+	overflow: hidden;
+	padding: 0 0 20px;
+}
+.study-guide-desp{
+	font-size: 28px;
+	color: #777;
+}
+.study-guide-recom ul li span{
+	display: block;
+	width: 50px;
+	height: 50px;
+	font-size: 50px;
+	color: #d7d7d7;
+	position: absolute;
+	right: 30px;
+	top: 50%;
+	margin: -20px 0 0;
+	text-align: right;
+}
+
+/*study-guide-detail*/
+.study-guidetail-content{
+	padding: 0 16px 90px;
+	min-height: 100%;
+	background-color: #f2f2f2;
+}
+.study-guidetail-bg{
+	background-color: #fff;
+	border-radius: 8px;
+	border: 1px solid #d7d7d7;
+	padding: 40px 60px;
+	margin: 15px 0 30px;
+}
+.study-guidetail-title{
+	font-size: 34px;
+	color: #1E1D1D;
+	padding: 20px 0 30px;
+}
+.study-guidetail-info{
+	line-height: 32px;
+	font-size: 28px;
+	color: #878787;
+	padding: 0 0 35px;
+	border-bottom: 1px solid #d7d7d7;
+}
+.study-guidetail-info span{
+	 word-break: break-all;
+}
+
+.study-guidetail-info span.study-guidetail-author{
+	padding: 0 0 0 30px;
+	color: #14A838;
+}
+.study-guidetail-desp{
+	margin: 40px 0 0;
+	border: 1px solid #14A838;
+}
+.study-guidetail-desp p{
+	padding: 20px 30px;
+	font-size: 28px;
+	color: #343434;
+	line-height: 60px;
+	border-left: 4px solid #14A838;
+}
+.study-guidetail-tag{
+	height: 38px;
+	line-height: 38px;
+	margin: 0 45px;
+	padding: 0 0 0 30px;
+	color: #1E1D1D;
+	font-size: 30px;
+	border-left: 8px solid #14A838;
+}
+.study-guidetail-text{
+	font-size: 30px;
+	color: #444;
+	line-height: 60px;
+	text-indent: 2em;
+}
+.study-guidetail-tips{
+	font-size: 28px;
+	color: #14A838;
+	line-height: 60px;
+}
+.study-guidetail-tips i{
+	font-size: 46px;
+	vertical-align: middle;
+	padding: 0 20px 0 0;
+}
+.study-guidetail-btn{
+	width: 260px;
+	height: 66px;
+	padding: 11px 245px;
+	background-color: #fff;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+}
+.study-guidetail-btn a{
+	color: #fff;
+	text-decoration: none;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.study-guidetail-download{
+	width: 260px;
+	height: 66px;
+	border-radius: 8px;
+	font-size: 28px;
+	color: #fff;
+	line-height: 66px;
+	text-align: center;
+}
+.study-guidetail-download i{
+	font-weight: bolder;
+	font-size: 26px;
+	display: inline-block;
+	width: 26px;
+	height: 26px;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	overflow: hidden;
+	padding: 2px;
+	vertical-align: middle;
+	margin: 0 20px 0 0;
+}
+.study-guidetail-download{
+	float: right;
+	background-color: #14A838;
 }
