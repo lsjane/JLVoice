@@ -267,7 +267,7 @@ a .study-index-text{
 
 }
 .study-videodetail-laud b{
-	font-size: 24px;
+	font-size: 28px;
 	padding: 0 0 0 16px;
 	font-weight: normal;
 }
@@ -363,6 +363,55 @@ a .study-index-text{
 	color: #262626;
 }
 
+.study-comment-box{
+	background-color: #fdfdfd;
+	width: 100%;
+	height: auto;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	display: none;
+}
+.study-comment-top{
+	padding: 20px 25px 25px;
+	text-align: center;
+	font-size: 30px;
+	color: #777;
+}
+.study-comment-form{
+	padding: 0 25px 15px;
+	position: relative;
+}
+.study-comment-textarea{
+	border-radius: 8px;
+	border: 1px solid #d7d7d7;
+	background-color: #fff;
+	padding: 10px;
+	width: 100%;
+	font-size: 28px;
+	line-height: 40px;
+	color: #777;
+	font-family: "微软雅黑";
+	min-height: 140px;
+	resize: vertical;
+
+}
+.study-comment-textarea span{
+	font-size: 28px;
+	line-height: 40px;
+	color: #777;
+}
+.study-comment-submit{
+	font-size: 28px;
+	color: #14A838;
+	float: right;
+}
+.study-comment-close{
+	font-size: 28px;
+	color: #777;
+	float: left;
+}
+
 /*study-guide*/
 .study-guide-content{
 	background-color: #f2f2f2;
@@ -394,8 +443,10 @@ a .study-index-text{
 	margin: 0 0 0 -50px;
 	font-size: 40px;
 	padding: 13px 0;
+	color: #777;
 }
 .study-guide-search input{
+	width: 100%;
 	line-height: 66px;
 	color: #777;
 	font-size: 28px;
@@ -435,76 +486,9 @@ a .study-index-text{
 	text-align: right;
 }
 
-/*study-guide-detail*/
-.study-guidetail-content{
-	padding: 0 16px 90px;
-	min-height: 100%;
-	background-color: #f2f2f2;
-}
-.study-guidetail-bg{
-	background-color: #fff;
-	border-radius: 8px;
-	border: 1px solid #d7d7d7;
-	padding: 40px 60px;
-	margin: 15px 0 30px;
-}
-.study-guidetail-title{
-	font-size: 34px;
-	color: #1E1D1D;
-	padding: 20px 0 30px;
-}
-.study-guidetail-info{
-	line-height: 32px;
-	font-size: 28px;
-	color: #878787;
-	padding: 0 0 35px;
-	border-bottom: 1px solid #d7d7d7;
-}
-.study-guidetail-info span{
-	 word-break: break-all;
-}
+/*study-data-detail*/
 
-.study-guidetail-info span.study-guidetail-author{
-	padding: 0 0 0 30px;
-	color: #14A838;
-}
-.study-guidetail-desp{
-	margin: 40px 0 0;
-	border: 1px solid #14A838;
-}
-.study-guidetail-desp p{
-	padding: 20px 30px;
-	font-size: 28px;
-	color: #343434;
-	line-height: 60px;
-	border-left: 4px solid #14A838;
-}
-.study-guidetail-tag{
-	height: 38px;
-	line-height: 38px;
-	margin: 0 45px;
-	padding: 0 0 0 30px;
-	color: #1E1D1D;
-	font-size: 30px;
-	border-left: 8px solid #14A838;
-}
-.study-guidetail-text{
-	font-size: 30px;
-	color: #444;
-	line-height: 60px;
-	text-indent: 2em;
-}
-.study-guidetail-tips{
-	font-size: 28px;
-	color: #14A838;
-	line-height: 60px;
-}
-.study-guidetail-tips i{
-	font-size: 46px;
-	vertical-align: middle;
-	padding: 0 20px 0 0;
-}
-.study-guidetail-btn{
+.study-data-btn{
 	width: 260px;
 	height: 66px;
 	padding: 11px 245px;
@@ -513,14 +497,7 @@ a .study-index-text{
 	bottom: 0;
 	left: 0;
 }
-.study-guidetail-btn a{
-	color: #fff;
-	text-decoration: none;
-	display: block;
-	width: 100%;
-	height: 100%;
-}
-.study-guidetail-download{
+.study-data-download{
 	width: 260px;
 	height: 66px;
 	border-radius: 8px;
@@ -528,8 +505,9 @@ a .study-index-text{
 	color: #fff;
 	line-height: 66px;
 	text-align: center;
+	background-color: #14A838;
 }
-.study-guidetail-download i{
+.study-data-download i{
 	font-weight: bolder;
 	font-size: 26px;
 	display: inline-block;
@@ -542,7 +520,7 @@ a .study-index-text{
 	vertical-align: middle;
 	margin: 0 20px 0 0;
 }
-.study-guidetail-download{
-	float: right;
-	background-color: #14A838;
+
+#pdfIframe{
+	margin: 0 0 90px;
 }

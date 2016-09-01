@@ -68,7 +68,7 @@ a{
 	height: 40px;
 	line-height: 40px;
 	color: #fff;
-	font-size: 24px;
+	font-size: 30px;
 	background-color: rgba(0,0,0,.6);
 }
 .home-slide-title span{
@@ -136,7 +136,7 @@ a{
 .home-wechat-text{
 	padding: 50px 0 0;
 	text-align: center;
-	font-size: 24px;
+	font-size: 30px;
 	color: #fff;
 }
 .home-nav-right{
@@ -163,7 +163,7 @@ a{
 	line-height: 46px;
 	text-align: center;
 	color: #fff;
-	font-size: 24px;
+	font-size: 30px;
 	background-color: rgba(0,0,0,.8);
 }
 .home-navli-text span{
@@ -208,5 +208,5 @@ a{
 .home-user-text{
 	padding: 25px 0 0;
 	color: #fff;
-	font-size: 24px;
+	font-size: 30px;
 }

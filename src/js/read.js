@@ -47,7 +47,6 @@ var read = {
 		//文章附件下载
 		$('.read-detail-download').on('click',function(e){
 			var $e = $(e.currentTarget);
-			// var _perId = 1;
 			if(_t.userId){
 				var _articleId = $e.attr('data-articleid');
 				if(_articleId){
@@ -65,7 +64,7 @@ var read = {
 				       			});
 					  		}else{
 					  			$.dialog({
-				                    content : '下载失败！',
+				                    content : data.attach,
 									title:'alert',
 				                    time : 2000
 				       			});
@@ -119,7 +118,11 @@ var read = {
 		//显示评论框
 		$('.read-expdetail-com').on('click',function(e){
 			$e = $(e.currentTarget);
-			$('.read-comment-box').show();
+			if(_t.userId){
+				$('.read-comment-box').show();
+			}else{
+				config.loginDialog(1);
+			}
 		});
 		//关闭评论框
 		$('.read-comment-close').on('click',function(e){
@@ -130,45 +133,41 @@ var read = {
 		//提交评论
 		$('.read-comment-submit').on('click',function(e){
 			$e = $(e.currentTarget);
-			if(_t.userId){
-				_param = {};
-				_param.content = $('.read-comment-textarea').val();
-				if (_param.content) {
-					_param.yid = _t._yid ;
-					_param.perId = _t.userId;
-					$.ajax({
-						type: 'get',
-					  	url: _t.config.comment,
-					  	data: {content:JSON.stringify(_param)},
-					  	dataType: 'json',
-					  	success: function(data){
-					  		if(data.code == 1){
-					  			$('.read-comment-box').hide();
-								$('.read-comment-textarea').val('');
-				       			$.dialog({
-				                    content : '评论成功！',
-									title:'ok',
-				                    time : 2000
-				       			});
-				       			_t.comment_list_fn();
-							}else{
-								$.dialog({
-				                    content : '评论失败！',
-									title:'alert',
-				                    time : 2000
-				       			});
-							}
-					  	}
-					});
-				}else{
-					$.dialog({
-	                    content : '请输入评论内容！',
-						title:'alert',
-	                    time : 2000
-	       			});
-				}
+			_param = {};
+			_param.content = $('.read-comment-textarea').val();
+			if (_param.content) {
+				_param.yid = _t._yid ;
+				_param.perId = _t.userId;
+				$.ajax({
+					type: 'get',
+				  	url: _t.config.comment,
+				  	data: {content:JSON.stringify(_param)},
+				  	dataType: 'json',
+				  	success: function(data){
+				  		if(data.code == 1){
+				  			$('.read-comment-box').hide();
+							$('.read-comment-textarea').val('');
+			       			$.dialog({
+			                    content : '评论成功！',
+								title:'ok',
+			                    time : 2000
+			       			});
+			       			_t.comment_list_fn();
+						}else{
+							$.dialog({
+			                    content : '评论失败！',
+								title:'alert',
+			                    time : 2000
+			       			});
+						}
+				  	}
+				});
 			}else{
-				config.loginDialog(1);
+				$.dialog({
+                    content : '请输入评论内容！',
+					title:'alert',
+                    time : 2000
+       			});
 			}
 		});
 	},
@@ -419,12 +418,11 @@ var read = {
 			  	}
 			});
 			//是否已点赞
-			var _perId = 1;
-			if(_perId){
+			if(_t.userId){
 				$.ajax({
 					type: 'get',
 				  	url: _t.config.expertIsSup,
-				  	data: {professorId:_t._yid,perId:_perId},
+				  	data: {professorId:_t._yid,perId:_t.userId},
 				  	dataType: 'json',
 				  	success: function(data){
 				  		if(data.code == 1 && data.attach == 1){
@@ -449,7 +447,7 @@ var read = {
 		  			var _html = '';
 		  			if(data.attach.length > 0){
 		  				$(data.attach).each(function(_index,_element){
-		  					_html += '<li class="clearfix"><div class="read-comment-ico"><img src=""></div><div class="read-comment-right"><div class="read-comment-user">游客';
+		  					_html += '<li class="clearfix"><div class="read-comment-ico"><img src=""></div><div class="read-comment-right"><div class="read-comment-user">'+ _element.perName;
 		  					_html += '<span class="read-comment-floor"><b>' + _element.numfloor;
 		  					_html += '</b>楼</span></div><div class="read-comment-time">' + _element.createTime;
 		  					_html += '</div><p class="read-comment-content">' + _element.content;

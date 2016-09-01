@@ -1,4 +1,4 @@
-var tag = false;
+var tag = true;
 if(tag){
 	var config = {
 		read:{
@@ -28,6 +28,19 @@ if(tag){
 			feedback:'/gome-manager-web/user/addAdvice',
 			signList:'/gome-manager-web/user/queryUserSign',
 			sign:'/gome-manager-web/user/addUserBean'
+		},
+		study:{
+			video:'/gome-manager-web/vedio/querVedioList',
+			videoDetail:'/gome-manager-web/vedio/queryVedioDetail',
+			guide:'/gome-manager-web/learning/queryArticleList',
+			// guidetail:'/gome-manager-web/learning/queryArticleDetail',
+			downGuide:'/gome-manager-web/learning/downloadLearning',
+			videoSupCount:'/gome-manager-web/vedio/querySupportTotal',
+			videoIsSup:'/gome-manager-web/vedio/queryIfSupport',
+			videoSup:'/gome-manager-web/vedio/addSupport',
+			comment:'/gome-manager-web/vedio/addReview',
+			commentList:'/gome-manager-web/vedio/queryReviewList',
+			addBeans:'/gome-manager-web/user/addUserBean'
 		},
 		getHrefParam:function(_name){
 			var _value = '';
@@ -60,8 +73,7 @@ if(tag){
 		        },
 		        cancel : function() {
 		            // alert('我是取消按钮');
-		        },
-		        lock : false
+		        }
 		    });
 		},
 		getUserInfo:function(_userId){
@@ -113,6 +125,18 @@ if(tag){
 			signList:'/json/user_signlist.js',
 			sign:'/json/user_register.js'
 		},
+		study:{
+			video:'/json/study_video.js',
+			videoDetail:'/json/study_videtail.js',
+			guide:'/json/study_guide.js',
+			downGuide:'/json/read_expert_supcount.js',
+			videoSupCount:'/json/read_expert_supcount.js',
+			videoIsSup:'/json/read_expert_supcount.js',
+			videoSup:'/json/read_expert_supcount.js',
+			comment:'/json/read_expert_supcount.js',
+			commentList:'/json/read_expert_comment.js',
+			addBeans:'/json/user_register.js'
+		},
 		getHrefParam:function(_name){
 			var _value = '';
 			if(window.location.href.split('?')[1]){
@@ -144,8 +168,7 @@ if(tag){
 		        },
 		        cancel : function() {
 		            // alert('我是取消按钮');
-		        },
-		        lock : false
+		        }
 		    });
 		},
 		getUserInfo:function(_userId){

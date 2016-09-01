@@ -7,7 +7,14 @@ var home={
 		_t.userId = _t.getHrefParam('userId');
 		if(_t.userId){
 			$('.home-nav-wrap a').each(function(_index,_element){
-				$(_element).attr('href',$(_element).attr('href')+'?userId='+_t.userId);
+				var _hrefold = $(_element).attr('href');
+				var _hrefnew = _hrefold;
+				if(_hrefold.match('\\?')){
+					_hrefnew += '&userId='+_t.userId;
+				}else{
+					_hrefnew += '?userId='+_t.userId;
+				}
+				$(_element).attr('href',_hrefnew);
 			});
 			$('.home-user-wrap a').attr('href','user-info.html?userId=' +_t.userId);
 		}else{

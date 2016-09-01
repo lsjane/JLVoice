@@ -518,7 +518,7 @@ body{
 
 }
 .read-expdetail-laud b{
-	font-size: 24px;
+	font-size: 28px;
 	padding: 0 0 0 16px;
 	font-weight: normal;
 }
@@ -535,15 +535,6 @@ body{
 
 .read-expdetail-laud.active span{
 	color: #F1775B;
-}
-.read-comment-box{
-	background-color: #fdfdfd;
-	width: 100%;
-	height: auto;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	display: none;
 }
 .read-expdetail-laud i{
 	color: #F1775B;
@@ -563,6 +554,15 @@ body{
 .read-expdetail-laud.active i{
 	opacity: 1;
 	top: -54px;
+}
+.read-comment-box{
+	background-color: #fdfdfd;
+	width: 100%;
+	height: auto;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	display: none;
 }
 .read-comment-top{
 	padding: 20px 25px 25px;
