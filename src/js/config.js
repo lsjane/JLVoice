@@ -57,7 +57,7 @@ if(tag){
 			return _value;
 		},
 		toTwo:function(n){
-			if(n<9){
+			if(n<10){
 				return '0'+n;
 			}else{
 				return n.toString();
@@ -152,7 +152,7 @@ if(tag){
 			return _value;
 		},
 		toTwo:function(n){
-			if(n<9){
+			if(n<10){
 				return '0'+n;
 			}else{
 				return n.toString();

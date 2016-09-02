@@ -43,7 +43,7 @@ var study = {
 				       			});
 					  		}else{
 					  			$.dialog({
-				                    content : '下载失败！',
+				                    content : data.attach,
 									title:'alert',
 				                    time : 2000
 				       			});
@@ -214,8 +214,11 @@ var study = {
 							_html += '</p></a></li>';
 						});
 						$('.study-index-recom ul').html(_html);
+					}else{
+						$('.study-index-recom').html('暂无内容');
 					}
 		    	}else{
+
 			    }
 		  	},
 		  	error:function(){
@@ -242,8 +245,11 @@ var study = {
 							_html += '</p></a></li>';
 						});
 						$('.study-video-content ul').html(_html);
+					}else{
+						$('.study-video-content').html('暂无内容');
 					}
 		    	}else{
+		    		$('.study-video-content').html('数据加载失败，请刷新页面重试');
 			    }
 		  	},
 		  	error: function(){
@@ -298,6 +304,7 @@ var study = {
 				  	dataType: 'json',
 				  	success: function(data){
 				  		if(data.code == 1 && data.attach == 1){
+				  			$('.study-videodetail-laud i').hide();
 				  			$('.study-videodetail-laud').attr('data-issupport','true').addClass('active');
 				  		}
 				  	}
@@ -342,9 +349,9 @@ var study = {
 								window.open('study-data.html?fileUrl='+_fileUrl+'&userId='+_t.userId+'&articleId='+_articleId,'_self');
 							}
 						});
-		  			}
-		  		}else{
-
+		  			}else{
+			  			$('.study-guide-list').html('暂无内容');
+			  		}
 		  		}
 
 		  	}

@@ -33,7 +33,7 @@ var meet = {
 				window.open('meet-sign.html?meetId='+_meetId,'_self');
 
 			}else if(_t.channel == 'index'){
-				window.open('meet-welcome.html?meetId='+_meetId+'&userId='+_userId+'&userName='+_userName,'_self');
+				window.open('meet-sign.html?meetId='+_meetId+'&userId='+_userId+'&userName='+_userName,'_self');
 			}else if(_t.channel == 'dataopen'){
 				window.open('meet-data.html?meetId='+_meetId+'&userId='+_userId+'&userName='+_userName+'&pointer='+_pointer,'_self');
 
@@ -55,7 +55,8 @@ var meet = {
 		  	success: function(data){
 		    	if(data.code=='1'){
 		    		$('.meet-sign-bg img').attr('src',data.attach.picPath);
-		    		$('.meet-wel-bg img').attr('src',data.attach.letterPic);
+		    		// $('.meet-wel-bg img').attr('src',data.attach.letterPic);
+		    		$('.meet-index-bg img').attr('src',data.attach.letterPic);
 		    		$('.meet-sche-sloganbig').text(data.attach.name);
 					$('.meet-sche-slogansmall').text('——'+data.attach.theme);
 					$('.meet-sche-station b').text(data.attach.meetAddr+' > 会议议程');
@@ -179,7 +180,7 @@ var meet = {
 				 	timeout: 300,
 				  	success: function(data){
 					    if(data.code=='1'){
-					    	window.open('meet-welcome.html?meetId='+_meetId+'&userId='+data.attach.id+'&userName='+_pername,'_self');
+					    	window.open('meet-index.html?meetId='+_meetId+'&userId='+data.attach.id+'&userName='+_pername,'_self');
 					    }else{
 					    	$.dialog({
 			                    content : '姓名签到失败！',

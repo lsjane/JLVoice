@@ -426,6 +426,7 @@ var read = {
 				  	dataType: 'json',
 				  	success: function(data){
 				  		if(data.code == 1 && data.attach == 1){
+				  			$('.read-expdetail-laud i').hide();
 				  			$('.read-expdetail-laud').attr('data-issupport','true').addClass('active');
 				  		}
 				  	}
