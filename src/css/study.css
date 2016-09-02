@@ -64,7 +64,7 @@
 	box-shadow: 0 1px 5px #555;
 	border-radius: 50%;
 }
-.study-slide-page span.active{
+.study-slide-page span.swiper-pagination-bullet-active{
 	background-color: #14a838;
 }
 .study-index-nav{

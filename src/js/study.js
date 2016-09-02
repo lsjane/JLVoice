@@ -225,6 +225,38 @@ var study = {
 
 		  	}
 		});
+		$.ajax({
+			url:_t.config.video,
+			type:'get',
+			data:{vType:1},
+			dataType:'json',
+			async:false,
+			success:function(data){
+				if(data.code == 1){
+					var _html = '';
+					if(data.attach.length > 0){
+						$(data.attach).each(function(_index,_element){
+							_html += '<li class="swiper-slide"><a href="study-video-detail.html?'+_t.userhash+'vedioId=' +_element.id;
+							_html += '"><p class="study-slide-pic"><img src="' +_element.picPath;
+							_html += '"></p><p class="study-slide-ico"><span></span></p></a></li>';
+						});
+						$('.study-slide-list').html(_html);
+					}
+				}
+			},
+			error:function(){
+			}
+		});
+		var swiper = new Swiper('.study-slide-wrap', {
+	        pagination: '.study-slide-page',
+	        // nextButton: '.swiper-button-next',
+	        // prevButton: '.swiper-button-prev',
+	        paginationClickable: false,
+	        // spaceBetween: 30,
+	        centeredSlides: true,
+	        autoplay: 3000,
+	        autoplayDisableOnInteraction: false
+	    });
 	},
 	video_fn:function(){
 		var _t = this;
@@ -269,8 +301,8 @@ var study = {
 			    	if(data.code=='1'){
 			    		var _html = '';
 			    		$('#study-video').attr({
-			    			// src:data.attach.fileUrl,
-			    			src:'http://meeting.jarlin.com.cn/gmshopFile/vedio/20160830.mp4',
+			    			src:data.attach.fileUrl,
+			    			// src:'http://meeting.jarlin.com.cn/gmshopFile/vedio/20160830.mp4',
 			    			poster:data.attach.picPath
 			    		});
 			    		$('.study-videodetail-title').text(data.attach.title);

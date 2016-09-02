@@ -1,6 +1,9 @@
-var tag = true;
+var tag = false;
 if(tag){
 	var config = {
+		home:{
+			video:'/gome-manager-web/vedio/querVedioList'
+		},
 		read:{
 			coverList:'/gome-manager-web/reading/queryReadingList',
 			articleList:'/gome-manager-web/reading/queryArticleList',
@@ -97,6 +100,9 @@ if(tag){
 	}
 }else{
 	var config = {
+		home:{
+			video:'/json/study_video.js'
+		},
 		read:{
 			coverList:'/json/read_cover_list.js',
 			articleList:'/json/read_list.js',
