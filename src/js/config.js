@@ -1,4 +1,4 @@
-var tag = false;
+var tag = true;
 if(tag){
 	var config = {
 		home:{
@@ -44,6 +44,21 @@ if(tag){
 			comment:'/gome-manager-web/vedio/addReview',
 			commentList:'/gome-manager-web/vedio/queryReviewList',
 			addBeans:'/gome-manager-web/user/addUserBean'
+		},
+		checkLogin:function(){
+			var _userId = '';
+			$.ajax({
+				url:'/gome-manager-web/user/checkLogin',
+				type:'get',
+				dataType:'json',
+				async:false,
+				success:function(data){
+					if(data.code == 1){
+						_userId = data.attach;
+					}
+				}
+			});
+			return _userId;
 		},
 		getHrefParam:function(_name){
 			var _value = '';
@@ -142,6 +157,21 @@ if(tag){
 			comment:'/json/read_expert_supcount.js',
 			commentList:'/json/read_expert_comment.js',
 			addBeans:'/json/user_register.js'
+		},
+		checkLogin:function(){
+			var _userId = '';
+			$.ajax({
+				url:'/json/user_beans_count.js',
+				type:'get',
+				dataType:'json',
+				async:false,
+				success:function(data){
+					if(data.code == 1){
+						_userId = data.attach;
+					}
+				}
+			});
+			return _userId;
 		},
 		getHrefParam:function(_name){
 			var _value = '';

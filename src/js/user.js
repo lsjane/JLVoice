@@ -5,10 +5,11 @@ var user = {
 		_t.getHrefParam = config.getHrefParam;
 		_t.toTwo = config.toTwo;
 		_t.channel = $('.user-wrap').attr('data-channel');
-		_t.userId = _t.getHrefParam('userId');
+		// _t.userId = _t.getHrefParam('userId');
+		_t.userId = config.checkLogin();
 		if(_t.userId){
 			_t.userInfo = config.getUserInfo(_t.userId);
-			$('.go-home a').attr('href','home.html?userId=' + _t.userId);
+			// $('.go-home a').attr('href','home.html?userId=' + _t.userId);
 		}
 		switch(_t.channel){
 			case 'login': _t.login_fn(); break;
@@ -45,11 +46,13 @@ var user = {
 				  		// config.userInfo = data.attach;
 				  		_t.userId = data.attach.id;
 				  		switch(_histype){
-				  			case 1:window.open(document.referrer+'&userId='+_t.userId,'_self');break;
+				  			/*case 1:window.open(document.referrer+'&userId='+_t.userId,'_self');break;
 				  			case 2:window.open('user-info.html?userId='+_t.userId,'_self');break;
-				  			default:window.open('home.html?userId='+_t.userId,'_self');break;
+				  			default:window.open('home.html?userId='+_t.userId,'_self');break;*/
+				  			case 1:window.open(document.referrer,'_self');break;
+				  			case 2:window.open('user-info.html','_self');break;
+				  			default:window.open('home.html','_self');break;
 				  		}
-					  	
 				  }else{
 					  	$.dialog({
 							content : data.attach,
@@ -192,11 +195,11 @@ var user = {
 			// config.userInfo = {};
 			window.open('user-login.html?type=2','_self');
 		});
-		if(_t.userId){
+		/*if(_t.userId){
 			$('.user-info-item a').each(function(_index,_element){
 				$(_element).attr('href',$(_element).attr('href')+'?userId='+_t.userId);
 			});
-		}
+		}*/
 		/*$('#user-up-ico').on('click',function(){
 			var reader = new FileReader();
 			console.log(reader);
@@ -238,7 +241,8 @@ var user = {
 				  	data:{"content":JSON.stringify(_param)},
 				  	success:function(data){
 				  		if(data.code == 1){
-				  			window.open('user-info.html?userId='+_t.userId,'_self');
+				  			// window.open('user-info.html?userId='+_t.userId,'_self');
+				  			window.open('user-info.html','_self');
 				  		}else{
 				  			$.dialog({
 			                    content : data.attach,
@@ -313,7 +317,8 @@ var user = {
 			  				window.open('user-login.html?type=2','_self');
 			  			}else{
 				  			// config.userInfo.password = $.md5(_param.newpassword, 'gome.com');
-				  			window.open('user-info.html?userId=' +_t.userId,'_self');
+				  			// window.open('user-info.html?userId=' +_t.userId,'_self');
+				  			window.open('user-info.html','_self');
 			  			}
 			  		}else{
 			  			$.dialog({
@@ -336,11 +341,11 @@ var user = {
 			$('.user-mybeans-ico img').remove();
 		}
 		$('.user-mybeans-name').text(_t.userInfo.userName);
-		if(_t.userId){
+		/*if(_t.userId){
 			$('.user-mybeans-link a').each(function(_index,_element){
 				$(_element).attr('href',$(_element).attr('href')+'?userId='+_t.userId);
 			});
-		}		
+		}*/		
 	},
 	myorder_fn:function(){
 		var _t = this;
@@ -430,7 +435,8 @@ var user = {
 					data:{userId:_t.userId,advice:_content},
 					success:function(data){
 						if(data.code == 1){
-							window.open('user-info.html?userId='+_t.userId,'_self');
+							// window.open('user-info.html?userId='+_t.userId,'_self');
+							window.open('user-info.html','_self');
 						}
 					}
 				});

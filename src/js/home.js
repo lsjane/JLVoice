@@ -4,9 +4,10 @@ var home={
 		_t.config = config.home;
 		_t.getHrefParam = config.getHrefParam;
 		_t.toTwo = config.toTwo;
-		_t.userId = _t.getHrefParam('userId');
+		// _t.userId = _t.getHrefParam('userId');
+		_t.userId = config.checkLogin();
 		if(_t.userId){
-			$('.home-nav-wrap a').each(function(_index,_element){
+			/*$('.home-nav-wrap a').each(function(_index,_element){
 				var _hrefold = $(_element).attr('href');
 				var _hrefnew = _hrefold;
 				if(_hrefold.match('\\?')){
@@ -15,13 +16,14 @@ var home={
 					_hrefnew += '?userId='+_t.userId;
 				}
 				$(_element).attr('href',_hrefnew);
-			});
-			$('.home-user-wrap a').attr('href','user-info.html?userId=' +_t.userId);
-			_t.userhash = 'userId='+ _t.userId +'&';
+			});*/
+			// $('.home-user-wrap a').attr('href','user-info.html?userId=' +_t.userId);
+			$('.home-user-wrap a').attr('href','user-info.html');
+			// _t.userhash = 'userId='+ _t.userId +'&';
 		}else{
 			$('.home-user-wrap a').attr('href','user-login.html?type=2');
 		}
-		_t.userhash = _t.userhash?_t.userhash:'';
+		// _t.userhash = _t.userhash?_t.userhash:'';
 		$.ajax({
 			url:_t.config.video,
 			type:'get',
@@ -33,7 +35,8 @@ var home={
 					var _html = '';
 					if(data.attach.length>0){
 						$(data.attach).each(function(_index,_element){
-							_html += '<li class="swiper-slide"><a href="study-video-detail.html?'+_t.userhash+'vedioId=' +_element.id;
+							// _html += '<li class="swiper-slide"><a href="study-video-detail.html?'+_t.userhash+'vedioId=' +_element.id;
+							_html += '<li class="swiper-slide"><a href="study-video-detail.html?vedioId=' +_element.id;
 							_html += '"><p class="home-slide-pic"><img src="' + _element.picPath;
 							_html += '"></p><p class="home-slide-title"><span class="ellipsis">' + _element.title;
 							_html += '</span></p><p class="home-slide-ico"><span></span></p></a></li>';

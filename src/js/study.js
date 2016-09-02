@@ -5,12 +5,13 @@ var study = {
 		_t.getHrefParam = config.getHrefParam;
 		_t.toTwo = config.toTwo;
 		_t.channel = $('.study-wrap').attr('data-channel');
-		_t.userId = _t.getHrefParam('userId');
-		if(_t.userId){
+		// _t.userId = _t.getHrefParam('userId');
+		_t.userId = config.checkLogin();
+		/*if(_t.userId){
 			_t.userhash = 'userId='+ _t.userId +'&';
 			$('.go-home a').attr('href','home.html?userId=' + _t.userId);
-		}
-		_t.userhash = _t.userhash?_t.userhash:'';
+		}*/
+		// _t.userhash = _t.userhash?_t.userhash:'';
 
 		switch(_t.channel){
 			case 'index': _t.index_fn(); break;
@@ -187,7 +188,7 @@ var study = {
 	},
 	index_fn:function(){
 		var _t = this;
-		$('.study-index-nav a').each(function(_index,_element){
+		/*$('.study-index-nav a').each(function(_index,_element){
 			var _hrefold = $(_element).attr('href');
 			var _hrefnew = _hrefold;
 			if(_hrefold.match('\\?')){
@@ -196,7 +197,7 @@ var study = {
 				_hrefnew += '?userId='+_t.userId;
 			}
 			$(_element).attr('href',_hrefnew);
-		});
+		});*/
 		$.ajax({
 			type: 'get',
 		  	url: _t.config.video,
@@ -207,7 +208,8 @@ var study = {
 		    		var _html = '';
 					if(data.attach.length > 0){
 						$(data.attach).each(function(_index,_element){
-							_html += '<li><a href="study-video-detail.html?'+_t.userhash+'vedioId=' +_element.id;
+							// _html += '<li><a href="study-video-detail.html?'+_t.userhash+'vedioId=' +_element.id;
+							_html += '<li><a href="study-video-detail.html?vedioId=' +_element.id;
 							_html += '"><div class="study-index-img"><img src="' + _element.picPath;
 							_html += '"><p class="study-index-shadow"><span></span></p></div><p class="ellipsis study-index-title">' + _element.title;
 							_html += '</p><p class="ellipsis study-index-desp">' +_element.belong;
@@ -236,7 +238,8 @@ var study = {
 					var _html = '';
 					if(data.attach.length > 0){
 						$(data.attach).each(function(_index,_element){
-							_html += '<li class="swiper-slide"><a href="study-video-detail.html?'+_t.userhash+'vedioId=' +_element.id;
+							// _html += '<li class="swiper-slide"><a href="study-video-detail.html?'+_t.userhash+'vedioId=' +_element.id;
+							_html += '<li class="swiper-slide"><a href="study-video-detail.html?vedioId=' +_element.id;
 							_html += '"><p class="study-slide-pic"><img src="' +_element.picPath;
 							_html += '"></p><p class="study-slide-ico"><span></span></p></a></li>';
 						});
@@ -270,7 +273,8 @@ var study = {
 		    		var _html = '';
 					if(data.attach.length > 0){
 						$(data.attach).each(function(_index,_element){
-							_html += '<li><a href="study-video-detail.html?'+_t.userhash+'vedioId=' +_element.id;
+							// _html += '<li><a href="study-video-detail.html?'+_t.userhash+'vedioId=' +_element.id;
+							_html += '<li><a href="study-video-detail.html?vedioId=' +_element.id;
 							_html += '"><div class="study-video-img"><img src="' + _element.picPath;
 							_html += '"><p class="study-video-shadow"><span></span></p></div><p class="ellipsis study-video-title">' + _element.title;
 							_html += '</p><p class="ellipsis study-video-desp">' +_element.belong;
@@ -378,7 +382,8 @@ var study = {
 							var _fileUrl = $e.attr('data-url');
 							var _articleId = $e.attr('data-id');
 							if(_fileUrl){
-								window.open('study-data.html?fileUrl='+_fileUrl+'&userId='+_t.userId+'&articleId='+_articleId,'_self');
+								// window.open('study-data.html?fileUrl='+_fileUrl+'&userId='+_t.userId+'&articleId='+_articleId,'_self');
+								window.open('study-data.html?fileUrl='+_fileUrl+'&articleId='+_articleId,'_self');
 							}
 						});
 		  			}else{

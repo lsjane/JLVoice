@@ -5,12 +5,13 @@ var read = {
 		_t.getHrefParam = config.getHrefParam;
 		_t.toTwo = config.toTwo;
 		_t.channel = $('.read-wrap').attr('data-channel');
-		_t.userId = _t.getHrefParam('userId');
-		if(_t.userId){
+		// _t.userId = _t.getHrefParam('userId');
+		_t.userId = config.checkLogin();
+		/*if(_t.userId){
 			_t.userhash = 'userId='+ _t.userId +'&';
 			$('.go-home a').attr('href','home.html?userId=' + _t.userId);
 		}
-		_t.userhash = _t.userhash?_t.userhash:'';
+		_t.userhash = _t.userhash?_t.userhash:'';*/
 
 		switch(_t.channel){
 			case 'cover': _t.cover_fn(); break;
@@ -194,7 +195,8 @@ var read = {
 		  				_html += '<div class="read-cover-liwrap read-cover-bg'+_n+'"><div class="read-cover-info"><span class="read-cover-year"><i class="ion-calendar"></i>'+_element;
 						_html += '年</span><span class="read-cover-more">共<b></b>期 &gt;</span></div><div class="read-cover-box"><ul class="read-cover-list">';
 						for(var _qi in _dataObj[_element]){
-							_html += '<li><div class="read-cover-item"><a href="read-list.html?' + _t.userhash;
+							// _html += '<li><div class="read-cover-item"><a href="read-list.html?' + _t.userhash;
+							_html += '<li><div class="read-cover-item"><a href="read-list.html?';
 							_html += 'catname=' + _qi +'&yearValue=' + _element;
 							_html += '"><p class="read-cover-text">第<strong>' + _t.toTwo(_qi);
 							_html += '</strong>期</p></a></div></li>';
@@ -265,7 +267,8 @@ var read = {
 			    		var _html = '';
 						if(data.attach.length > 0){
 							$(data.attach).each(function(_index,_element){
-								_html += '<li><a href="read-detail.html?' +_t.userhash;
+								// _html += '<li><a href="read-detail.html?' +_t.userhash;
+								_html += '<li><a href="read-detail.html?';
 								_html += 'articleId=' + _element.id;
 								_html += '" class="clearfix"><div class="read-list-num">' + (_index+1);
 								_html += '</div><div class="read-list-title">' +_element.title;
@@ -301,7 +304,8 @@ var read = {
 			    		$('.read-detail-author').text(data.attach.author);
 			    		_articleTheme.digest && $('.read-detail-desp p').text(_articleTheme.digest);
 			    		
-			    		$('.read-detail-expert a').attr('href','read-expert.html?'+ _t.userhash +'articleId=' + _articleId);
+			    		// $('.read-detail-expert a').attr('href','read-expert.html?'+ _t.userhash +'articleId=' + _articleId);
+			    		$('.read-detail-expert a').attr('href','read-expert.html?articleId=' + _articleId);
 			    		$('.read-detail-download').attr('data-articleid',_articleId);
 			    		
 			    		for(var _name in _articleTheme){
@@ -356,7 +360,8 @@ var read = {
 			  					if(_element.jobs){
 			  						_html += '<p><label>职称：</label>'+_element.jobs+'</p>';
 			  					}
-			  					_html += '</div></div><div class="read-expert-look"><a href="read-expdetail.html?'+ _t.userhash;
+			  					// _html += '</div></div><div class="read-expert-look"><a href="read-expdetail.html?'+ _t.userhash;
+			  					_html += '</div></div><div class="read-expert-look"><a href="read-expdetail.html?';
 			  					_html += 'professorId=' + _element.id;
 								_html += '"><i class="ion-ios-eye-outline"></i>查看TA的解读</a></div></li>';
 					
