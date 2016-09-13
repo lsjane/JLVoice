@@ -45,6 +45,9 @@ if(tag){
 			commentList:'/gome-manager-web/vedio/queryReviewList',
 			addBeans:'/gome-manager-web/user/addUserBean'
 		},
+		game:{
+			gameList:'/gome-manager-web/game/queryGameList'
+		},
 		checkLogin:function(){
 			var _userId = '';
 			$.ajax({
@@ -157,6 +160,9 @@ if(tag){
 			comment:'/json/read_expert_supcount.js',
 			commentList:'/json/read_expert_comment.js',
 			addBeans:'/json/user_register.js'
+		},
+		game:{
+			gameList:'/json/game_list.js'
 		},
 		checkLogin:function(){
 			var _userId = '';

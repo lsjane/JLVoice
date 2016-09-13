@@ -1,0 +1,79 @@
+.game-wrap{
+	width: 750px;
+	margin: 0 auto;
+}
+.game-index-content{
+	min-height: 100%;
+	background-color: #182530;
+}
+.game-index{
+	padding: 120px 233px 0;
+}
+.game-index-item{
+	padding: 0 0 80px;
+}
+.game-index-ico{
+	width: 284px;
+	height: 320px;
+	background: url(../../images/game-ico.png) no-repeat;
+}
+.game-index-ico a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.game-index-game .game-index-ico{
+	background-position: 0 0;
+}
+.game-index-interaction .game-index-ico{
+	background-position: 0 -320px;
+}
+.game-index-text{
+	color: #fff;
+	font-size: 36px;
+	text-align: center;
+	padding: 50px 0 0;
+}
+
+/*list*/
+.game-list-content{
+	background: #e7e7e7;
+	min-height: 100%;
+}
+.game-list{
+	background: #fff;
+}
+.game-list li{
+	padding: 30px;
+	border-bottom: 2px solid #e7e7e7;
+	height: 142px;
+	overflow: hidden;
+}
+.game-list-ico{
+	width: 142px;
+	height: 142px;
+	float: left;
+	border-radius: 10px;
+	overflow: hidden;
+}
+.game-list-ico img{
+	width: 100%;
+	height: 100%;
+}
+.game-list-right{
+	width: 508px;
+	float: right;
+}
+.game-list-title{
+	line-height: 60px;
+	height: 60px;
+	color: #14a83b;
+	font-size:36px;
+}
+.game-list-desp{
+	color: #a7a7a7;
+	font-size: 28px;
+	line-height: 40px;
+	height: 80px;
+	overflow: hidden;
+}
